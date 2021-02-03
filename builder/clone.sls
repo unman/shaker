@@ -1,9 +1,9 @@
 include:
-  - build.template-fedora-30-minimal
+  - build.template-fedora-32-minimal
 
 qvm-clone-id:
   qvm.clone:
     - require:
-      - sls: build.template-fedora-30-minimal 
+      - sls: build.template-fedora-32-minimal 
     - name: template-builder
-    - source: fedora-30-minimal
+    - source: fedora-32-minimal
