@@ -1,27 +1,37 @@
 # vim: set syntax=yaml ts=2 sw=2 sts=2 et :
 
-installed:
+install:
   pkg.installed:
     - pkgs:
       - qubes-core-agent-networking
       - qubes-core-agent-passwordless-root
       - qubes-gpg-split
-      - reprepro
-      - gnupg
-      - git
-      - createrepo
-      - rpm-build
-      - make
-      - wget
-      - rpmdevtools
-      - python2-sh
-      - dialog
-      - rpm-sign
-      - dpkg-dev
-      - debootstrap
-      - PyYAML
-      - devscripts
-      - perl-Digest-MD5
-      - perl-Digest-SHA
+      - aspell
+      - aspell-en
       - createrepo_c
       - createrepo_c-libs
+      - debootstrap
+      - devscripts
+      - dialog
+      - dpkg-dev
+      - g++
+      - gcc
+      - git
+      - gitg
+      - gnupg
+      - m4
+      - make
+      - perl-Digest-MD5
+      - perl-Digest-SHA
+      - python3-pyyaml
+      - python3-sh
+      - re2c
+      - reprepro
+      - rpm-build
+      - rpm-sign
+      - rpmdevtools
+      - texinfo
+      - wget
+      - zlib-devel
+      - fedora-packager
+      - fedora-review
