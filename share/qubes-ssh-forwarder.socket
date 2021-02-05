@@ -1,0 +1,11 @@
+[Unit]
+Description=Forward connection to ssh over Qubes RPC
+ConditionPathExists=/var/run/qubes-service/ssh-setup
+
+[Socket]
+ListenStream=127.0.0.1:840
+BindToDevice=lo
+Accept=true
+
+[Install]
+WantedBy=multi-user.target

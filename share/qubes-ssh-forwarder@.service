@@ -1,0 +1,7 @@
+[Unit]
+Description=Forward connection to ssh over Qubes RPC
+
+[Service]
+ExecStart=/usr/bin/qrexec-client-vm '' qubes.ssh
+StandardInput=socket
+StandardOutput=inherit
