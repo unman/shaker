@@ -16,7 +16,7 @@ This will configure /etc/qubes-rpc/policy/qubes.UpdatesProxy to use the cachingp
 
 apt-cacher-ng will cache HTTPS requests if you change https:// to http://HTTPS/// in repo source lists.
 To configure the templates to use the proxyin this way, run:  
-qubesctl --skip-dom0 --targets=Templates state.apply cacher.change_templates.sls  
+qubesctl --skip-dom0 --targets=Templates state.apply cacher.change_templates
 Or target individual templates, as you wish.
 
 N.B
