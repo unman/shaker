@@ -19,3 +19,9 @@
     - group: root
     - makedirs: True
 
+/etc/apt-cacher-ng/fedora_mirrors:
+  file.managed:
+    - source:
+      - salt://cacher/fedora_mirrors
+    - user: root
+    - group: root
