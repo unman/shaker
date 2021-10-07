@@ -15,10 +15,10 @@ qubesctl state.apply cacher.use
 This will configure /etc/qubes-rpc/policy/qubes.UpdatesProxy to use the cachingproxy be default.
 
 apt-cacher-ng will cache HTTPS requests if you change https:// to http://HTTPS/// in repo source lists.
-To configure the templates to use the proxyin this way, run:  
+To configure the templates to use the proxy in this way, run:  
 qubesctl --skip-dom0 --targets=Templates state.apply cacher.change_templates.sls  
 Or target individual templates, as you wish.
 
 N.B
 apt-cacher-ng works well for Debian,Ubuntu,and Arch.  
-It works reasonably well for Fedora, but may require tweaking of the apt-cacher-ng control file.
+It works reasonably well for Fedora, but may require tweaking of the apt-cacher-ng control file, and the fedora_mirrors lists.

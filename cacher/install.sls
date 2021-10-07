@@ -38,6 +38,9 @@ cp /lib/apt-cacher-ng/deb_mirrors.gz /etc/apt-cacher-ng/deb_mirrors.gz:
   cmd.run:
     - runas: root
 
-cp /lib/apt-cacher-ng/fedora_mirrors /etc/apt-cacher-ng/fedora_mirrors:
-  cmd.run:
-    - runas: root
+/etc/apt-cacher-ng/fedora_mirrors:
+  file.managed:
+    - source:
+      - salt://cacher/fedora_mirrors
+    - user: root
+    - group: root
