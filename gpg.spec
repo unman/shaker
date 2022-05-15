@@ -1,13 +1,13 @@
-Name:           gpg
-Version:  	1.0
+Name:           split-gpg
+Version:  	2.0
 Release:        1%{?dist}
-Summary:        Salt gpg template
+Summary:        Salt split-gpg template in Qubes
 
 License:        GPLv3+
 SOURCE0:	gpg
 
 %description
-Salt state to implement split-gpg
+Salt state to implement split-gpg in Qubes
 
 %install
 rm -rf %{buildroot}
@@ -18,6 +18,21 @@ cp -rv %{SOURCE0}/  %{buildroot}/srv/salt
 %defattr(-,root,root,-)
 /srv/salt/gpg/*
 
+%post
+if [ $1 -eq 1 ]; then
+  qubesctl state.apply gpg.create
+  qubesctl --skip-dom0 --targets=template-gpg state.apply gpg.install
+fi
+
+%preun
+if [ $1 -eq 0 ]; then
+  sed -i /qubes.Gpg.*target=gpg/d /etc/qubes/policy.d/30-user.policy
+fi
+
+
 %changelog
+* Sat May 14 2022 unman <unman@thirdeyesecurity.org> - 2.0
+- Update to Qubes 4.1 
+- Change policies on package install and removal 
 * Wed Fed 03 2021 unman <unman@thirdeyesecurity.org>
 - First Build
