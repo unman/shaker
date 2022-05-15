@@ -6,13 +6,13 @@ Config files are included, which will work out of the box for Debian,Ubuntu and 
 The cache and log directories are bind-mounted in /rw in the cacher qube.
 
 Copy directory to /srv/salt, then run:  
-qubesctl state.apply cacher.create.
+qubesctl state.apply cacher.create
 qubesctl --skip-dom0 --targets=template-cacher state.apply cacher.install  
 qubesctl --skip-dom0 --targets=cacher state.apply cacher.configure
 
 To automatically use the proxy run:  
 qubesctl state.apply cacher.use  
-This will configure /etc/qubes-rpc/policy/qubes.UpdatesProxy to use the cachingproxy be default.
+This will configure /etc/qubes/policy.d/30-user.policy to use the caching proxy be default.
 
 apt-cacher-ng will cache HTTPS requests if you change https:// to http://HTTPS/// in repo source lists.
 To configure the templates to use the proxy in this way, run:  

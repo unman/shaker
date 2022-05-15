@@ -2,6 +2,9 @@
 #
 #
 #
+
+{% if grains['nodename'] != 'dom0' %}
+
 allow-testing:
   file.uncomment:
     - name: /etc/apt/sources.list.d/qubes-r4.list
@@ -44,3 +47,12 @@ cp /lib/apt-cacher-ng/deb_mirrors.gz /etc/apt-cacher-ng/deb_mirrors.gz:
       - salt://cacher/fedora_mirrors
     - user: root
     - group: root
+
+/etc/apt-cacher-ng/archlx_mirrors:
+  file.managed:
+    - source:
+      - salt://cacher/archlx_mirrors
+    - user: root
+    - group: root
+
+{% endif %}

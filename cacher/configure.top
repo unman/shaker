@@ -2,4 +2,4 @@
 
 base:
   cacher:
-    - cacher.install
+    - cacher.configure
