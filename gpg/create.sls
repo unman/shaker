@@ -27,6 +27,5 @@ qvm-features-id:
 
 update_file:
   file.prepend:
-    - name: '/etc/qubes-rpc/policy/qubes.Gpg'
-    - text: '@anyvm @anyvm ask,default_target=gpg'
-
+    - name: '/etc/qubes/policy.d/30-user.policy'
+    - text: 'qubes.Gpg  *  @anyvm  @anyvm ask default_target=gpg'
