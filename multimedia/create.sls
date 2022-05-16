@@ -39,6 +39,7 @@ multimedia-prefs:
     - name: multimedia
     - autostart: false
     - include_in_backups: false
+    - netvm: none
 
 multimedia-features:
   qvm.features:
@@ -46,8 +47,25 @@ multimedia-features:
     - appemenus-dispvm: True
     - disable:
       - service.cups
+
+media-present-id:
+  qvm.present:
+    - name: media
+    - template: debian-11
+    - label: purple
+
+media-prefs:
+  qvm.prefs:
+    - name: media
+    - autostart: false
+    - include_in_backups: true
+    - netvm: none
+
+'qvm-volume extend media:private 40G' :
+  cmd.run
      
+
 update_policy_file:
   file.prepend:
-    - name: /etc/qubes-rpc/policy/qubes.OpenInVM
-    - text: media $dispvm allow,target=multimedia
+    - name: /etc/qubes/policy.d/30-user.policy
+    - text: qubes.OpenInVM  *  media @dispvm allow target=multimedia

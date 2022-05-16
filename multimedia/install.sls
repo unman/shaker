@@ -2,29 +2,28 @@
 #
 #
 
-/etc/apt/sources.list:
+{% if salt['qvm.exists']('cacher') %}
+update_sources:
   file.replace:
+    - names:
+      - /etc/apt/sources.list
+      - /etc/apt/sources.list.d/qubes-r4.list
     - pattern: 'https:'
     - repl: 'http://HTTPS/'
     - flags: [ 'IGNORECASE', 'MULTILINE' ]
-
-/etc/apt/sources.list.d/qubes-r4.list:
-  file.replace:
-    - pattern: 'https:'
-    - repl: 'http://HTTPS/'
-    - flags: [ 'IGNORECASE', 'MULTILINE' ]
-
-allow-testing:
-  file.uncomment:
-    - name: /etc/apt/sources.list.d/qubes-r4.list
-    - regex: ^deb\s.*qubes-os.org.*-testing
-    - backup: false
+{% endif %}
 
 vlc.packages:
   pkg.installed:
     - pkgs:
       - vlc
       - pulseaudio-qubes
+
+other.packages:
+  pkg.installed:
+    - pkgs:
+      - audacious
+      - calibre
 
 /usr/lib/x86_64-linux-gnu/libdvdcss.so.2.2.0:
   file.managed:

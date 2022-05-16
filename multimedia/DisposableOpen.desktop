@@ -1,0 +1,10 @@
+[Desktop Entry]
+Categories=Utility
+Comment=Opens files in DisposableVM
+Exec=qvm-open-in-dvm %u
+Icon=debian-swirl
+Name=DisposableOpen
+MimeType=x-scheme-handler/*;
+NoDisplay=false
+Terminal=false
+Type=Application
