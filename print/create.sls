@@ -1,17 +1,17 @@
 qvm-present-id:
   qvm.present:
-    - name: printer
-    - template: debian-10
+    - name: sys-printer
+    - template: debian-11
     - label: gray
 
 qvm-prefs-id:
   qvm.prefs:
-    - name: printer
+    - name: sys-printer
     - netvm: sys-firewall
 
 qvm-features-id:
   qvm.features:
-    - name: printer
+    - name: sys-printer
     - disable:
       - service.cups-browsed
     - enable:
@@ -19,5 +19,5 @@ qvm-features-id:
 
 update_file:
   file.prepend:
-    - name: '/etc/qubes-rpc/policy/qubes.Print'
-    - text: '@anyvm @anyvm ask,default_target=printer'
+    - name: '/etc/qubes/policy.d/30-user.policy'
+    - text: 'qubes.Print  *  @anyvm @anyvm ask default_target=sys-printer'

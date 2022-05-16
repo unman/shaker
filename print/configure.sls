@@ -7,9 +7,16 @@
         binds+=( '/etc/qubes-rpc/qubes.Print' )
     - makedirs: True
 
+create_qrexec:
+  file.managed:
+    - name: /rw/bind-dirs/etc/qubes-rpc/qubes.Print
+    - mode: 755
+    - user: root
+    - group: root
+    - makedirs: True
+
 /rw/bind-dirs/etc/qubes-rpc/qubes.Print:
   file.append:
     - text: |
         #!/bin/sh
         exec socat STDIO TCP:localhost:631
-    - makedirs: True
