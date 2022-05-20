@@ -1,3 +1,6 @@
 [submodule "openvpn"]
 	path = openvpn
 	url = https://github.com/unman/openvpn
+[submodule "qubes-ssh-agent"]
+	path = qubes-ssh-agent
+	url = https://github.com/unman/qubes-ssh-agent
