@@ -3,13 +3,13 @@ include:
 
 qvm-present-id:
   qvm.present:
-    - name: gpg
+    - name: sys-gpg
     - template: template-gpg
     - label: gray
 
 qvm-prefs-id:
   qvm.prefs:
-    - name: gpg
+    - name: sys-gpg
     - netvm: none
     - memory: 400
     - maxmem: 800
@@ -17,15 +17,15 @@ qvm-prefs-id:
 
 qvm-features-id:
   qvm.features:
-    - name: gpg
+    - name: sys-gpg
     - disable:
       - service.cups
       - service.cups-browsed
 
-'qvm-volume extend gpg:private 10G' :
+'qvm-volume extend sys-gpg:private 10G' :
   cmd.run
 
 update_file:
   file.prepend:
     - name: '/etc/qubes/policy.d/30-user.policy'
-    - text: 'qubes.Gpg  *  @anyvm  @anyvm ask default_target=gpg'
+    - text: 'qubes.Gpg  *  @anyvm  @anyvm ask default_target=sys-gpg'
