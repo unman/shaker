@@ -26,11 +26,13 @@ fi
 
 %preun
 if [ $1 -eq 0 ]; then
-  sed -i /qubes.Gpg.*target=gpg/d /etc/qubes/policy.d/30-user.policy
+  sed -i /qubes.Gpg.*target=sys-gpg/d /etc/qubes/policy.d/30-user.policy
 fi
 
 
 %changelog
+* Sat May 14 2022 unman <unman@thirdeyesecurity.org> - 2.0
+- Change preun script
 * Sat May 14 2022 unman <unman@thirdeyesecurity.org> - 2.0
 - Update to Qubes 4.1 
 - Change policies on package install and removal 
