@@ -1,5 +1,26 @@
 # vim: set syntax=yaml ts=2 sw=2 sts=2 et :
 
+{% if salt['qvm.exists']('cacher') %}
+
+/etc/yum.repos.d/:
+  file.replace:
+    - names:
+      - /etc/yum.repos.d/fedora.repo
+      - /etc/yum.repos.d/fedora-updates.repo
+      - /etc/yum.repos.d/fedora-updates-testing.repo
+      - /etc/yum.repos.d/fedora-cisco-openh264.repo
+    - pattern: 'metalink=https://(.*)basearch'
+    - repl: 'metalink=http://HTTPS///\1basearch&protocol=http'
+    - flags: [ 'IGNORECASE', 'MULTILINE' ]
+
+/etc/yum.repos.d/qubes-r4.repo:
+    file.replace:
+      - pattern: 'https://'
+      - repl: 'http://HTTPS///'
+      - flags: [ 'IGNORECASE', 'MULTILINE' ]
+
+{% endif %}
+
 install:
   pkg.installed:
     - pkgs:
@@ -14,6 +35,8 @@ install:
       - devscripts
       - dialog
       - dpkg-dev
+      - fedora-packager
+      - fedora-review
       - g++
       - gcc
       - git
@@ -34,5 +57,3 @@ install:
       - texinfo
       - wget
       - zlib-devel
-      - fedora-packager
-      - fedora-review
