@@ -30,6 +30,7 @@ install:
       - rpm-build
       - rpm-sign
       - rpmdevtools
+      - systemd-container
       - texinfo
       - wget
       - zlib-devel
