@@ -1,4 +1,4 @@
-Name:           sys-multimedia
+Name:           3isec-qubes-sys-multimedia
 Version:  	2.1
 Release:        1%{?dist}
 Summary:        Salt multimedia template and qubes
@@ -20,12 +20,15 @@ cp -rv %{SOURCE0}/  %{buildroot}/srv/salt
 
 %post
 if [ $1 -eq 1 ]; then
-  qubesctl state.apply multimedia.create
+  qubesctl state.apply multimedia.clone
   qubesctl --skip-dom0 --targets=template-multimedia state.apply multimedia.install
+  qubesctl state.apply multimedia.create
   qubesctl --skip-dom0 --targets=media state.apply multimedia.configure
 fi
 
 %changelog
+* Sat May 21 2022 unman <unman@thirdeyesecurity.org> - 2.1
+- Standardise package names to 3isec-
 * Sun May 15 2022 unman <unman@thirdeyesecurity.org> - 2.0
 - Add post install salting
 * Wed Feb 03 2021 unman <unman@thirdeyesecurity.org>

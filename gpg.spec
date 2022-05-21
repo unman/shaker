@@ -1,4 +1,4 @@
-Name:           split-gpg
+Name:           3isec-qubes-split-gpg
 Version:  	2.0
 Release:        1%{?dist}
 Summary:        Salt split-gpg template in Qubes
@@ -31,6 +31,8 @@ fi
 
 
 %changelog
+* Sat May 21 2022 unman <unman@thirdeyesecurity.org> - 1.4
+- Standardise package names to 3isec-
 * Sat May 14 2022 unman <unman@thirdeyesecurity.org> - 2.0
 - Change preun script
 * Sat May 14 2022 unman <unman@thirdeyesecurity.org> - 2.0

@@ -1,5 +1,5 @@
-Name:           cacher
-Version:       	1.3
+Name:           3isec-qubes-cacher
+Version:       	1.4
 Release:        1%{?dist}
 Summary:        Salt a caching proxy in Qubes
 
@@ -41,6 +41,8 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Sat May 21 2022 unman <unman@thirdeyesecurity.org> - 1.4
+- Standardise package names to 3isec-
 * Sun May 15 2022 unman <unman@thirdeyesecurity.org> - 1.3
 - General tidy up
 - Automate configuration for standard templates on install
