@@ -1,7 +1,13 @@
+include:
+  - print.clone
+
+require:
+  - print.clone
+
 qvm-present-id:
   qvm.present:
     - name: sys-printer
-    - template: debian-11
+    - template: template-print
     - label: gray
 
 qvm-prefs-id:
