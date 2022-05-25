@@ -1,5 +1,5 @@
 Name:           3isec-qubes-sys-printer
-Version:       	1.1
+Version:       	1.2
 Release:        1%{?dist}
 Summary:        Salt a printer qube in Qubes
 
@@ -21,6 +21,7 @@ cp -rv %{SOURCE0}/  %{buildroot}/srv/salt
 %post
 if [ $1 -eq 1 ]; then
   qubesctl state.apply print.create
+  qubesctl --skip-dom0 --targets=template-printer state.apply print.install
   qubesctl --skip-dom0 --targets=sys-printer state.apply print.configure
 fi
 
@@ -30,6 +31,8 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Sun May 22 2022 unman <unman@thirdeyesecurity.org> - 1.2
+- Add template and package installation to  post
 * Sat May 21 2022 unman <unman@thirdeyesecurity.org> - 1.1
 - Standardise package names to 3isec-
 * Sun May 15 2022 unman <unman@thirdeyesecurity.org> - 1.0
