@@ -127,5 +127,5 @@ apt-get clean:
 trim_idleness:
   file.replace:
     - name: /usr/lib/python3/dist-packages/qubesidle/idleness_monitor.py
-    - pattern: TIMEOUT_SECONDS = 15 * 60
-    - repl: TIMEOUT_SECONDS = 3 * 60
+    - pattern: TIMEOUT_SECONDS = 15
+    - repl: TIMEOUT_SECONDS = 3
