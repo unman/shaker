@@ -1,6 +1,8 @@
 [Default Applications]
 application/clarisworks=DisposableOpen.desktop
 application/csv=DisposableOpen.desktop
+application/epub=DisposableOpen.desktop
+application/epub+zip=DisposableOpen.desktop
 application/excel=DisposableOpen.desktop
 application/macwriteii=DisposableOpen.desktop
 application/mathml+xml=DisposableOpen.desktop

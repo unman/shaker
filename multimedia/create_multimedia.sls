@@ -24,6 +24,8 @@ qvm-features-id:
       - service.cups
       - service.cups-browsed
       - service.tinyproxy
+    - enable:
+      - service.shutdown-idle
 
 
 multimedia:
@@ -47,6 +49,8 @@ multimedia-features:
     - appemenus-dispvm: True
     - disable:
       - service.cups
+    - enable:
+      - service.shutdown-idle
 
 media-present-id:
   qvm.present:
