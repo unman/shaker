@@ -1,13 +1,13 @@
 Name:           3isec-qubes-sys-ssh-agent
-Version:       	1.0
+Version:       	1.1
 Release:        1%{?dist}
-Summary:        Salt a qube to hold ssh-agents
+Summary:        Salt a service qube to hold ssh-agents
 
 License:        GPLv3+
 SOURCE0:	qubes-ssh-agent
 
 %description
-Salt state to implement a qube to hold ssh-agents
+Salt state to implement a service qube to hold ssh-agents
 
 %install
 rm -rf %{buildroot}
@@ -21,6 +21,7 @@ cp -rv %{SOURCE0}/  %{buildroot}/srv/salt
 %post
 if [ $1 -eq 1 ]; then
   qubesctl state.apply qubes-ssh-agent.create
+  qubesctl --skip-dom0 --targets=template-ssh-agent state.apply qubes-ssh-agent.configure_template
   qubesctl --skip-dom0 --targets=sys-ssh-agent state.apply qubes-ssh-agent.configure
 fi
 
@@ -30,5 +31,7 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Mon Jun 06 2022 unman <unman@thirdeyesecurity.org> - 1.1
+- Update post scripts
 * Sun May 22 2022 unman <unman@thirdeyesecurity.org> - 1.0
 - First Build
