@@ -22,4 +22,4 @@ installed:
       - cups
       - hplip
       - hplip-gui
-      - simplescan
+      - simple-scan

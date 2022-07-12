@@ -2,7 +2,8 @@ include:
   - print.clone
 
 require:
-  - print.clone
+  qvm.present:
+    - name: template-print
 
 qvm-present-id:
   qvm.present:
