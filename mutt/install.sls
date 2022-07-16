@@ -33,4 +33,19 @@ installed:
       - w3m
     - skip_suggestions: True
 
+change_timeout:
+  file.replace:
+    - name: /usr/lib/python3/dist-packages/qubesidle/idleness_monitor.py
+    - pattern: '15 * 60'
+    - repl: '3 * 60'
+    - flags: [ 'IGNORECASE', 'MULTILINE' ]
+
+default_muttrc:
+  file.managed:
+    - name: /etc/skel/.muttrc
+    - source: salt://mutt/muttrc
+    - user: user
+    - group: user
+
+
 {% endif %}
