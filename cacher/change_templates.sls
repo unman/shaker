@@ -3,11 +3,18 @@
 #
 #
 {% if grains['os_family']|lower == 'debian' %}
+{% for repo in salt['file.find']('/etc/apt/sources.list.d/', name='*list') %}
+  {{ repo }}_baseurl:
+      file.replace:
+        - name: {{ repo }}
+        - pattern: 'https://'
+        - repl: 'http://HTTPS///'
+        - flags: [ 'IGNORECASE', 'MULTILINE' ]
+{% endfor %}
+
   /etc/apt/sources.list:
     file.replace:
-      - names: 
-        - /etc/apt/sources.list
-        - /etc/apt/sources.list.d/qubes-r4.list
+      - name: /etc/apt/sources.list
       - pattern: 'https:'
       - repl: 'http://HTTPS/'
       - flags: [ 'IGNORECASE', 'MULTILINE' ]
@@ -23,19 +30,19 @@
       - flags: [ 'IGNORECASE', 'MULTILINE' ]
 
 {% elif grains['os_family']|lower == 'redhat' %}
-  /etc/yum.repos.d/:
+{% for repo in salt['file.find']('/etc/yum.repos.d/', name='*repo*') %}
+{{ repo }}_baseurl:
     file.replace:
-      - names:
-        - /etc/yum.repos.d/fedora.repo
-        - /etc/yum.repos.d/fedora-updates.repo
-        - /etc/yum.repos.d/fedora-updates-testing.repo
-        - /etc/yum.repos.d/fedora-cisco-openh264.repo
+      - name: {{ repo }}
+      - pattern: 'baseurl=https://'
+      - repl: 'baseurl=http://HTTPS///'
+      - flags: [ 'IGNORECASE', 'MULTILINE' ]
+{{ repo }}_metalink:
+    file.replace:
+      - name: {{ repo }}
       - pattern: 'metalink=https://(.*)basearch'
       - repl: 'metalink=http://HTTPS///\1basearch&protocol=http'
       - flags: [ 'IGNORECASE', 'MULTILINE' ]
-  /etc/yum.repos.d/qubes-r4.repo:
-      file.replace:
-        - pattern: 'https://'
-        - repl: 'http://HTTPS///'
-        - flags: [ 'IGNORECASE', 'MULTILINE' ]
+
+{% endfor %}
 {% endif %}
