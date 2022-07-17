@@ -22,6 +22,7 @@ cp -rv %{SOURCE0}/  %{buildroot}/srv/salt
 if [ $1 -eq 1 ]; then
   qubesctl state.apply mutt.clone
   qubesctl --skip-dom0 --targets=template-mutt state.apply mutt.install
+  qubesctl state.apply mutt.configure
 fi
 
 %preun

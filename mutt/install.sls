@@ -1,6 +1,8 @@
 # vim: set syntax=yaml ts=2 sw=2 sts=2 et :
 #
 
+{% if grains['nodename'] != 'dom0' %}
+
 {% if salt['qvm.exists']('cacher') %}
 
 /etc/apt/sources.list:
@@ -14,7 +16,6 @@
 
 {% endif %}
 
-{% if grains['nodename'] != 'dom0' %}
 update:
   pkg.uptodate:
     - refresh: True
@@ -23,15 +24,18 @@ installed:
   pkg.installed:
     - pkgs:
       - qubes-core-agent-networking
+      - qubes-app-shutdown-idle
+      - qubes-gpg-split
       - mb2md
       - mutt
       - notmuch
       - notmuch-mutt
+      - offline-imap
       - openssh-client
-      - qubes-app-shutdown-idle
       - rsync
       - w3m
     - skip_suggestions: True
+    - install_recommends: False
 
 change_timeout:
   file.replace:
@@ -46,6 +50,5 @@ default_muttrc:
     - source: salt://mutt/muttrc
     - user: user
     - group: user
-
 
 {% endif %}
