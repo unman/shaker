@@ -5,5 +5,5 @@ mutt_menu:
   qvm.features:
     - name: template-mutt
     - set:
-      - menu-items: "mutt.desktop debian-xterm.desktop"
-      - default-menu-items: "mutt.desktop debian-xterm.desktop"
+      - menu-items: "mutt.desktop mutt_setup.desktop debian-xterm.desktop"
+      - default-menu-items: "mutt.desktop mutt_setup.desktop debian-xterm.desktop"
