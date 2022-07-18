@@ -60,4 +60,12 @@ helper_script:
     - group: user
     - mode: 744
 
+helper_script_menu:
+  file.managed:
+    - name: /usr/share/applications/mutt_setup.desktop
+    - source: salt://mutt/mutt_setup.desktop
+    - user: user
+    - group: user
+    - mode: 755
+
 {% endif %}
