@@ -5,36 +5,40 @@
 ## PGP
 # Specify what key to use for signing here:
 #set pgp_sign_as=0x
+## END PGP
 
 
 ## IMAP
-#set folder=imaps://YOUR_SERVER/
-#set imap_user=YOUR_USERNAME_HERE
-#set imap_pass=YOUR_PASSWORD_HERE
+#set folder=imaps://IMAP_SERVER/
+#set imap_user=IMAP_USERNAME
+#set imap_pass=IMAP_PASSWORD
 #set spoolfile=+INBOX
 #set imap_check_subscribed
+## END IMAP
 
 
 ## POP3
-#set pop_host=pops://YOUR_SERVER
-#set pop_user=YOUR_USERNAME_HERE
-#set pop_pass=YOUR_PASSWORD_HERE
+#set pop_host=pops://POP3_SERVER
+#set pop_user=POP3_USERNAME
+#set pop_pass=POP3_PASSWORD
 #set pop_checkinterval=120
 #set pop_delete=ask-no
 #set pop_last=yes
+## END POP3
 
 
-##SMTP
-#set my_user=YOUR_USERNAME_HERE
-#set smtp_url=smtps://$my_user@YOUR_SMTP_SERVER
+## SMTP
+#set my_user=SMTP_USERNAME
+#set smtp_url=smtps://$my_user@SMTP_SERVER
 #set ssl_force_tls=yes
 #set record= +Sent
-#set smtp_pass=YOUR_PASSWORD_HERE
-#set realname=YOUR_REAL_NAME
-#set from=YOUR_EMAIL_ADDRESS
+#set smtp_pass=SMTP_PASSWORD
+#set realname=SMTP_REAL_NAME
+#set from=EMAIL_ADDRESS
 #set use_from=yes
 #set ssl_starttls=yes
 #set ssl_force_tls=yes
+## END SMTP
 
 ### END USER CONFIGURATION ###
 ##############################

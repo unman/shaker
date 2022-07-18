@@ -30,10 +30,11 @@ installed:
       - mutt
       - notmuch
       - notmuch-mutt
-      - offline-imap
+      - offlineimap3
       - openssh-client
       - rsync
       - w3m
+      - zenity
     - skip_suggestions: True
     - install_recommends: False
 
@@ -50,5 +51,13 @@ default_muttrc:
     - source: salt://mutt/muttrc
     - user: user
     - group: user
+
+helper_script:
+  file.managed:
+    - name: /etc/skel/setup_mutt.sh
+    - source: salt://mutt/setup_mutt.sh
+    - user: user
+    - group: user
+    - mode: 744
 
 {% endif %}
