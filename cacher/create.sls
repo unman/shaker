@@ -10,7 +10,6 @@ qvm-present-id:
 qvm-prefs-id:
   qvm.prefs:
     - name: cacher
-    - netvm: tor
     - memory: 300
     - maxmem: 800
     - vcpus: 2
