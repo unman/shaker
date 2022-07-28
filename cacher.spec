@@ -1,13 +1,42 @@
 Name:           3isec-qubes-cacher
-Version:       	1.4
+Version:       	1.5
 Release:        1%{?dist}
-Summary:        Salt a caching proxy in Qubes
+Summary:        A caching proxy in Qubes
 
 License:        GPLv3+
 SOURCE0:	cacher
 
 %description
-Salt state to implement a caching proxy
+ This package provides a caching proxy, named cacher.
+ A caching proxy stores downloaded packages, so that you need only download
+a package once for it to be used when updating many templates.
+ The proxy is preconfigured to work out of the box for Debian, Ubuntu,
+Arch, and Fedora templates.
+
+When you install this package your Qubes system will be altered to use
+the proxy by default.
+This is done with an entry in /etc/qubes/policy.d/30-user.policy
+If you want to change the proxy setting for some/all templates, edit
+that file.
+
+So that you can use https:// in your repository definitions, the entries
+will be changed in the templates.
+ https:// becomes http://HTTPS///
+ This is so that the request to the proxy is plain text, and the proxy 
+will then make the request via https
+ This change will be done automatically for every template that exists
+when you install this package.
+
+ If you install a new template, you must make this configuration change. 
+ In dom0 run:
+ qubesctl --skip-dom0 --targets=TEMPLATE state.apply cacher.change_templates  
+ replacing TEMPLATE with the name of the new template. 
+
+ If you want to use the standard proxy, you have to revert this change,
+as well as editing the policy file.
+ In dom0 run:
+ qubesctl --skip-dom0 --targets=TEMPLATE state.apply cacher.restore_templates  
+ replacing TEMPLATE with the name of the new template. 
 
 %install
 rm -rf %{buildroot}
@@ -41,6 +70,8 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Thu Jul 28 2022 unman <unman@thirdeyesecurity.org> - 1.5
+- Extended description
 * Sat May 21 2022 unman <unman@thirdeyesecurity.org> - 1.4
 - Standardise package names to 3isec-
 * Sun May 15 2022 unman <unman@thirdeyesecurity.org> - 1.3
