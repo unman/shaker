@@ -1,6 +1,6 @@
 mutt_precursor:
-  - qvm.template_installed:
-    - name: template-debian-11-minimal
+  qvm.template_installed:
+    - name: debian-11-minimal
 
 qvm-clone-id:
   qvm.clone:
