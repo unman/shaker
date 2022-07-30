@@ -1,10 +1,9 @@
-include:
-  - template-debian-11-minimal
+gpg_precursor:
+  - qvm.template_installed:
+    - name: template-debian-11-minimal
 
 qvm-clone-id:
   qvm.clone:
-    - require:
-      - sls: template-debian-11-minimal 
     - name: template-gpg
     - source: debian-11-minimal
 
