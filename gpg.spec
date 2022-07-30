@@ -1,13 +1,24 @@
 Name:           3isec-qubes-split-gpg
-Version:  	2.0
+Version:  	    2.0
 Release:        1%{?dist}
-Summary:        Salt split-gpg template in Qubes
+Summary:        split-gpg in Qubes
 
 License:        GPLv3+
-SOURCE0:	gpg
+SOURCE0:	      gpg
 
 %description
-Salt state to implement split-gpg in Qubes
+ This package set up split-gpg in Qubes.
+ split-gpg allows you to store your pgp keys in one qube, and access them from another.
+ Full details are at https://www.qubes-os.org/doc/split-gpg/
+
+When you install this package a template will be created, and a qube
+named sys-gpg to hold the keys.
+You can create more than one qube to hold keys if you want.
+The system will be configured to use the sys-gpg qube by default.
+This is done with an entry in /etc/qubes/policy.d/30-user.policy
+If you want to change the setting for some/all qubes, edit
+that file.
+
 
 %install
 rm -rf %{buildroot}

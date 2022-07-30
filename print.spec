@@ -7,7 +7,33 @@ License:        GPLv3+
 SOURCE0:	print
 
 %description
-Salt state to implement a printer qube
+This package sets up a qube called sys-print, to be used for system-wide
+printing in Qubes.
+ 
+You configure sys-print to access your printer, and then print from any
+other qube by accessing sys-print.
+If you have a USB printer you will need to configure sys-print with
+(at least) one of your USB controllers.
+If you have a network printer, you should be able to set up from
+sys-print, and then print from offline qubes.
+You should restrict access from sys-print to the IP of the printer using
+qubes firewall.
+
+You can create more than one qube to act as a printer qube if you want.
+The system will be configured to use the sys-printer qube by default.
+This is done with an entry in /etc/qubes/policy.d/30-user.policy
+If you want to change the setting for some/all qubes, edit
+that file.
+
+A specific service called qubes.Print is created.
+You have to configure your qubes to use that service, and a helper script
+is provided.
+In dom0, run:
+ sudo qubesctl --skip-dom0 --targets=NAMES state.apply print.print_client
+
+Removing this package will NOT delete the qubes, but will remove the
+entry in /etc/qubes/policy.d/30-user.policy.
+
 
 %install
 rm -rf %{buildroot}

@@ -1,13 +1,39 @@
 Name:           3isec-qubes-sys-ssh-agent
 Version:       	1.1
 Release:        1%{?dist}
-Summary:        Salt a service qube to hold ssh-agents
+Summary:        Create a service qube to hold ssh-agents
 
 License:        GPLv3+
-SOURCE0:	qubes-ssh-agent
+SOURCE0:	      qubes-ssh-agent
 
 %description
-Salt state to implement a service qube to hold ssh-agents
+This package sets up a qube called sys-ssh-agent, to hold ssh keys.
+It is ideal for use cases where you have a number of key pairs, which
+are used by different qubes.
+
+The keypairs are stored in the offline sys-ssh-agent server, and requests
+are passed from clients to the server via qrexec.
+Clients may access the same ssh-agent, or access different agents.  
+Access is controlled via dom0 policy file, /etc/qubes/policy.d/30-user.policy
+
+The client does not know the identity of the ssh-agent server, nor are
+keys kept in memory in the client.
+All configuration of keys, and unlocking of keys, where they are password
+protected, is done in the ssh-agent server, using standard ssh-agent
+controls.
+Keys can be selectively allocated to different ssh-agents.
+You can create multiple ssh-agents holding different combination of ssh keys.
+This allow you to access different key sets from different qubes.
+By default an ssh-agent called "work" is provided in sys-ssh-agent.
+Helper scripts are provided to create new ssh-agents.
+
+You can create other qubes to hold other ssh-agents if you  want, for
+maximum compartmentalisation.
+Simply clone sys-ssh-agent and edit the ssh-agents.
+
+Removing this package will NOT delete the qubes, but will remove the 
+entry in /etc/qubes/policy.d/30-user.policy.
+
 
 %install
 rm -rf %{buildroot}

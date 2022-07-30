@@ -9,9 +9,9 @@ SOURCE0:	cacher
 %description
  This package provides a caching proxy, named cacher.
  A caching proxy stores downloaded packages, so that you need only download
-a package once for it to be used when updating many templates.
+ a package once for it to be used when updating many templates.
  The proxy is preconfigured to work out of the box for Debian, Ubuntu,
-Arch, and Fedora templates.
+ Arch, and Fedora templates.
 
 When you install this package your Qubes system will be altered to use
 the proxy by default.
@@ -23,9 +23,9 @@ So that you can use https:// in your repository definitions, the entries
 will be changed in the templates.
  https:// becomes http://HTTPS///
  This is so that the request to the proxy is plain text, and the proxy 
-will then make the request via https
+ will then make the request via https
  This change will be done automatically for every template that exists
-when you install this package.
+ when you install this package.
 
  If you install a new template, you must make this configuration change. 
  In dom0 run:
@@ -33,7 +33,7 @@ when you install this package.
  replacing TEMPLATE with the name of the new template. 
 
  If you want to use the standard proxy, you have to revert this change,
-as well as editing the policy file.
+ as well as editing the policy file.
  In dom0 run:
  qubesctl --skip-dom0 --targets=TEMPLATE state.apply cacher.restore_templates  
  replacing TEMPLATE with the name of the new template. 
