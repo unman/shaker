@@ -7,7 +7,6 @@ License:        GPLv3+
 SOURCE0:       	multimedia
 
 %description
-
  This package sets up qubes to work mith multimedia files in Qubes.
  By default a qube named "media" is created, and configured so that any
  multimedia files are opened in a named disposable called "multimedia".

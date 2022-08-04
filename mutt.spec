@@ -1,13 +1,15 @@
 Name:           3isec-qubes-mutt
-Version:  	1.0
+Version:  	    1.0
 Release:        1%{?dist}
-Summary:        Salt template for using mutt in Qubes
+Summary:        Prepares qube for using mutt in Qubes
 
 License:        GPLv3+
-SOURCE0:	mutt
+SOURCE0:	      mutt
 
 %description
-Salt state to create template for using mutt in Qubes
+This package creates a minimal template configured for using mutt in Qubes, including notmuch.
+There is a helper script to make it easy to set up mutt.
+By default, attachments will be opened in a disposable.
 
 %install
 rm -rf %{buildroot}
