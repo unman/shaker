@@ -1,0 +1,9 @@
+[Unit]
+Description=Simple start for Snort
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/snort -q -u snort -g snort -c /etc/snort/snort.conf -i eth0
+
+[Install]
+WantedBy=multi-user.target

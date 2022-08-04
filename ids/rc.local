@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# This script will be executed at every VM startup, you can place your own
+# custom commands here. This includes overriding some configuration in /etc,
+# starting services etc.
+
+# Example for overriding the whole CUPS configuration:
+#  rm -rf /etc/cups
+#  ln -s /rw/config/cups /etc/cups
+#  systemctl --no-block restart cups
+cp snort.service /usr/lib/systemd/system
+systemctl unmask snort
+systemctl start snort
