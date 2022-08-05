@@ -1,9 +1,8 @@
-include:
-  - build.template-fedora-34-minimal
+builder_requisite:
+  qvm.template_installed:
+    - name: fedora-36-minimal
 
 qvm-clone-id:
   qvm.clone:
-    - require:
-      - sls: build.template-fedora-34-minimal 
     - name: template-builder
-    - source: fedora-34-minimal
+    - source: fedora-36-minimal
