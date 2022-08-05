@@ -12,6 +12,7 @@
     - repl: 'https://'
     - flags: [ 'IGNORECASE', 'MULTILINE' ]
 
+
 {% set IP = salt['cmd.shell']('qubesdb-read /qubes-ip') %}
 {% set GW = salt['cmd.shell']('qubesdb-read /qubes-gateway') %}
 
@@ -44,5 +45,35 @@ set_gw:
 Pihole_update:
   pkg.uptodate:
     - refresh: True
+
+Pihole_installed:
+  pkg.installed:
+    - pkgs:
+      - qubes-core-agent-networking
+      - qubes-core-agent-passwordless-root
+      - curl
+      - dnsutils
+      - firefox-esr
+      - git
+      - idn2
+      - lighttpd
+      - netcat-openbsd
+      - php-cgi
+      - php-common
+      - php-intl
+      - php-json
+      - php-sqlite3
+      - php-xml
+      - unzip
+
+Pihole-systemd-mask:
+  cmd.run:
+    - name: systemctl disable systemd-resolved
+
+https://github.com/pi-hole/pi-hole.git:
+  git.latest:
+    - name: https://github.com/pi-hole/pi-hole.git
+    - user: root
+    - target: /root/pi-hole
 
 {% endif %}
