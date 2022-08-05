@@ -88,4 +88,35 @@ Pihole-setup:
   cmd.run:
     - name: '/root/pi-hole/automated\ install/basic-install.sh --unattended'
 
+/rw/config/qubes-firewall-user-script:
+  file.append:
+    text:
+      - nft flush chain nat PR-QBS
+      - nft insert rule nat PR-QBS iifname "vif*" tcp dport 53 dnat to 127.0.0.1
+      - nft insert rule nat PR-QBS iifname "vif*" udp dport 53 dnat to 127.0.0.1
+
+/rw/config/qubes-firewall.d/update_nft.sh:
+  file.managed:
+    - source:
+      - salt://pihole/update_nft.sh
+    - user: root
+    - group: root
+    - makedirs: True
+    - mode: 755
+
+/rw/config/network-hooks.d/internalise.sh:
+  file.managed:
+    - source:
+      - salt://pihole/internalise.sh
+    - user: root
+    - group: root
+    - makedirs: True
+    - mode: 755
+
+/etc/dnsmasq.conf:
+  file.prepend:
+    - text:
+      - interface=lo
+      - bind-interfaces
+
 {% endif %}
