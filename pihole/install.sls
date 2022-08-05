@@ -76,4 +76,16 @@ https://github.com/pi-hole/pi-hole.git:
     - user: root
     - target: /root/pi-hole
 
+/etc/pihole/setupVars.conf:
+  file.managed:
+    - source:
+      - salt://pihole/setupVars.conf
+    - user: root
+    - group: root
+    - makedirs: True
+
+Pihole-setup:
+  cmd.run:
+    - name: '/root/pi-hole/automated\ install/basic-install.sh --unattended'
+
 {% endif %}
