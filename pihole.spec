@@ -14,10 +14,8 @@ The package will create a new standalone qube, sys-pihole.
 It is a drop in replacement for sys-firewall.
 Sys-pihole is attached to sys-net.
 If you have sys-firewall as the default netvm, this will be changed to sys-pihole.
+The installation will try to move all qubes with netvm of sys-firewall to sys-iphole.
 sys-firewall will *not* be removed, so you can still use it for some qubes if you want.
-To use sys-pihole simply change the netvm.
-If you want to change all your qubes from sys-firewall to sys-pihole, a script is provided:
-Run `sudo /srv/salt/pihole/change_netvm.sh` .
 
  If you want to use Tor, then you should reconfigure your system like this:
  qubes -> sys-pihole ->Tor-gateway -> sys-firewall -> sys-net
@@ -49,7 +47,7 @@ cp -rv %{SOURCE0}/  %{buildroot}/srv/salt
 if [ $1 -eq 1 ]; then
   qubesctl state.apply pihole.create
   qubesctl --skip-dom0 --targets=sys-pihole state.apply pihole.install
-  if [[ $(qubes-prefs default_netvm sys-firewall |grep sys-firewall ) ]]; then qubes-prefs default_netvm sys-pihole; fi
+  /srv/salt/pihole/change_netvm.sh
 fi
 
 %preun

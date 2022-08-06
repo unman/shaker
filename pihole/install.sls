@@ -90,7 +90,7 @@ Pihole-setup:
 
 /rw/config/qubes-firewall-user-script:
   file.append:
-    text:
+    - text:
       - nft flush chain nat PR-QBS
       - nft insert rule nat PR-QBS iifname "vif*" tcp dport 53 dnat to 127.0.0.1
       - nft insert rule nat PR-QBS iifname "vif*" udp dport 53 dnat to 127.0.0.1
@@ -108,6 +108,24 @@ Pihole-setup:
   file.managed:
     - source:
       - salt://pihole/internalise.sh
+    - user: root
+    - group: root
+    - makedirs: True
+    - mode: 755
+
+/rw/config/network-hooks.d/flush.sh:
+  file.managed:
+    - source:
+      - salt://pihole/flush.sh
+    - user: root
+    - group: root
+    - makedirs: True
+    - mode: 755
+
+/rw/config/network-hooks.d/flush:
+  file.managed:
+    - source:
+      - salt://pihole/flush
     - user: root
     - group: root
     - makedirs: True
