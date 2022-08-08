@@ -1,0 +1,5 @@
+#!/usr/sbin/nft -f
+define vpndns1 = 10.64.0.1
+flush chain nat PR-QBS
+insert rule nat PR-QBS tcp dport 53 dnat to $vpndns1
+insert rule nat PR-QBS udp dport 53 dnat to $vpndns1
