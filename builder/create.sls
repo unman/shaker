@@ -1,5 +1,5 @@
 include:
-  - build.clone
+  - builder.clone
 
 qvm-present-id:
   qvm.present:
@@ -10,7 +10,6 @@ qvm-present-id:
 qvm-prefs-id:
   qvm.prefs:
     - name: builder
-    - netvm: tor
     - memory: 800
     - maxmem: 8000
     - vcpus: 4
@@ -26,5 +25,6 @@ qvm-features-id:
 
 update_file:
   file.prepend:
-    - name: /etc/qubes-rpc/policy/qubes.Gpg
-    - text: builder gpg allow
+    - name: /etc/qubes/policy.d/30-user.policy
+    - text: qubes.Gpg * builder sys-gpg allow
+    - makedirs: True

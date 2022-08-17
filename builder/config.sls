@@ -1,21 +1,21 @@
 /home/user/.gitconfig:
   file.managed:
     - source:
-      - salt://build/builder-gitconfig
+      - salt://builder/builder-gitconfig
     - user: user
     - group: user
 
 /rw/config/gpg-split-domain:
   file.managed:
     - source:
-      - salt://build/builder-split-gpg-config
+      - salt://builder/builder-split-gpg-config
     - user: root
     - group: root
 
 /home/user/.rpmmacros:
   file.managed:
     - source:
-      - salt://build/builder-rpmmacros
+      - salt://builder/rpmmacros
     - user: user
     - group: user
 

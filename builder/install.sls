@@ -2,23 +2,21 @@
 
 {% if salt['qvm.exists']('cacher') %}
 
-/etc/yum.repos.d/:
-  file.replace:
-    - names:
-      - /etc/yum.repos.d/fedora.repo
-      - /etc/yum.repos.d/fedora-updates.repo
-      - /etc/yum.repos.d/fedora-updates-testing.repo
-      - /etc/yum.repos.d/fedora-cisco-openh264.repo
-    - pattern: 'metalink=https://(.*)basearch'
-    - repl: 'metalink=http://HTTPS///\1basearch&protocol=http'
-    - flags: [ 'IGNORECASE', 'MULTILINE' ]
-
-/etc/yum.repos.d/qubes-r4.repo:
+{% for repo in salt['file.find']('/etc/yum.repos.d/', name='*repo*') %}
+{{ repo }}_baseurl:
     file.replace:
-      - pattern: 'https://'
-      - repl: 'http://HTTPS///'
+      - name: {{ repo }}
+      - pattern: 'baseurl=https://'
+      - repl: 'baseurl=http://HTTPS///'
+      - flags: [ 'IGNORECASE', 'MULTILINE' ]
+{{ repo }}_metalink:
+    file.replace:
+      - name: {{ repo }}
+      - pattern: 'metalink=https://(.*)basearch'
+      - repl: 'metalink=http://HTTPS///\1basearch&protocol=http'
       - flags: [ 'IGNORECASE', 'MULTILINE' ]
 
+{% endfor %}
 {% endif %}
 
 install:
@@ -56,4 +54,5 @@ install:
       - systemd-container
       - texinfo
       - wget
+      - vi
       - zlib-devel

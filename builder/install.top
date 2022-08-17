@@ -2,4 +2,4 @@
 
 base:
   template-builder:
-  - build.install
+  - builder.install
