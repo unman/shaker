@@ -10,6 +10,8 @@
         - pattern: 'https://'
         - repl: 'http://HTTPS///'
         - flags: [ 'IGNORECASE', 'MULTILINE' ]
+        - backup: False
+
 {% endfor %}
 
   /etc/apt/sources.list:
@@ -18,6 +20,7 @@
       - pattern: 'https:'
       - repl: 'http://HTTPS/'
       - flags: [ 'IGNORECASE', 'MULTILINE' ]
+      - backup: False
 
 {% elif grains['os_family']|lower == 'arch' %}
   pacman:
@@ -28,21 +31,24 @@
       - pattern: 'https:'
       - repl: 'http://HTTPS/'
       - flags: [ 'IGNORECASE', 'MULTILINE' ]
+      - backup: False
 
 {% elif grains['os_family']|lower == 'redhat' %}
 {% for repo in salt['file.find']('/etc/yum.repos.d/', name='*repo*') %}
 {{ repo }}_baseurl:
     file.replace:
       - name: {{ repo }}
-      - pattern: 'baseurl=https://'
-      - repl: 'baseurl=http://HTTPS///'
+      - pattern: 'baseurl(.*)https://'
+      - repl: 'baseurl\1http://HTTPS///'
       - flags: [ 'IGNORECASE', 'MULTILINE' ]
+      - backup: False
 {{ repo }}_metalink:
     file.replace:
       - name: {{ repo }}
       - pattern: 'metalink=https://(.*)basearch'
       - repl: 'metalink=http://HTTPS///\1basearch&protocol=http'
       - flags: [ 'IGNORECASE', 'MULTILINE' ]
+      - backup: False
 
 {% endfor %}
 {% endif %}

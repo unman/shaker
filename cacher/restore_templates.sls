@@ -11,6 +11,7 @@
         - pattern: 'http://HTTPS/'
         - repl: 'https:'
         - flags: [ 'IGNORECASE', 'MULTILINE' ]
+        - backup: False
 {% endfor %}
 
   /etc/apt/sources.list:
@@ -19,6 +20,7 @@
       - pattern: 'http://HTTPS/'
       - repl: 'https:'
       - flags: [ 'IGNORECASE', 'MULTILINE' ]
+      - backup: False
 
 {% elif grains['os_family']|lower == 'arch' %}
   pacman:
@@ -29,6 +31,7 @@
       - pattern: 'http://HTTPS///'
       - repl: 'https://'
       - flags: [ 'IGNORECASE', 'MULTILINE' ]
+      - backup: False
 
 
 {% elif grains['os_family']|lower == 'redhat' %}
@@ -36,15 +39,18 @@
 {{ repo }}_baseurl:
     file.replace:
       - name: {{ repo }}
-      - pattern: 'http://HTTPS/'
-      - repl: 'https:'
+      - pattern: 'baseurl(.*)http://HTTPS/'
+      - repl: 'baseurl\1https:'
       - flags: [ 'IGNORECASE', 'MULTILINE' ]
+      - backup: False
+
 {{ repo }}_metalink:
     file.replace:
       - name: {{ repo }}
       - pattern: 'metalink=http://HTTPS///(.*)basearch&protocol=http'
       - repl: 'metalink=https://\1basearch'
       - flags: [ 'IGNORECASE', 'MULTILINE' ]
+      - backup: False
 
 {% endfor %}
 {% endif %}
