@@ -66,10 +66,12 @@ fi
 
 %postun
 if [ $1 -eq 0 ]; then
-  sed -i /qubes.Gpg.*target=gpg/d /etc/qubes/policy.d/30-user.policy
+  sed -i /qubes.UpdatesProxy.*target=cacher/d /etc/qubes/policy.d/30-user.policy
 fi
 
 %changelog
+* Sun Aug 21 2022 unman <unman@thirdeyesecurity.org> - 1.7
+- Correct uninstall action
 * Thu Jul 28 2022 unman <unman@thirdeyesecurity.org> - 1.5
 - Extended description
 * Sat May 21 2022 unman <unman@thirdeyesecurity.org> - 1.4
