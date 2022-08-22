@@ -3,6 +3,7 @@
 #
 #
 {% if grains['os_family']|lower == 'debian' %}
+{% if grains['nodename']|lower != 'host' %}
 {% for repo in salt['file.find']('/etc/apt/sources.list.d/', name='*list') %}
   {{ repo }}_baseurl:
       file.replace:
@@ -21,6 +22,7 @@
       - repl: 'http://HTTPS/'
       - flags: [ 'IGNORECASE', 'MULTILINE' ]
       - backup: False
+{% endif %}
 
 {% elif grains['os_family']|lower == 'arch' %}
   pacman:
