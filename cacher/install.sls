@@ -56,4 +56,8 @@ cp /lib/apt-cacher-ng/deb_mirrors.gz /etc/apt-cacher-ng/deb_mirrors.gz:
     - user: root
     - group: root
 
+/usr/lib/qubes-bind-dirs.d/30_cron.conf:
+  file.append:
+    - text: "binds+=( ' /etc/anacrontab' )"
+
 {% endif %}
