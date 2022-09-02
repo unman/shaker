@@ -51,6 +51,7 @@ Pihole_installed:
     - pkgs:
       - qubes-core-agent-networking
       - qubes-core-agent-passwordless-root
+      - qubes-core-agent-dom0-updates
       - curl
       - dnsutils
       - firefox-esr
