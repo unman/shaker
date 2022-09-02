@@ -15,6 +15,7 @@ installed:
   pkg.installed:
     - pkgs:
       - qubes-core-agent-networking
+      - anacron 
       - apt-cacher-ng 
 
 systemd-disable:
