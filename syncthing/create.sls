@@ -14,5 +14,5 @@ qvm-prefs-id:
     - maxmem: 800
     - vcpus: 2
 
-'qvm-volume extend syncthing:private 30G' :
+'qvm-volume extend syncthing:private 50G' :
   cmd.run
