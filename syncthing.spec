@@ -1,5 +1,5 @@
 Name:       3isec-qubes-syncthing
-Version:    1.0
+Version:    0.1
 Release:    1%{?dist}
 Summary:    Syncthing in Qubes
 
