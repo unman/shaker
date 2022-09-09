@@ -53,7 +53,7 @@ installed:
       - notmuch-vim
       - offlineimap
       - orca
-      - pdf2text
+      - python3-pdfminer
       - w3m
 
 {% endif %}
