@@ -1,5 +1,5 @@
 Name:           3isec-qubes-pihole
-Version:  	    1.0
+Version:  	    1.1
 Release:        1%{?dist}
 Summary:        Creates Pi-hole server for Qubes
 
@@ -34,6 +34,11 @@ The default Admin Webpage login password is UpSNQsy4
 You should change this on first use, by running:
 `pihole -a -p`
 
+Removing this package will only remove the salt files from /srv/salt.
+It will NOT remove the sys-pihole qube.
+It will NOT change Qubes networking.
+You will have to make any changes as you wish.
+
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/srv/salt
@@ -54,5 +59,8 @@ fi
 
 
 %changelog
+* Fri Sep 9 2022 unman <unman@thirdeyesecurity.org>
+- Include dom0-update,so full replacement for sys-firewall.
+
 * Fri Aug 5 2022 unman <unman@thirdeyesecurity.org>
 - First Build

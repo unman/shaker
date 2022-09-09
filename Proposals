@@ -1,0 +1,36 @@
+NordVPN
+protonVPN
+wireguard VPN ( not only Mullvad)
+
+Nextcloud server
+Split firefox
+Librewolf
+
+==================================
+dom0 theme,icon,font applied to all qubes:
+
+1) copy ~/.gtkrc-2.0 and ~/.config/gtk-3.0/settings.ini from dom0 to /etc/skel of all templates
+2) apply my DPI choice to /etc/X11/Xresources/x11-common Xft.dpi
+3) copy the respective theme, icon set and font from dom0 into all tempaltes
+4) shut down all qubes and templates
+5) make each qube "refresh" the files in their ~/ with the ones from /etc/skel
+
+... this takes a while and is not fully automated. I also haven't figured out yet how to programmatically adjust
++qubes that run a settings daemon. I only have one of those and just run gnome-tweaks
+==================================
+
+Signal messenger
+Syncthing
+NAS-syncing qube
+Android qube
+
+split-gpg
+
+QUBES OS Installer Options wishlist
+==================================
+Session - deb.oxen.io
+sublime-text
+
+AppIMage examples-
+Tutanota
+Session

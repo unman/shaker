@@ -1,5 +1,5 @@
 Name:       3isec-qubes-syncthing
-Version:    0.1
+Version:    1.0
 Release:    1%{?dist}
 Summary:    Syncthing in Qubes
 
@@ -73,5 +73,9 @@ fi
 %postun
 
 %changelog
+* Fri Sep  9 2022 unman <unman@thirdeyesecurity.org>
+- Better handling of open ports
+- Clean up on package removal
+- Fix typos in repo definition
 * Mon Aug 29 2022 unman <unman@thirdeyesecurity.org>
 - First Build
