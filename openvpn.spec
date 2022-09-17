@@ -1,13 +1,13 @@
 Name:           3isec-qubes-sys-vpn
-Version:       	1.0
+Version:       	1.1
 Release:        1%{?dist}
-Summary:        Salt a VPN proxy in Qubes
+Summary:        Create an openvpn proxy in Qubes
 
 License:        GPLv3+
-SOURCE0:	openvpn
+SOURCE0:	      openvpn
 
 %description
-This package sets up a VPN gateway, named sys-vpn.
+This package sets up a VPN gateway, named sys-vpn, using openvpn.
 It follows the method detailed in the Qubes docs,
  https://github.com/Qubes-Community/Contents/blob/master/docs/configuration/vpn.md
 using iptables and CLI scripts.
@@ -24,7 +24,7 @@ After installing, copy your openvpn configuration file or zip file
 to sys-vpn.
 Run setup_vpn to set up the VPN. 
 There should be a menu item for this script - if you cannot see it, you may
-need to refresh application list in sys-vpn settings.
+need to refresh the application list in sys-vpn settings.
 When finished, restart sys-vpn.
 
 To use the VPN, set sys-vpn as the netvm for your qubes(s).
@@ -65,5 +65,8 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Sat Sep 17 2022 unman <unman@thirdeyesecurity.org> - 1.1
+- Change in menu creation for setup item.
+- Improve description.
 * Wed May 18 2022 unman <unman@thirdeyesecurity.org> - 1.0
 - First Build
