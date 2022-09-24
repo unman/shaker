@@ -13,6 +13,10 @@ update_sources:
     - flags: [ 'IGNORECASE', 'MULTILINE' ]
 {% endif %}
 
+base_packages:
+  pkg.uptodate:
+    - refresh: True
+
 vlc.packages:
   pkg.installed:
     - pkgs:
@@ -126,6 +130,6 @@ apt-get clean:
 
 trim_idleness:
   file.replace:
-    - name: /usr/lib/python3/dist-packages/qubesidle/idleness_monitor.py
-    - pattern: TIMEOUT_SECONDS = 15
-    - repl: TIMEOUT_SECONDS = 3
+    - name: /lib/python3/dist-packages/qubesidle/idleness_monitor.py
+    - pattern: '15 \* 60'
+    - repl: '3 * 60'
