@@ -1,5 +1,5 @@
 Name:           3isec-qubes-sys-vpn
-Version:       	1.1
+Version:       	1.2
 Release:        1%{?dist}
 Summary:        Create an openvpn proxy in Qubes
 
@@ -65,6 +65,8 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Thu Sep 29 2022 unman <unman@thirdeyesecurity.org> - 1.2
+- Force creation of menu item for setup script.
 * Sat Sep 17 2022 unman <unman@thirdeyesecurity.org> - 1.1
 - Change in menu creation for setup item.
 - Improve description.
