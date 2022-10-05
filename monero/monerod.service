@@ -1,0 +1,18 @@
+[Unit]
+Description=Monero Full Node
+After=network.target
+#ConditionPathExists=/var/run/qubes-service/monerod
+
+[Service]
+User=user
+Group=user
+Type=Forking
+PIDFile=/home/user/.bitmonero/monero.pid
+ExecStart=/usr/bin/monerod --detach --detach-dir=/home/user/.bitmonero \
+ --no-igd --pidfile=home/user/.bitmonero/monero.pid \
+ --log-file=/home/user/.bitmonero/bitmonero.log --p2p-bind-ip=127.0.0.1
+Restart=always
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
