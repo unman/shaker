@@ -29,7 +29,7 @@ monerod-ws_features:
   qvm.features:
     - name: monerod-ws
     - enable:
-      - service.monerod-mainnet
+      - service.user.monerod
 
 monero-wallet:
   qvm.present:
@@ -46,7 +46,15 @@ monero-wallet_prefs:
     - include_in_backups: True
     - netvm: none
 
+
+monero-wallet-ws_features:
+  qvm.features:
+    - name: monero-wallet-ws
+    - set:
+      - menu-items: "monero-gui.desktop xfce4-terminal.desktop"
+
+
 update_monero_policy:
   file.prepend:
     - name: /etc/qubes/policy.d/30-user.policy
-    - text: 'qubes.monerod-mainnet  *  monero-wallet-ws  monerod-ws  allow'
+    - text: 'user.monerod  *  monero-wallet-ws  monerod-ws  allow'
