@@ -6,9 +6,9 @@ After=network.target
 [Service]
 User=user
 Group=user
-Type=Forking
+Type=forking
 PIDFile=/home/user/.bitmonero/monero.pid
-ExecStart=/usr/bin/monerod --detach --detach-dir=/home/user/.bitmonero \
+ExecStart=/usr/bin/monerod --detach --data-dir=/home/user/.bitmonero \
  --no-igd --pidfile=home/user/.bitmonero/monero.pid \
  --log-file=/home/user/.bitmonero/bitmonero.log --p2p-bind-ip=127.0.0.1
 Restart=always
