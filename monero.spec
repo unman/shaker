@@ -1,4 +1,4 @@
-Name:           4isec-qubes-split-monero
+Name:           3isec-qubes-split-monero
 Version:       	0.1
 Release:        1%{?dist}
 Summary:        Create a split monero wallet in Qubes
