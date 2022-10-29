@@ -49,11 +49,18 @@
 {% endif %}
 {% endif %}
 
-installed:
+upgrade:
+  pkg.uptodate:
+    - refresh: True
+    - dist_upgrade: True
+
+install:
   pkg.installed:
     - pkgs:
       - qubes-core-agent-networking
+      - firefox-esr
       - i2p
       - i2p-keyring
+    - refresh: True
 
 {% endif %}
