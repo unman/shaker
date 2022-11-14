@@ -1,5 +1,5 @@
 Name:           3isec-qubes-pihole
-Version:  	    1.1
+Version:  	    1.2
 Release:        1%{?dist}
 Summary:        Creates Pi-hole server for Qubes
 

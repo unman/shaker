@@ -15,7 +15,7 @@ It follows the method detailed in the Monero docs:
 
 The package creates a qube called monero-wallet-ws to hold the wallet,
 and monerod-ws for the monerod daemon. The netvm for this qube is set
-to sys-whonix, so traffic should pass over Tor. (monero-wallet-ws has
+to sys-whonix, so traffic should pass over Tor. (monero-wallet-ws has no netvm.)
 
 Traffic between the daemon and the wallet runs over qrexec, controlled
 by an entry in the policy file at /etc/qubes/policy/30-user.policy
