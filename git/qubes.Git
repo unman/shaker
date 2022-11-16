@@ -1,0 +1,19 @@
+#!/bin/sh
+
+exec 2>/tmp/log2
+
+read service rel repo
+echo "Params: $service $rel $repo" >&2
+# Adjust regexps if needed
+echo "$repo" | grep -q '^[A-Za-z0-9-]\+$' || exit 1
+echo "$rel" | grep -q '^[0-9.]\+$' || exit 1
+path="/home/user/repos/$repo"
+case $service in
+    git-receive-pack|git-upload-pack)
+        echo "starting $service $path" >&2
+        exec $service $path
+        ;;
+    *)
+        echo "Unsupported service: $service" >&2
+        ;;
+esac

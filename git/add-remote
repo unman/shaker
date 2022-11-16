@@ -1,0 +1,9 @@
+#!/bin/sh
+
+[ -n "$1" ] || exit 1
+
+if [ "$1" = "sg" ]; then
+    git remote add $1 "ext::git-qrexec sys-git 3 `basename $PWD`"
+    exit $?
+fi
+

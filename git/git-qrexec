@@ -1,0 +1,5 @@
+#!/bin/sh
+
+VMNAME=$1
+
+(echo $GIT_EXT_SERVICE $2 $3; exec cat) | qrexec-client-vm $VMNAME qubes.Git
