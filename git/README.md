@@ -2,6 +2,8 @@ This package provides a central git qube, named sys-git.
 By default the qube has no netvm, but you can set one if you wish.
 
 Some configuration is needed.
+Repositories must be created under /home/user/repos in sys-git, and
+repository names must be common between sys-git and client qubes.
 
 # Setting up a new repository
 
@@ -19,7 +21,15 @@ Then prepare a qube by running:
 `qubesctl --skip0-dom0 --targets=QUBE state.apply git.install_client`
 
 ## Work in the client
-You can then use that repository as usual.
+Configure git, as necessary.  
+Open a terminal in the qube:
+```
+mkdir X
+cd X
+git init
+add-remote sg
+```
+You can then use that repository as usual, making commits.
 To push to sys-git you must first-  
 `git push --set-upstream sg master`
 
@@ -52,5 +62,18 @@ After making more commits,
 `git push `
 
 
+# Access control
+Access to sys-git is governed by policy rules in `/etc/qubes/policy/30-user.policy`
+The default rule allows access from any qube to sys-git, after a confirmation dialog.  
+`qubes.Git  *  @anyvm  @anyvm ask default_target=sys-git`
 
+You can control access to sys-git by qube, and restrict qubes to specific named repositories:  
+```
+qubes.Git  +REPO  QUBE   @anyvm  ask default_target=sys-git
+qubes.Git  *      QUBE2  @anyvm  ask default_target=sys-git  
+qubes.Git  *      *     sys-git deny
+```
+These rules will allow QUBE to access the REPO repository on sys-git, but no other.
+QUBE2 is allowed to access any repository on sys-git.  
+No other qube is allowed access at all.
 

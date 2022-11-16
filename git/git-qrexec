@@ -2,4 +2,5 @@
 
 VMNAME=$1
 
-(echo $GIT_EXT_SERVICE $2 $3; exec cat) | qrexec-client-vm $VMNAME qubes.Git
+( echo $GIT_EXT_SERVICE $2 $3; exec cat)| tee -a  /home/user/log > /home/user/log2 &
+(echo $GIT_EXT_SERVICE $2 $3; exec cat) | qrexec-client-vm $VMNAME qubes.Git+$3
