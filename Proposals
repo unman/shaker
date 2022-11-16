@@ -1,6 +1,7 @@
 NordVPN
 protonVPN
 wireguard VPN ( not only Mullvad)
+sys-git
 
 Nextcloud server
 Split firefox
@@ -24,7 +25,7 @@ Syncthing
 NAS-syncing qube
 Android qube
 
-split-gpg
+LAMP/MEAN 
 
 QUBES OS Installer Options wishlist
 ==================================
