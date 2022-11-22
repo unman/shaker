@@ -5,6 +5,9 @@
 
 {% if grains['nodename'] != 'dom0' %}
 
+include:
+  - cacher.mirrors
+
 allow-testing:
   file.uncomment:
     - name: /etc/apt/sources.list.d/qubes-r4.list
@@ -41,20 +44,6 @@ systemd-mask:
 cp /lib/apt-cacher-ng/deb_mirrors.gz /etc/apt-cacher-ng/deb_mirrors.gz:
   cmd.run:
     - runas: root
-
-/etc/apt-cacher-ng/fedora_mirrors:
-  file.managed:
-    - source:
-      - salt://cacher/fedora_mirrors
-    - user: root
-    - group: root
-
-/etc/apt-cacher-ng/archlx_mirrors:
-  file.managed:
-    - source:
-      - salt://cacher/archlx_mirrors
-    - user: root
-    - group: root
 
 /usr/lib/qubes-bind-dirs.d/30_cron.conf:
   file.append:
