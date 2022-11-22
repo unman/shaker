@@ -1,10 +1,10 @@
 Name:           3isec-qubes-cacher
-Version:       	1.8
+Version:       	1.9
 Release:        1%{?dist}
 Summary:        A caching proxy in Qubes
 
 License:        GPLv3+
-SOURCE0:	      cacher
+SOURCE0:        cacher
 
 %description
 This package provides a caching proxy, named cacher.
@@ -75,6 +75,8 @@ if [ $1 -eq 1 ]; then
   qubesctl --skip-dom0 --targets=cacher state.apply cacher.configure
   qubesctl state.apply cacher.use
   qubesctl --skip-dom0 --templates state.apply cacher.change_templates
+elif [ $1 -eq 2 ]; then
+  qubesctl --skip-dom0 --targets=template-cacher state.apply cacher.update
 fi
 
 %preun
@@ -88,6 +90,10 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Mon Nov 21 2022 unman <unman@thirdeyesecurity.org> - 1.9NEWNEW
+- Change packaging so that upgrade will update mirror lists and config
+- Update fedora mirror list
+- Include anacron
 * Mon Aug 22 2022 unman <unman@thirdeyesecurity.org> - 1.8
 - Stop rewriting for Whonix templates
 * Sun Aug 21 2022 unman <unman@thirdeyesecurity.org> - 1.7
