@@ -1,6 +1,8 @@
 http://archive.linux.duke.edu/pub/fedora/linux/
 http://distrib-coffee.ipsl.jussieu.fr/pub/linux/fedora/linux/
 http://dl.fedoraproject.org  
+http://download-cc-rdu01.fedoraproject.org/pub/fedora/linux/
+http://download-ib01.fedoraproject.org/pub/fedora/linux
 http://download.fedoraproject.org/pub/fedora/linux/
 http://fedora-mirror01.rbc.ru/pub/fedora/linux/
 http://fedora.blizoo.mk/fedora/linux/
@@ -33,6 +35,7 @@ http://ftp.colocall.net/pub/fedora/linux/
 http://ftp.cse.buffalo.edu/pub/fedora/linux/
 http://ftp.fau.de/fedora/linux/
 http://ftp.fi.muni.cz/pub/linux/fedora/linux/
+http://ftp.halifax.rwth-aachen.de/fedora/linux/
 http://ftp.icm.edu.pl/pub/Linux/fedora/linux/
 http://ftp.iij.ad.jp/pub/linux/Fedora/fedora/linux/
 http://ftp.ines.lug.ro/fedora/linux/
@@ -60,9 +63,6 @@ http://mirror.23media.de/fedora/linux/
 http://mirror.aarnet.edu.au/pub/fedora/linux/
 http://mirror.bytemark.co.uk/fedora/epel/
 http://mirror.bytemark.co.uk/fedora/linux/
-http://mirror.bytemark.co.uk/fedora/linux/development/29/Everything/aarch64/os/
-http://mirror.bytemark.co.uk/fedora/linux/development/29/Everything/armhfp/os/
-http://mirror.bytemark.co.uk/fedora/linux/development/29/Everything/x86_64/os/
 http://mirror.cedia.org.ec/fedora/linux/
 http://mirror.chpc.utah.edu/pub/fedora/linux/
 http://mirror.clarkson.edu/fedora/linux/
@@ -72,6 +72,7 @@ http://mirror.cs.princeton.edu/pub/mirrors/fedora/linux/
 http://mirror.csclub.uwaterloo.ca/fedora/linux/
 http://mirror.datacenter.by/pub/fedoraproject.org/linux/
 http://mirror.de.leaseweb.net/fedora/linux/
+http://mirror.dogado.de/fedora/linux/
 http://mirror.easyspeedy.com/fedora/
 http://mirror.epn.edu.ec/fedora/linux/
 http://mirror.etf.bg.ac.rs/fedora/
@@ -80,6 +81,7 @@ http://mirror.globo.com/fedora/linux/
 http://mirror.i3d.net/pub/fedora/linux/
 http://mirror.in2p3.fr/pub/fedora/linux/
 http://mirror.infonline.de/fedora/linux/
+http://mirror.init7.net/fedora/fedora/linux/
 http://mirror.its.dal.ca/pub/fedora/linux/
 http://mirror.karneval.cz/pub/linux/fedora/linux/
 http://mirror.lagoon.nc/pub/fedora/linux/
