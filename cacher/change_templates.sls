@@ -53,4 +53,19 @@
       - backup: False
 
 {% endfor %}
+{% for repo in salt['file.find']('/etc/yum.repos.d/', name='rpmfusion*repo*') %}
+{{ repo }}_uncomment:
+    file.uncomment:
+      - name: {{ repo }}
+      - regex : '.*baseurl(.*)'
+      - ignore_missing: True
+      - backup: False
+{{ repo }}_comment:
+    file.comment:
+      - name: {{ repo }}
+      - regex: '^metalink=http(.*)'
+      - ignore_missing: True
+      - backup: False
+
+{% endfor %}
 {% endif %}
