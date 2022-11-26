@@ -1,5 +1,5 @@
 Name:           3isec-qubes-reader
-Version:        0.1
+Version:        0.2
 Release:        1%{?dist}
 Summary:        Prepares useful software in Qubes
 
@@ -7,7 +7,7 @@ License:        GPLv3+
 SOURCE0:        reader
 
 %description
-This package creates a minimal template configured with a range of useful software.
+This package creates a minimal template configured with a range of useful software, of particular use to terminal users.
 The template is set as the default template and as template for the Debian disposable template.
 
 Removing this package does NOT revert these changes.
@@ -28,11 +28,15 @@ cp -rv %{SOURCE0}/  %{buildroot}/srv/salt
 if [ $1 -eq 1 ]; then
   qubesctl state.apply reader.clone
   qubesctl --skip-dom0 --targets=template-reader state.apply reader.install
+elif [ $1 -eq 2 ]; then
+  qubesctl state.apply reader.clone
 fi
 
 %preun
 
 
 %changelog
+* Sat Nov 26 2022 unman <unman@thirdeyesecurity.org>
+- Fix error on setting templates
 * Fri Sep 09 2022 unman <unman@thirdeyesecurity.org>
 - First Build
