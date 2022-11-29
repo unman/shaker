@@ -1,5 +1,5 @@
 Name:           3isec-qubes-mullvad-vpn
-Version:       	1.0
+Version:       	1.1
 Release:        1%{?dist}
 Summary:        Set up a Mullvad wireguard proxy in Qubes
 
@@ -44,7 +44,11 @@ You can, of course, use template-mullvad to create other VPN gateways.
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/srv/salt
+mkdir -p %{buildroot}/usr/bin
+mkdir -p %{buildroot}/usr/share/applications
 cp -rv %{SOURCE0}/  %{buildroot}/srv/salt
+cp -rv %{SOURCE0}/qubes-setup-MullvadVPN.desktop %{buildroot}/usr/share/applications
+cp -rv %{SOURCE0}/setup_MullvadVPN.sh %{buildroot}/usr/bin/setup_MullvadVPN.sh
 
 %files
 %defattr(-,root,root,-)
@@ -52,9 +56,8 @@ cp -rv %{SOURCE0}/  %{buildroot}/srv/salt
 
 %post
 if [ $1 -eq 1 ]; then
-  qubesctl state.apply mullvad.clone
-  qubesctl --skip-dom0 --targets=template-mullvad state.apply mullvad.install
   qubesctl state.apply mullvad.create
+  qubesctl --skip-dom0 --targets=template-mullvad state.apply mullvad.install
   qubesctl --skip-dom0 --targets=MullvadVPN state.apply mullvad.configure
 fi
 
@@ -66,5 +69,7 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Mon Nov 28 2022 unman <unman@thirdeyesecurity.org> - 1.1
+- Fix wireshark typo
 * Mon Aug 08 2022 unman <unman@thirdeyesecurity.org> - 1.0
 - First Build
