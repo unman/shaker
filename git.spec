@@ -26,8 +26,8 @@ git init --bare
 ```
 
 ## prepare client
-Then prepare a qube by running:
-`qubesctl --skip0-dom0 --targets=QUBE state.apply git.install_client`
+Then prepare a qube by running in dom0:
+`sudo qubesctl --skip0-dom0 --targets=QUBE state.apply git.install_client`
 
 ## Work in the client
 Configure git, as necessary.  
@@ -39,17 +39,17 @@ git init
 add-remote sg
 ```
 You can then use that repository as usual, making commits.
-To push to sys-git you must first-  
+To push to sys-git you must first:
 `git push --set-upstream sg master`
 
-After making more commits,
+After making more commits:
 `git push `
 
 # Working with an existing repository
 
 ## prepare client, if necessary
 Prepare a qube by running:
-`qubesctl --skip0-dom0 --targets=QUBE state.apply git.install_client`
+`sudo qubesctl --skip0-dom0 --targets=QUBE state.apply git.install_client`
 
 ## Clone the repository in the client
 Configure git, as necessary.  
@@ -99,7 +99,7 @@ cp -rv %{SOURCE0}/  %{buildroot}/srv/salt
 %post
 if [ $1 -eq 1 ]; then
   qubesctl state.apply git.create
-  qubesctl --skip-dom0 --targets=sys-git state.apply monero.install
+  qubesctl --skip-dom0 --targets=sys-git state.apply git.install
 fi
 
 %postun
