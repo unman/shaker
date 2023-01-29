@@ -90,9 +90,11 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
-* Mon Nov 21 2022 unman <unman@thirdeyesecurity.org> - 1.9NEWNEW
+* Sun Jan 29 2023 unman <unman@thirdeyesecurity.org> - 1.9
 - Change packaging so that upgrade will update mirror lists and config
 - Update fedora mirror list
+- Update configuration to handle issues with fedora repositories
+- Use baseurl in rpmfusion repositories
 - Include anacron
 * Mon Aug 22 2022 unman <unman@thirdeyesecurity.org> - 1.8
 - Stop rewriting for Whonix templates
