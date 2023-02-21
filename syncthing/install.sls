@@ -20,7 +20,8 @@
     - group: root
     - makedirs: True
 
-{% if salt['qvm.exists']('cacher') %}
+
+{% if salt['pillar.get']('update_proxy:caching') %}
 
 {% for repo in salt['file.find']('/etc/apt/sources.list.d/', name='*list') %}
 {{ repo }}_baseurl:

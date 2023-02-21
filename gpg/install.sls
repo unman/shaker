@@ -1,6 +1,7 @@
 # vim: set syntax=yaml ts=2 sw=2 sts=2 et :
 
-{% if salt['qvm.exists']('cacher') %}
+
+{% if salt['pillar.get']('update_proxy:caching') %}
 
 /etc/apt/sources.list:
   file.replace:

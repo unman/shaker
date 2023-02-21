@@ -5,8 +5,7 @@
 
 {% if grains['nodename'] != 'dom0' %}
 
-
-{% if salt['qvm.exists']('cacher') %}
+{% if salt['pillar.get']('update_proxy:caching') %}
 
 /etc/apt/sources.list:
   file.replace:

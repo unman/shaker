@@ -2,7 +2,7 @@
 #
 #
 
-{% if salt['qvm.exists']('cacher') %}
+{% if salt['pillar.get']('update_proxy:caching') %}
 update_sources:
   file.replace:
     - names:

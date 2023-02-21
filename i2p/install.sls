@@ -23,7 +23,7 @@
     - mode: 644
     - makedirs: True
 
-{% if salt['qvm.exists']('cacher') %}
+{% if salt['pillar.get']('update_proxy:caching') %}
 {% if grains['os_family']|lower == 'debian' %}
 {% if grains['nodename']|lower != 'host' %}
 {% for repo in salt['file.find']('/etc/apt/sources.list.d/', name='*list') %}
