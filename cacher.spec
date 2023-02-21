@@ -1,5 +1,5 @@
 Name:           3isec-qubes-cacher
-Version:       	1.9
+Version:       	1.10
 Release:        1%{?dist}
 Summary:        A caching proxy in Qubes
 
@@ -55,6 +55,8 @@ non-template qubes and qubes that do not have a working qrexec. Use
 the native configuration to set the update proxy using the IP address
 of cacher.
 
+A pillar is created to hold the caching qube.
+This can be referenced from other salt states as needed.
 
 %install
 rm -rf %{buildroot}
@@ -90,6 +92,8 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 1.10
+- Create pillar for cacher
 * Sun Jan 29 2023 unman <unman@thirdeyesecurity.org> - 1.9
 - Change packaging so that upgrade will update mirror lists and config
 - Update fedora mirror list

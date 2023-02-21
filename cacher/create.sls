@@ -1,5 +1,6 @@
 include:
   - cacher.clone
+  - cacher.pillar
 
 qvm-present-id:
   qvm.present:
