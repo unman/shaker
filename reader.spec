@@ -1,5 +1,5 @@
 Name:           3isec-qubes-reader
-Version:        0.2
+Version:        1.0
 Release:        1%{?dist}
 Summary:        Prepares useful software in Qubes
 
@@ -36,6 +36,8 @@ fi
 
 
 %changelog
+* Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 1.0
+- Use pillar for cacher to determine repo changes
 * Sat Nov 26 2022 unman <unman@thirdeyesecurity.org>
 - Fix error on setting templates
 * Fri Sep 09 2022 unman <unman@thirdeyesecurity.org>

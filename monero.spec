@@ -1,5 +1,5 @@
 Name:           3isec-qubes-split-monero
-Version:       	0.1
+Version:       	0.2
 Release:        1%{?dist}
 Summary:        Create a split monero wallet in Qubes
 
@@ -48,5 +48,7 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 1.02
+- Use pillar for cacher to determine repo changes
 * Wed Oct 05 2022 unman <unman@thirdeyesecurity.org> - 0.1
 - First Build

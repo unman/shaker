@@ -1,5 +1,5 @@
 Name:           3isec-qubes-sys-printer
-Version:       	1.2
+Version:       	1.3
 Release:        1%{?dist}
 Summary:        Salt a printer qube in Qubes
 
@@ -57,6 +57,8 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 1.3
+- Use pillar for cacher to determine repo changes
 * Sun May 22 2022 unman <unman@thirdeyesecurity.org> - 1.2
 - Add template and package installation to  post
 * Sat May 21 2022 unman <unman@thirdeyesecurity.org> - 1.1

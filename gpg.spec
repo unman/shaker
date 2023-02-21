@@ -1,5 +1,5 @@
 Name:           3isec-qubes-split-gpg
-Version:  	    2.0
+Version:  	    2.05
 Release:        1%{?dist}
 Summary:        split-gpg in Qubes
 
@@ -42,6 +42,8 @@ fi
 
 
 %changelog
+* Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 2.05
+- Use pillar for cacher to determine repo changes
 * Sat May 21 2022 unman <unman@thirdeyesecurity.org> - 1.4
 - Standardise package names to 3isec-
 * Sat May 14 2022 unman <unman@thirdeyesecurity.org> - 2.0

@@ -1,5 +1,5 @@
 Name:           3isec-qubes-mullvad-vpn
-Version:       	1.1
+Version:       	1.2
 Release:        1%{?dist}
 Summary:        Set up a Mullvad wireguard proxy in Qubes
 
@@ -53,6 +53,8 @@ cp -rv %{SOURCE0}/setup_MullvadVPN.sh %{buildroot}/usr/bin/setup_MullvadVPN.sh
 %files
 %defattr(-,root,root,-)
 /srv/salt/mullvad/*
+/usr/share/applications/qubes-setup-MullvadVPN.desktop
+/usr/bin/setup_MullvadVPN.sh
 
 %post
 if [ $1 -eq 1 ]; then
@@ -69,6 +71,8 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 1.02
+- Use pillar for cacher to determine repo changes
 * Mon Nov 28 2022 unman <unman@thirdeyesecurity.org> - 1.1
 - Fix wireshark typo
 * Mon Aug 08 2022 unman <unman@thirdeyesecurity.org> - 1.0

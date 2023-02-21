@@ -1,5 +1,5 @@
 Name:           3isec-qubes-sys-multimedia
-Version:       	2.1
+Version:       	2.2
 Release:        1%{?dist}
 Summary:        creates multimedia template and qubes
 
@@ -46,6 +46,9 @@ if [ $1 -eq 1 ]; then
 fi
 
 %changelog
+* Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 2.2
+- Use pillar for cacher to determine repo changes
+dd
 * Sat May 21 2022 unman <unman@thirdeyesecurity.org> - 2.1
 - Standardise package names to 3isec-
 * Sun May 15 2022 unman <unman@thirdeyesecurity.org> - 2.0

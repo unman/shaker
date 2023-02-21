@@ -1,5 +1,5 @@
 Name:           3isec-qubes-pihole
-Version:  	    1.2
+Version:  	    1.3
 Release:        1%{?dist}
 Summary:        Creates Pi-hole server for Qubes
 
@@ -59,6 +59,8 @@ fi
 
 
 %changelog
+* Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 1.3
+- Use pillar for cacher to determine repo changes
 * Fri Sep 9 2022 unman <unman@thirdeyesecurity.org>
 - Include dom0-update,so full replacement for sys-firewall.
 

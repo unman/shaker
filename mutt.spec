@@ -1,5 +1,5 @@
 Name:           3isec-qubes-mutt
-Version:  	    1.0
+Version:  	    1.1
 Release:        1%{?dist}
 Summary:        Prepares qube for using mutt in Qubes
 
@@ -31,5 +31,7 @@ fi
 
 
 %changelog
+* Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 1.1
+- Use pillar for cacher to determine repo changes
 * Wed Jul 15 2021 unman <unman@thirdeyesecurity.org>
 - First Build

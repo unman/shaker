@@ -1,5 +1,5 @@
 Name:           3isec-qubes-sys-ssh-agent
-Version:       	1.1
+Version:       	1.2
 Release:        1%{?dist}
 Summary:        Create a service qube to hold ssh-agents
 
@@ -57,6 +57,8 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 1.2
+- Use pillar for cacher to determine repo changes
 * Mon Jun 06 2022 unman <unman@thirdeyesecurity.org> - 1.1
 - Update post scripts
 * Sun May 22 2022 unman <unman@thirdeyesecurity.org> - 1.0

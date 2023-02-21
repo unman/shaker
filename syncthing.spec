@@ -1,5 +1,5 @@
 Name:       3isec-qubes-syncthing
-Version:    1.0
+Version:    1.1
 Release:    1%{?dist}
 Summary:    Syncthing in Qubes
 
@@ -73,6 +73,8 @@ fi
 %postun
 
 %changelog
+* Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 1.1
+- Use pillar for cacher to determine repo changes
 * Fri Sep  9 2022 unman <unman@thirdeyesecurity.org>
 - Better handling of open ports
 - Clean up on package removal
