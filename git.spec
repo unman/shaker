@@ -1,5 +1,5 @@
 Name:           3isec-qubes-git
-Version:       	0.02
+Version:       	0.2
 Release:        1%{?dist}
 Summary:        Create sys-git in Qubes
 
