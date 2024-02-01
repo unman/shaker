@@ -4,7 +4,7 @@ qvm-present-id:
     - template: template-cacher
     - label: gray
 
-/etc/qubes/policy.d/50-config-updates.policy
+/etc/qubes/policy.d/50-config-updates.policy:
   file.prepend:
     - text:
       - "qubes.UpdatesProxy  *  @tag:whonix-updatevm  @default  allow target=sys-whonix"
