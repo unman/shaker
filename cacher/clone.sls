@@ -1,8 +1,8 @@
 clone_precursor:
   qvm.template_installed:
-    - name: debian-11-minimal
+    - name: debian-12-minimal
 
 qvm-clone-id:
   qvm.clone:
     - name: template-cacher
-    - source: debian-11-minimal
+    - source: debian-12-minimal
