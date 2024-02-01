@@ -1,5 +1,5 @@
 Name:           3isec-qubes-cacher
-Version:       	1.10
+Version:       	1.12
 Release:        1%{?dist}
 Summary:        A caching proxy in Qubes
 
@@ -7,7 +7,7 @@ License:        GPLv3+
 SOURCE0:        cacher
 
 %description
-This package provides a caching proxy, named cacher.
+This package provides a caching proxy qube, named cacher.
 A caching proxy stores downloaded packages, so that you need only download
 a package once for it to be used when updating many templates.
 The proxy is preconfigured to work out of the box for Debian, Ubuntu,
@@ -15,9 +15,10 @@ Arch, and Fedora templates.
 
 When you install this package your Qubes system will be altered to use
 the proxy by default.
-This is done with an entry in /etc/qubes/policy.d/30-user.policy
+This is done with an entry in /etc/qubes/policy.d/50-config-updates.policy
+in Qubes 4.2
 If you want to change the proxy setting for some/all templates, edit
-that file.
+that file, or use the GUI global settings tool.
 
 So that you can use https:// in your repository definitions, the entries
 will be changed in the templates.
@@ -88,10 +89,19 @@ fi
 
 %postun
 if [ $1 -eq 0 ]; then
-  sed -i /qubes.UpdatesProxy.*target=cacher/d /etc/qubes/policy.d/30-user.policy
+  sed -i /qubes.UpdatesProxy.*target=cacher/d /etc/qubes/policy.d/50-config-updates.policy
+  rm /srv/pillar/_tops/base/update_proxy.top
+  rm /srv/pillar/update_proxy/init.top
+  rm /srv/pillar/update_proxy/init.sls
 fi
 
 %changelog
+* Tue Jan 30 2024 unman <unman@thirdeyesecurity.org> - 1.12
+- Update file locations for use in Qubes 4.2
+* Thu Nov 30 2023 unman <unman@thirdeyesecurity.org> - 1.11
+- Change base template to Debian-12-minimal for new install.
+- Update fedora mirror list
+- Change packaging logic on handling pillar when deleting package 
 * Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 1.10
 - Create pillar for cacher
 * Sun Jan 29 2023 unman <unman@thirdeyesecurity.org> - 1.9
