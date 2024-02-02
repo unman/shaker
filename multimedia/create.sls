@@ -1,6 +1,10 @@
 include:
   - multimedia.clone
 
+media_precursor:
+  qvm.template_installed:
+    - name: debian-12-xfce
+
 qvm-present-id:
   qvm.present:
     - name: multimedia-dvm
@@ -54,7 +58,7 @@ multimedia-features:
 media-present-id:
   qvm.present:
     - name: media
-    - template: debian-11
+    - template: debian-12-xfce
     - label: purple
 
 media-prefs:

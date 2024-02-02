@@ -55,7 +55,7 @@ multimedia-features:
 media-present-id:
   qvm.present:
     - name: media
-    - template: debian-11
+    - template: debian-12-xfce
     - label: purple
 
 media-prefs:
