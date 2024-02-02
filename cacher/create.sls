@@ -23,6 +23,7 @@ qvm-features-id:
       - service.cups
       - service.cups-browsed
       - service.tinyproxy
+      - service.qubes-updates-proxy
 
 'qvm-volume extend cacher:private 20G' :
   cmd.run
