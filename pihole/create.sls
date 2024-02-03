@@ -1,11 +1,11 @@
 pihole_depends:
   qvm.template_installed:
-    - name: debian-11-minimal
+    - name: debian-12-minimal
 
 pihole-present-id:
   qvm.present:
     - name: sys-pihole
-    - template: debian-11-minimal
+    - template: debian-12-minimal
     - label: green
     - class: StandaloneVM
 
