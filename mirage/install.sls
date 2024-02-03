@@ -14,7 +14,7 @@ mirage_extracted:
   archive.extracted:
     - name: /var/lib/qubes/vm-kernels/
     - source: salt://mirage/mirage-firewall.tar.bz2
-    - source_hash: 2c985671a5620f395d1cc40f7f505660fd1e07bcaaaf77f698ce13f76f47cc20
+    - source_hash: b2a568dde165384cf041c577ffbfc4522a02115d95cc0830bff125ef1781a10c
     - archive_format: tar
     - options: -j
 
@@ -37,6 +37,7 @@ mirage-firewall-prefs:
     - provides-network: True
     - netvm: sys-net
     - default_dispvm: ''
+    - kernelopts: ''
 
 mirage-firewall-features:
   qvm.features:
