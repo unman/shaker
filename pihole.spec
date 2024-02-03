@@ -1,10 +1,10 @@
 Name:           3isec-qubes-pihole
-Version:  	1.4
+Version:        1.4
 Release:        1%{?dist}
 Summary:        Creates Pi-hole server for Qubes
 
 License:        GPLv3+
-SOURCE0:	pihole
+SOURCE0:        pihole
 
 %description
 This is Pi-hole.
@@ -59,7 +59,7 @@ fi
 
 
 %changelog
-* Sat Feb 03 2023 unman <unman@thirdeyesecurity.org> - 1.4
+* Sat Feb 03 2024 unman <unman@thirdeyesecurity.org> - 1.4
 - Update package for Qubes 4.2
 * Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 1.3
 - Use pillar for cacher to determine repo changes
