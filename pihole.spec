@@ -1,10 +1,10 @@
 Name:           3isec-qubes-pihole
-Version:  	    1.3
+Version:  	1.4
 Release:        1%{?dist}
 Summary:        Creates Pi-hole server for Qubes
 
 License:        GPLv3+
-SOURCE0:	      pihole
+SOURCE0:	pihole
 
 %description
 This is Pi-hole.
@@ -26,10 +26,10 @@ If you do you must manually change the IP address of the clone.
 Pi-hole will be installed with these default settings:
  The DNS provider is Quad9 (filtered, DNSSEC)
  StevenBlack's Unified Hosts List is included
- The web interface is availble at http://localhost
+ The web interface is availble at http://localhost/admin
  Query logging is enabled to show everything.
 
-You can change these settings by logging in to the admin interface at http://localhost.
+You can change these settings by logging in to the admin interface at http://localhost/admin
 The default Admin Webpage login password is UpSNQsy4
 You should change this on first use, by running:
 `pihole -a -p`
@@ -59,6 +59,8 @@ fi
 
 
 %changelog
+* Sat Feb 03 2023 unman <unman@thirdeyesecurity.org> - 1.4
+- Update package for Qubes 4.2
 * Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 1.3
 - Use pillar for cacher to determine repo changes
 * Fri Sep 9 2022 unman <unman@thirdeyesecurity.org>
