@@ -45,7 +45,7 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
-* Sat Jan 03 2024 unman <unman@thirdeyesecurity.org> - 0.8.6
+* Sat Feb 03 2024 unman <unman@thirdeyesecurity.org> - 0.8.6
 - Packages qubes-mirage-firewall 0.8.6
 * Mon Apr 17 2023 unman <unman@thirdeyesecurity.org> - 0.8.4
 - Packages qubes-mirage-firewall 0.8.4
