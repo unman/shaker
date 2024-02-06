@@ -1,5 +1,5 @@
 Name:           3isec-qubes-sys-vpn
-Version:       	1.4
+Version:       	2.0
 Release:        1%{?dist}
 Summary:        Create an openvpn proxy in Qubes
 
@@ -10,15 +10,20 @@ SOURCE0:	      openvpn
 This package sets up a VPN gateway, named sys-vpn, using openvpn.
 It follows the method detailed in the Qubes docs,
  https://github.com/Qubes-Community/Contents/blob/master/docs/configuration/vpn.md
-using iptables and CLI scripts.
+using nftables and CLI scripts.
 
-The package creates a qube called sys-vpn based on the debian-11-minimal
-template.  If the debian-11-minimal template is not present, it will
+The package creates a qube called sys-vpn based on the debian-12-minimal
+template.  If the debian-12-minimal template is not present, it will
 be downloaded and installed - this may take some time depending on your
 net connection.
 
 There are minor changes to the firewall rules on sys-vpn to ensure
-blocking of outbound connections.
+blocking of outbound connections via eth0.
+When the VPN is inactive only DNS traffic is allowed from sys-vpn.
+When the VPN is active, no traffic is allowed except through the VPN
+tunnel.
+If the VPN uses Google's 8.8.8.8 server for DNS, this will be changed
+to use Quad-9 servers.
 
 After installing, copy your openvpn configuration file or zip file
 to sys-vpn.
@@ -65,6 +70,8 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Mon Fri 05 2024 unman <unman@thirdeyesecurity.org> - 2.0
+- Change to nftables implementation
 * Mon Jun 12 2023 unman <unman@thirdeyesecurity.org> - 1.4
 - Fix typo
 * Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 1.3
