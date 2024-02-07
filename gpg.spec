@@ -42,6 +42,8 @@ fi
 
 
 %changelog
+* Tue Feb 06 2024 unman <unman@thirdeyesecurity.org> - 2.06
+- Upgrade for Qubes 4.2
 * Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 2.05
 - Use pillar for cacher to determine repo changes
 * Sat May 21 2022 unman <unman@thirdeyesecurity.org> - 1.4

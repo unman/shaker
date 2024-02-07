@@ -1,5 +1,5 @@
 Name:           3isec-qubes-git
-Version:       	0.2
+Version:       	1.03
 Release:        1%{?dist}
 Summary:        Create sys-git in Qubes
 
@@ -107,6 +107,8 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Tue Feb 06 2024 unman <unman@thirdeyesecurity.org> - 1.03
+- Update for Qubes 4.2
 * Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 1.02
 - Use pillar for cacher to determine repo changes
 * Wed Nov 16 2022 unman <unman@thirdeyesecurity.org> - 0.1
