@@ -1,7 +1,11 @@
+create_precursor:
+  qvm.template_installed:
+    - name: debian-12-xfce
+
 git-present-id:
   qvm.present:
     - name: sys-git
-    - template: debian-11
+    - template: debian-12-xfce
     - label: gray
 
 git-prefs-id:
