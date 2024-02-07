@@ -1,11 +1,11 @@
 gpg_precursor:
   qvm.template_installed:
-    - name: debian-11-minimal
+    - name: debian-12-minimal
 
 qvm-clone-id:
   qvm.clone:
     - name: template-gpg
-    - source: debian-11-minimal
+    - source: debian-12-minimal
 
 'sudo qubes-dom0-update qubes-gpg-split-dom0':
   cmd.run
