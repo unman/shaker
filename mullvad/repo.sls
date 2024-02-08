@@ -5,6 +5,11 @@
 
 {% if grains['nodename'] != 'dom0' %}
 
+mullvad_repo:
+  file.append:
+    - name: /etc/apt/sources.list.d/mullvad.list
+    - text: "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable $(lsb_release -cs) main"
+
 {% if salt['pillar.get']('update_proxy:caching') %}
 {% if grains['os_family']|lower == 'debian' %}
 {% if grains['nodename']|lower != 'host' %}
@@ -31,9 +36,12 @@
 {% endif %}
 {% endif %}
 
-mullvad_installed:
-  pkg.installed:
+mullvad_update:
+  pkg.uptodate:
     - refresh: True
+
+installed:
+  pkg.installed:
     - pkgs:
       - qubes-core-agent-networking
       - qubes-core-agent-passwordless-root
@@ -42,6 +50,7 @@ mullvad_installed:
       - mate-notification-daemon
       - resolvconf
       - unzip
+      - mullvad-vpn
       - wireguard
       - wireguard-tools
       - zenity
