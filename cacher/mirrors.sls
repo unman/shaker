@@ -11,6 +11,7 @@
       - salt://cacher/fedora_mirrors
     - user: root
     - group: root
+    - makedirs: True
 
 /etc/apt-cacher-ng/archlx_mirrors:
   file.managed:
@@ -18,5 +19,6 @@
       - salt://cacher/archlx_mirrors
     - user: root
     - group: root
+    - makedirs: True
 
 {% endif %}

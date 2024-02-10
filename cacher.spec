@@ -96,7 +96,9 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
-* Sat Feb 10 2024 unman <unman@thirdeyesecurity.org> - 1.12
+* Sat Feb 10 2024 unman <unman@thirdeyesecurity.org> - 1.14
+- Bug fix
+* Sat Feb 10 2024 unman <unman@thirdeyesecurity.org> - 1.13
 - mask tinyproxy
 * Tue Jan 30 2024 unman <unman@thirdeyesecurity.org> - 1.12
 - Update file locations for use in Qubes 4.2
