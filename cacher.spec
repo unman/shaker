@@ -1,5 +1,5 @@
 Name:           3isec-qubes-cacher
-Version:       	1.12
+Version:       	1.13
 Release:        1%{?dist}
 Summary:        A caching proxy in Qubes
 
@@ -96,6 +96,8 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Sat Feb 10 2024 unman <unman@thirdeyesecurity.org> - 1.12
+- mask tinyproxy
 * Tue Jan 30 2024 unman <unman@thirdeyesecurity.org> - 1.12
 - Update file locations for use in Qubes 4.2
 * Thu Nov 30 2023 unman <unman@thirdeyesecurity.org> - 1.11

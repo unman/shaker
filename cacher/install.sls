@@ -21,6 +21,14 @@ installed:
       - anacron 
       - apt-cacher-ng 
 
+tinyproxy-disable:
+  cmd.run:
+    - name: systemctl disable tinyproxy
+
+tinyproxy-mask:
+  cmd.run:
+    - name: systemctl mask tinyproxy
+
 systemd-disable:
   cmd.run:
     - name: systemctl disable apt-cacher-ng
