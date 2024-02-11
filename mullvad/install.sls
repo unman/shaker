@@ -38,6 +38,7 @@ mullvad_installed:
       - qubes-core-agent-networking
       - qubes-core-agent-passwordless-root
       - iproute2
+      - libdbus-glib2.0-cil
       - libnotify-bin
       - mate-notification-daemon
       - resolvconf

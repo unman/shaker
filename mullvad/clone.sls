@@ -1,8 +1,17 @@
 mullvad_precursor:
   qvm.template_installed:
-    - name: debian-11-minimal
+    - name: debian-12-minimal
 
-qvm-clone-id:
+mullvad_clone:
   qvm.clone:
     - name: template-mullvad
-    - source: debian-11-minimal
+    - source: debian-12-minimal
+
+mullvad_menu:
+  qvm.features:
+    - name: template-mullvad
+    - set:
+      - menu-items: "start-mullvad-browser.desktop mullvad-vpn.desktop debian-xterm.desktop"
+      - default-menu-items: "start-mullvad-browser.desktop mullvad-vpn.desktop debian-xterm.desktop" 
+
+

@@ -23,3 +23,5 @@ qvm-features-id:
       - service.cups
       - service.cups-browsed
       - service.tinyproxy
+    - set:
+      - menu-items: "start-mullvad-browser.desktop mullvad-vpn.desktop debian-xterm.desktop"
