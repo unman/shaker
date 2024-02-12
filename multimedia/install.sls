@@ -3,11 +3,21 @@
 #
 
 {% if salt['pillar.get']('update_proxy:caching') %}
+{% for repo in salt['file.find']('/etc/apt/sources.list.d/', name='*list') %}
+{{ repo }}_baseurl:
+  file.replace:
+    - name: {{ repo }}
+    - pattern: 'https://'
+    - repl: 'http://HTTPS///'
+    - flags: [ 'IGNORECASE', 'MULTILINE' ]
+    - backup: False
+
+{% endfor %}
+
 update_sources:
   file.replace:
     - names:
       - /etc/apt/sources.list
-      - /etc/apt/sources.list.d/qubes-r4.list
     - pattern: 'https:'
     - repl: 'http://HTTPS/'
     - flags: [ 'IGNORECASE', 'MULTILINE' ]
