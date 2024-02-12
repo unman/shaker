@@ -7,11 +7,11 @@
     - text: |
         systemctl unmask apt-cacher-ng
         systemctl start apt-cacher-ng
-        /sbin/iptables -I INPUT -p tcp --dport 8082 -j ACCEPT
+        /usr/sbin/nft insert rule qubes custom-input tcp dport 8082 accept
 
 /rw/config/qubes-firewall-user-script:
   file.append:
-    - text: /sbin/iptables -I INPUT -p tcp --dport 8082 -j ACCEPT
+    - text: /usr/sbin/nft insert rule qubes custom-input tcp dport 8082 accept
 
 /rw/config/qubes-bind-dirs.d/50_user.conf:
   file.managed:
