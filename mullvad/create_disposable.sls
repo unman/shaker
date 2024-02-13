@@ -27,3 +27,6 @@ mullvad-features:
       - menu-items: "start-mullvad-browser.desktop mullvad-vpn.desktop debian-xterm.desktop"
       - appmenus-dispvm: True
 
+'qvm-appmenus --update Mullvad':
+  cmd.run:
+    - runas: user
