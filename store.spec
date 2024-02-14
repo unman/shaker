@@ -23,7 +23,7 @@ cp -rv %{SOURCE0}/  %{buildroot}/srv/salt
 
 %post
 if [ $1 -eq 1 ]; then
-  qubesctl state.apply salt.clone
+  qubesctl state.apply store.clone
   qubesctl --skip-dom0 --targets=template-store state.apply store.install
 elif [ $1 -eq 2 ]; then
   qubesctl state.apply store.clone

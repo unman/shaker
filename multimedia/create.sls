@@ -1,9 +1,6 @@
 include:
+  - store.clone
   - multimedia.clone
-
-media_precursor:
-  qvm.template_installed:
-    - name: debian-12-xfce
 
 qvm-present-id:
   qvm.present:
@@ -28,6 +25,8 @@ qvm-features-id:
       - service.cups
       - service.cups-browsed
       - service.tinyproxy
+    - enable:
+      - service.shutdown-idle
 
 
 multimedia:
@@ -58,7 +57,7 @@ multimedia-features:
 media-present-id:
   qvm.present:
     - name: media
-    - template: debian-12-xfce
+    - template: template-store
     - label: purple
 
 media-prefs:

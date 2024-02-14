@@ -17,4 +17,5 @@
 
 /rw/config/rc.local:
   file.append:
-    - text: 'cp /rw/config/DisposableOpen.desktop /usr/share/applications/'
+    - text:
+        - 'cp /rw/config/DisposableOpen.desktop /usr/share/applications/'
