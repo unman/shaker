@@ -1,75 +1,53 @@
 Name:           3isec-qubes-mullvad-vpn
 Version:       	2.01
 Release:        1%{?dist}
-Summary:        Set up a Mullvad wireguard proxy in Qubes
+Summary:        Set up a Mullvad qube and disposable template
 
 License:        GPLv3+
 SOURCE0:	      mullvad
 
 %description
-This package sets up a VPN gateway, named MullvadVPN
-It follows the method detailed in the Mullvad docs,
-https://mullvad.net/en/help/qubes-os-4-and-mullvad-vpn/
+This package creates a template, loaded with the MullvadVPN GUI and Mullvad Browser. 
+An AppVM named mullvad, and a disposable template, mullvad-dvm, are
+created from that template.
 
-This package is for use with wireguard.
-If you use openvpn, install the 3isec-qubes-openvpn package.
+The template, template-mullvad, is based on the debian-12-minimal template.
+If the debian-12-minimal template is not present, it will be downloaded
+and installed - this may take some time depending on your net connection.
 
-The package creates a qube called MullvadVPN based on the debian-11-minimal
-template.  If the debian-11-minimal template is not present, it will
-be downloaded and installed - this may take some time depending on your
-net connection.
+Both the AppVM and the disposable template have the Mullvad GUI to
+set up a VPN, and the Mullvad browser. You can run the Mullvad Browser
+independently of the VPN.
 
-There are changes to the firewall rules on MullvadVPN to ensure
-blocking of outbound connections.
-Only traffic to the Mullvad gateway is allowed.
+If you remove this package, the salt files will be removed, but the qubes will not.
+You can manually remove them if you wish.
 
-After installing the package, copy your Mullvad configuration file or
-zip file to MullvadVPN.
-A menu item for "Setup Mullvad VPN" will be created on the main Qubes Menu.
-Run this to set up the VPN.
-When finished, restart MullvadVPN.
+You can, of course, use template-mullvad to create other qubes for
+separate VPN connections, or a qube where you will just use the Mullvad browser.
 
-To use the VPN, set MullvadVPN as the netvm for your qubes(s).
-All traffic will go through the VPN.
-The VPN will fail closed if the connection drops.
-No traffic will go through clear.
-
-If you remove the package, the salt files will be removed.
-**The MullvadVPN gateway will also be removed.**
-To do this ALL qubes will be checked to see if they use MullvadVPN.
-If they do, their netvm will be set to `none`.
-
-You can, of course, use template-mullvad to create other VPN gateways.
+Remember that each qube that creates a VPN will count toward the maximum of 6 clients.
+Log out and close the VPN when you have finished with it: if you do  not,
+you will be prompted to log out other clients from the GUI.
 
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/srv/salt
-mkdir -p %{buildroot}/usr/bin
-mkdir -p %{buildroot}/usr/share/applications
 cp -rv %{SOURCE0}/  %{buildroot}/srv/salt
-cp -rv %{SOURCE0}/qubes-setup-MullvadVPN.desktop %{buildroot}/usr/share/applications
-cp -rv %{SOURCE0}/setup_MullvadVPN.sh %{buildroot}/usr/bin/setup_MullvadVPN.sh
 
 %files
 %defattr(-,root,root,-)
 /srv/salt/mullvad/*
-/usr/share/applications/qubes-setup-MullvadVPN.desktop
-/usr/bin/setup_MullvadVPN.sh
 
 %post
 if [ $1 -eq 1 ]; then
   qubesctl state.apply mullvad.clone
   qubesctl --skip-dom0 --targets=template-mullvad state.apply mullvad.repo
   qubesctl --skip-dom0 --targets=template-mullvad state.apply mullvad.browser
-  qubesctl state.apply mullvad.create
-  qubesctl --skip-dom0 --targets=MullvadVPN state.apply mullvad.configure
+  qubesctl state.apply mullvad.create_disposable
 fi
 
 %postun
 if [ $1 -eq 0 ]; then
-  for i in `qvm-ls -O NAME,NETVM | awk '/ MullvadVPN/{ print $1 }'`;do qvm-prefs $i netvm none; done
-  qvm-kill MullvadVPN
-  qvm-remove --force MullvadVPN template-mullvad 
 fi
 
 %changelog
