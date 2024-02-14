@@ -1,5 +1,5 @@
 Name:           3isec-qubes-sys-vpn
-Version:       	2.0
+Version:       	2.01
 Release:        1%{?dist}
 Summary:        Create an openvpn proxy in Qubes
 
@@ -24,6 +24,8 @@ When the VPN is active, no traffic is allowed except through the VPN
 tunnel.
 If the VPN uses Google's 8.8.8.8 server for DNS, this will be changed
 to use Quad-9 servers.
+sys-vpn will have the netvm set to the global default_netvm. Change this
+as you will.
 
 After installing, copy your openvpn configuration file or zip file
 to sys-vpn.
@@ -70,6 +72,8 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Tue Fri 13 2024 unman <unman@thirdeyesecurity.org> - 2.01
+- Attach sys-vpn to global default_netvm
 * Mon Fri 05 2024 unman <unman@thirdeyesecurity.org> - 2.0
 - Change to nftables implementation
 * Mon Jun 12 2023 unman <unman@thirdeyesecurity.org> - 1.4
