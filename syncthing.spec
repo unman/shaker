@@ -1,5 +1,5 @@
 Name:       3isec-qubes-syncthing
-Version:    1.1
+Version:    1.2
 Release:    1%{?dist}
 Summary:    Syncthing in Qubes
 
@@ -73,6 +73,8 @@ fi
 %postun
 
 %changelog
+* Sat Jan 20 2024 unman <unman@thirdeyesecurity.org> - 1.2
+- Update for 4.2 - new base template, remove iptables references.
 * Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 1.1
 - Use pillar for cacher to determine repo changes
 * Fri Sep  9 2022 unman <unman@thirdeyesecurity.org>

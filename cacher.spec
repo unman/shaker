@@ -96,7 +96,7 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
-* Wed Feb 22 2024 unman <unman@thirdeyesecurity.org> - 1.15
+* Thu Feb 22 2024 unman <unman@thirdeyesecurity.org> - 1.15
 - Bug fix
 * Sat Feb 10 2024 unman <unman@thirdeyesecurity.org> - 1.14
 - Bug fix
