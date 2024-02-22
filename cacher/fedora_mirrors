@@ -49,6 +49,7 @@ http://ftp.iij.ad.jp/pub/linux/Fedora/fedora/linux/
 http://ftp.ines.lug.ro/fedora/linux/
 http://ftp.jaist.ac.jp/pub/Linux/Fedora/
 http://ftp.linux.cz/pub/linux/fedora/linux/
+http://ftp.linux.org.tr
 http://ftp.lip6.fr/ftp/pub/linux/distributions/fedora/
 http://ftp.lysator.liu.se/pub/fedora/linux/
 http://ftp.nluug.nl/pub/os/Linux/distr/fedora/linux/
@@ -96,10 +97,12 @@ http://mirror.ihost.md/fedora/
 http://mirror.in2p3.fr/pub/fedora/linux/
 http://mirror.infonline.de/fedora/linux/
 http://mirror.init7.net/fedora/fedora/linux/
+http://mirror.it4i.cz
 http://mirror.its.dal.ca/pub/fedora/linux/
 http://mirror.karneval.cz/pub/linux/fedora/linux/
 http://mirror.lagoon.nc/pub/fedora/linux/
 http://mirror.library.ucy.ac.cy/linux/fedora/linux/
+http://mirror.linux-ia64.org/fedora/fedora/linux/
 http://mirror.linux-ia64.org/fedora/fedora/linux/
 http://mirror.linux-ia64.org/fedora/linux/
 http://mirror.math.princeton.edu/pub/fedora/linux/
@@ -120,6 +123,8 @@ http://mirror.realcompute.io/fedora/linux/
 http://mirror.rise.ph/fedora/linux/
 http://mirror.rnet.missouri.edu/fedora/linux/
 http://mirror.seas.harvard.edu/fedora/linux/
+http://mirror.serverion.com/fedora/linux
+http://mirror.serverion.com/fedora/linux
 http://mirror.sfo12.us.leaseweb.net/fedora/linux/
 http://mirror.siena.edu/fedora/linux/
 http://mirror.slu.cz/fedora/linux/
@@ -146,7 +151,12 @@ http://mirror.yandex.ru/fedora/linux/
 http://mirror2.totbb.net/fedora/linux/
 http://mirroronet.pl/pub/mirrors/fedora/linux/
 http://mirrors.cat.pdx.edu/fedora/linux/
+http://mirrors.dotsrc.org/fedora/linux
+http://mirrors.dotsrc.org/fedora/linux
 http://mirrors.dotsrc.org/fedora/linux/
+http://mirrors.fedoraproject.org
+http://mirrors.fedoraproject.org/fedora/linux
+http://mirrors.fedoraproject.org/fedora/linux
 http://mirrors.ircam.fr/pub/fedora/linux/
 http://mirrors.kernel.org/fedora/
 http://mirrors.lug.mtu.edu/fedora/linux/
@@ -161,7 +171,11 @@ http://mirrors.syringanetworks.net/fedora/linux/
 http://mirrors.uni-ruse.bg/fedora/linux/
 http://mirrors.xmission.com/fedora/linux/
 http://mirrors.xtom.de/fedora/
+http://mirrors.xtom.ee/fedora/linux
+http://mirrors.xtom.ee/fedora/linux
 http://muug.ca/mirror/fedora/linux/
+http://nnenix.mm.fcix.net/fedora/linux
+http://nnenix.mm.fcix.net/fedora/linux
 http://nocix.mm.fcix.net/fedora/linux/
 http://opencolo.mm.fcix.net/fedora/linux/
 http://opensource.nchc.org.tw/fedora/linux/
@@ -170,8 +184,11 @@ http://pubmirror2.math.uh.edu/fedora-buffet/fedora/linux/
 http://repo.fedora.md/fedora/linux/
 http://southfront.mm.fcix.net/fedora/linux/
 http://ucmirror.canterbury.ac.nz/linux/fedora/linux/
+http://uvermont.mm.fcix.net/fedora/linux
+http://uvermont.mm.fcix.net/fedora/linux
 http://veronanetworks.mm.fcix.net/fedora/linux/
 http://vesta.informatik.rwth-aachen.de/ftp/pub/Linux/fedora/linux/
+http://volico.mm.fcix.net/fedora/linux
 http://www.fedora.is/fedora/
 http://www.mirrorservice.org/sites/dl.fedoraproject.org/pub/fedora/linux/
 http://www.nic.funet.fi/pub/mirrors/fedora.redhat.com/pub/fedora/linux/

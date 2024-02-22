@@ -1,5 +1,5 @@
 Name:           3isec-qubes-cacher
-Version:       	1.14
+Version:       	1.15
 Release:        1%{?dist}
 Summary:        A caching proxy in Qubes
 
@@ -40,7 +40,7 @@ In dom0 run:
 replacing TEMPLATE with the name of the new template. 
 
 When this package is installed it will attempt to rewrite repository
-definitions in all templates.
+definitions in ALL templates.
 This includes templates that are not under salt control, like Windows
 templates.
 You must manually shutdown those templates.
@@ -96,6 +96,8 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Wed Feb 22 2024 unman <unman@thirdeyesecurity.org> - 1.15
+- Bug fix
 * Sat Feb 10 2024 unman <unman@thirdeyesecurity.org> - 1.14
 - Bug fix
 * Sat Feb 10 2024 unman <unman@thirdeyesecurity.org> - 1.13
