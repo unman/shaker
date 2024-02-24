@@ -25,4 +25,4 @@ qvm-features-id:
     - enable:
       - service.network-manager
     - set:
-      - menu-items: "protonvpn.desktop  firefox-esr.desktop debian-xterm.desktop"
+      - menu-items: "protonvpn-app.desktop  firefox-esr.desktop debian-xterm.desktop"

@@ -11,5 +11,5 @@ proton_menu:
   qvm.features:
     - name: template-proton
     - set:
-      - menu-items: "protonvpn.desktop firefox-esr.desktop debian-xterm.desktop"
-      - default-menu-items: "protonvpn.desktop firefox-esr.desktop debian-xterm.desktop" 
+      - menu-items: "protonvpn-app.desktop firefox-esr.desktop debian-xterm.desktop"
+      - default-menu-items: "protonvpn-app.desktop firefox-esr.desktop debian-xterm.desktop" 

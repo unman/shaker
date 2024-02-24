@@ -1,0 +1,4 @@
+#
+# ProtonVPN stable release
+#
+deb [arch="all", signed-by=/usr/share/keyrings/protonvpn-stable-archive-keyring.gpg] http://HTTPS///repo.protonvpn.com/debian stable main

@@ -1,13 +1,5 @@
 include:
-  - proton.clone
-
-/tmp/protonvpn-stable-release_1.0.3-2_all.deb:
-  file.managed:
-    - source:
-      - salt://proton/protonvpn-stable-release_1.0.3-2_all.deb
-
-'dpkg -i /tmp/protonvpn-stable-release_1.0.3-2_all.deb':
-  cmd.run
+  - proton.install_repo
 
 {% if salt['pillar.get']('update_proxy:caching') %}
 {% set proxy = 'cacher' %}
@@ -41,13 +33,24 @@ include:
 {% endif %}
 {% endif %}
 
+set_locale:
+  cmd.run:
+    - name: |
+        sed -i s/# en_US.UTF-8/en_US.UTF-8/ /etc/locale.gen
+        locale-gen
+
 proton_install:
   pkg.installed:
+    - refresh: True
     - skip_suggestions: True
-    - install_recommends: False
     - pkgs:
       - qubes-core-agent-network-manager
       - qubes-core-agent-networking
+      - qubes-core-agent-passwordless-root
       - firefox-esr
       - network-manager
-      - protonvpn-gui
+      - netcat-openbsd
+      - protonvpn
+      - openssh-client
+      - thunderbird-qubes
+      - wget
