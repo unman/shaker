@@ -1,5 +1,5 @@
 Name:           3isec-qubes-mullvad-vpn
-Version:       	2.01
+Version:       	2023.6
 Release:        1%{?dist}
 Summary:        Set up a Mullvad qube and disposable template
 
