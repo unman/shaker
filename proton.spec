@@ -1,7 +1,7 @@
 Name:           3isec-qubes-proton-vpn
 Version:       	1.01
 Release:        1%{?dist}
-Summary:        Set up a Mullvad qube and disposable template
+Summary:        Set up a qube for Proton VPN use
 
 License:        GPLv3+
 SOURCE0:	      proton
