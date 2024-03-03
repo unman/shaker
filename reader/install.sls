@@ -41,12 +41,11 @@ installed:
   pkg.installed:
     - refresh: True
     - pkgs:
-      - qubes-core-agent-networking
       - antiword
+      - docx2txt
       - edbrowse
-      - evince
-      - firefox-esr
-      - libreoffice
+      - mbrola
+      - mbrola-enl
       - mutt
       - notmuch
       - notmuch-mutt
@@ -54,6 +53,7 @@ installed:
       - offlineimap
       - orca
       - python3-pdfminer
+      - qubes-app-shutdown-idle
       - w3m
 
 {% endif %}
