@@ -1,7 +1,8 @@
 Name:           3isec-qubes-mutt
-Version:  	    1.1
+Version:  	    2.0
 Release:        1%{?dist}
 Summary:        Prepares qube for using mutt in Qubes
+Requires:       3isec-qubes-common
 
 License:        GPLv3+
 SOURCE0:	      mutt
@@ -23,7 +24,7 @@ cp -rv %{SOURCE0}/  %{buildroot}/srv/salt
 %post
 if [ $1 -eq 1 ]; then
   qubesctl state.apply mutt.clone
-  qubesctl --skip-dom0 --targets=template-mutt state.apply mutt.install
+  qubesctl --skip-dom0 --targets=template-mutt state.apply 3isec-common.mutt.install
   qubesctl state.apply mutt.configure
 fi
 
@@ -31,7 +32,9 @@ fi
 
 
 %changelog
+* Mon Mar 11 2024 unman <unman@thirdeyesecurity.org> - 2.0
+- Move common mutt install files to 3isec-common package
 * Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 1.1
 - Use pillar for cacher to determine repo changes
-* Wed Jul 15 2021 unman <unman@thirdeyesecurity.org>
+* Wed Jul 14 2021 unman <unman@thirdeyesecurity.org>
 - First Build
