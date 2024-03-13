@@ -72,7 +72,7 @@ helper_script:
 helper_script_menu:
   file.managed:
     - name: /usr/share/applications/mutt_setup.desktop
-    - source: salt:/3isec-common/mutt/mutt_setup.desktop
+    - source: salt://3isec-common/mutt/mutt_setup.desktop
     - user: user
     - group: user
     - mode: 755
