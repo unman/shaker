@@ -31,7 +31,6 @@ vlc.packages:
   pkg.installed:
     - pkgs:
       - vlc
-      - pulseaudio-qubes
 
 other.packages:
   pkg.installed:
