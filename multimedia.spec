@@ -1,11 +1,11 @@
 Name:           3isec-qubes-sys-multimedia
 Version:       	2.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        creates multimedia template and qubes
 
 License:        GPLv3+
 SOURCE0:       	multimedia
-SOURCE1:       	store
+Requires:       3isec-qubes-common
 
 %description
  This package sets up qubes to work mith multimedia files in Qubes.
@@ -33,22 +33,23 @@ Access to the multimedia file is controlled from the policy file in
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/srv/salt
 cp -rv %{SOURCE0}/  %{buildroot}/srv/salt
-cp -rv %{SOURCE1}/  %{buildroot}/srv/salt
 
 %files
 %defattr(-,root,root,-)
 /srv/salt/multimedia/*
-/srv/salt/store/*
 
 %post
 if [ $1 -eq 1 ]; then
   qubesctl state.apply multimedia.clone
   qubesctl --skip-dom0 --targets=template-multimedia state.apply multimedia.install
   qubesctl state.apply multimedia.create
+  qubesctl --skip-dom0 --targets=media state.apply 3isec-common.store.install
   qubesctl --skip-dom0 --targets=media state.apply multimedia.configure
 fi
 
 %changelog
+* Fri Mar 15 2024 unman <unman@thirdeyesecurity.org> - 2.3.2
+- Use 3isec-common for thunar install
 * Tue Feb 13 2024 unman <unman@thirdeyesecurity.org> - 2.3
 - Use template-store with thunar for media qube
 * Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 2.2
