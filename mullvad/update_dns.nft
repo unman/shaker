@@ -1,0 +1,8 @@
+#!/usr/sbin/nft -f
+flush chain qubes dnat-dns
+insert rule qubes dnat-dns udp dport 53 dnat to 10.64.0.1
+insert rule qubes dnat-dns tcp dport 53 dnat to 10.64.0.1
+flush chain qubes custom-forward
+insert rule ip qubes custom-forward oifname eth0 drop
+flush chain ip6 qubes custom-forward
+insert rule ip6 qubes custom-forward oifname eth0 drop

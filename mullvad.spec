@@ -1,6 +1,6 @@
 Name:           3isec-qubes-mullvad-vpn
 Version:       	2023.6
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Set up a Mullvad qube and disposable template
 
 License:        GPLv3+
@@ -8,7 +8,7 @@ SOURCE0:	      mullvad
 
 %description
 This package creates a template, loaded with the MullvadVPN GUI and Mullvad Browser. 
-An AppVM named mullvad, and a disposable template, mullvad-dvm, are
+An AppVM named sys-mullvad, and a disposable template, mullvad-dvm, are
 created from that template.
 
 The template, template-mullvad, is based on the debian-12-minimal template.
@@ -18,6 +18,9 @@ and installed - this may take some time depending on your net connection.
 Both the AppVM and the disposable template have the Mullvad GUI to
 set up a VPN, and the Mullvad browser. You can run the Mullvad Browser
 independently of the VPN.
+The sys-mullvad AppVM can be used as a standard AppVM or as a vpn gateway
+- set the netvm of client qubes to mullvad, and they will use the VPN. No
+traffic will pass except through the VPN.
 
 If you remove this package, the salt files will be removed, but the qubes will not.
 You can manually remove them if you wish.
@@ -43,6 +46,7 @@ if [ $1 -eq 1 ]; then
   qubesctl state.apply mullvad.clone
   qubesctl --skip-dom0 --targets=template-mullvad state.apply mullvad.repo
   qubesctl --skip-dom0 --targets=template-mullvad state.apply mullvad.browser
+  qubesctl --skip-dom0 --targets=mullvad state.apply mullvad.configure
   qubesctl state.apply mullvad.create_disposable
 fi
 
