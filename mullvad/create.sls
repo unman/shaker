@@ -14,7 +14,7 @@ qvm-prefs-id:
     - memory: 400
     - maxmem: 800
     - vcpus: 2
-    - provides_network: True
+    - provides-network: True
 
 qvm-features-id:
   qvm.features:

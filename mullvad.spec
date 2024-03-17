@@ -46,8 +46,8 @@ if [ $1 -eq 1 ]; then
   qubesctl state.apply mullvad.clone
   qubesctl --skip-dom0 --targets=template-mullvad state.apply mullvad.repo
   qubesctl --skip-dom0 --targets=template-mullvad state.apply mullvad.browser
-  qubesctl --skip-dom0 --targets=mullvad state.apply mullvad.configure
   qubesctl state.apply mullvad.create_disposable
+  qubesctl --skip-dom0 --targets=sys-mullvad state.apply mullvad.configure
 fi
 
 %postun
@@ -55,6 +55,9 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Sat Mar 16 2024 unman <unman@thirdeyesecurity.org> - 2023.6.2
+- Update to include new Mullvad Browser
+- Use sys-mullvad as transparent VPN proxy
 * Sat Feb 10 2024 unman <unman@thirdeyesecurity.org> - 2.01
 - Rewrite to use Mullvad GUI for connections
 - Include Mullvad Browser
