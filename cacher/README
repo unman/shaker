@@ -18,7 +18,6 @@ qubesctl --skip-dom0 --templates state.apply cacher.change_templates
 Or target individual templates, as you wish:
 qubesctl --skip-dom0 --targets=TEMPLATE1,TEMPLATE2  state.apply cacher.change_templates  
 
-
 N.B
 apt-cacher-ng works well for Debian,Ubuntu,and Arch.  
 It works reasonably well for Fedora, but may require further tweaking of the apt-cacher-ng control file, and the fedora_mirrors lists.
@@ -29,4 +28,7 @@ qubesctl --skip-dom0 --targets=TEMPLATE1,TEMPLATE2  state.apply cacher.restore_t
 
 The qrexec policy file at  /etc/qubes/policy.d/30-user.policy should be edited so that these templates use the default system proxy.
 
+Templates or qubes that cannot run over qrexec, can connect to the caching
+server if you set cacher as netvm, or upstream, and configure the qube to use
+Proxy address of CACHER_IP:8082.
 
