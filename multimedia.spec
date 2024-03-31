@@ -1,6 +1,6 @@
 Name:           3isec-qubes-sys-multimedia
 Version:       	2.3
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        creates multimedia template and qubes
 
 License:        GPLv3+
@@ -46,8 +46,13 @@ if [ $1 -eq 1 ]; then
   qubesctl --skip-dom0 --targets=media state.apply 3isec-common.store.install
   qubesctl --skip-dom0 --targets=media state.apply multimedia.configure
 fi
+if [ $1 -eq 2 ]; then
+  qubesctl --skip-dom0 --targets=media state.apply multimedia.configure
+fi
 
 %changelog
+* Sun Mar 31 2024 unman <unman@thirdeyesecurity.org> - 2.3.3
+- Make call to disposable-open view-only
 * Fri Mar 15 2024 unman <unman@thirdeyesecurity.org> - 2.3.2
 - Use 3isec-common for thunar install
 * Tue Feb 13 2024 unman <unman@thirdeyesecurity.org> - 2.3
