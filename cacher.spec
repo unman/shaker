@@ -1,6 +1,6 @@
 Name:           3isec-qubes-cacher
 Version:       	1.15
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A caching proxy in Qubes
 
 License:        GPLv3+
@@ -79,6 +79,7 @@ if [ $1 -eq 1 ]; then
   qubesctl state.apply cacher.use
   qubesctl --skip-dom0 --templates state.apply cacher.change_templates
 elif [ $1 -eq 2 ]; then
+  qubesctl state.apply cacher.use
   qubesctl --skip-dom0 --targets=template-cacher state.apply cacher.update
 fi
 
@@ -96,6 +97,8 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Sun Mar 31 2024 unman <unman@thirdeyesecurity.org> - 1.15.2
+- Make sure that configuration is correctly prepended to policy file. 
 * Thu Feb 22 2024 unman <unman@thirdeyesecurity.org> - 1.15
 - Bug fix
 * Sat Feb 10 2024 unman <unman@thirdeyesecurity.org> - 1.14
