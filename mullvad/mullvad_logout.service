@@ -1,0 +1,12 @@
+[Unit]
+Description=Logout Mullvad account at shutdown
+DefaultDependencies=no
+Before=shutdown.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/mullvad_logout.sh
+TimeoutStartSec=0
+
+[Install]
+WantedBy=shutdown.target
