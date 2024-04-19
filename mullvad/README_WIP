@@ -1,14 +1,5 @@
-Name:           3isec-qubes-mullvad-vpn
-Version:       	2023.6
-Release:        3%{?dist}
-Summary:        Set up a Mullvad qube and disposable template
-
-License:        GPLv3+
-SOURCE0:	      mullvad
-
-%description
-This package creates a template, loaded with the MullvadVPN GUI and Mullvad Browser. 
-An AppVM named sys-mullvad, and a disposable template, mullvad-dvm, are
+These salt states can be used to create a template, loaded with the MullvadVPN GUI and Mullvad Browser. 
+An AppVM named sys-mullvad, and a disposable template, mullvad-dvm, can be
 created from that template.
 
 The template, template-mullvad, is based on the debian-12-minimal template.
@@ -18,6 +9,7 @@ and installed - this may take some time depending on your net connection.
 Both the AppVM and the disposable template have the Mullvad GUI to
 set up a VPN, and the Mullvad browser. You can run the Mullvad Browser
 independently of the VPN.
+
 The sys-mullvad AppVM can be used as a standard AppVM or as a vpn gateway
 - set the netvm of client qubes to mullvad, and they will use the VPN. No
 traffic will pass except through the VPN.
@@ -28,19 +20,30 @@ You can manually remove them if you wish.
 You can, of course, use template-mullvad to create other qubes for
 separate VPN connections, or a qube where you will just use the Mullvad browser.
 
-Remember that each qube that creates a VPN will count toward the maximum of 6 clients.
+Remember that each qube that creates a VPN will count toward the maximum of 5 clients.
 Log out and close the VPN when you have finished with it: if you do  not,
 you will be prompted to log out other clients from the GUI.
 
-%install
-rm -rf %{buildroot}
-mkdir -p %{buildroot}/srv/salt
-cp -rv %{SOURCE0}/  %{buildroot}/srv/salt
+Installing the Template
+-----------------------
+sudo qubesctl state.apply mullvad.clone
+sudo qubesctl --skip-dom0 --targets=template-mullvad state.apply mullvad.repo
 
-%files
-%defattr(-,root,root,-)
-/srv/salt/mullvad/*
+Installing the Mullvad Browser
+------------------------------
+sudo qubesctl --skip-dom0 --targets=TARGETS state.apply mullvad.browser
 
+(Replace TARGETS with the name(s) of the templates where you want to install
+the browser.)
+
+
+
+
+To create the 
+qubesctl state.apply mullvad.create_disposable
+qubesctl --skip-dom0 --targets=sys-mullvad state.apply mullvad.configure
+
+#####################################
 %post
 if [ $1 -eq 1 ]; then
   qubesctl state.apply mullvad.clone
@@ -52,24 +55,4 @@ elif [ $1 -eq 1 ]; then
   qubesctl state.apply mullvad.create_disposable
 fi
 
-%postun
-if [ $1 -eq 0 ]; then
-fi
-
-%changelog
-* DATE DATE unman <unman@thirdeyesecurity.org> - 2023.6.3
-- Update: include Mullvad Browser 13.0.13
-- Add: log out from mullvad account on shutdown disposables.
-- Fix: reset max ram to default 4000
-* Sat Mar 16 2024 unman <unman@thirdeyesecurity.org> - 2023.6.2
-- Update to include new Mullvad Browser
-- Use sys-mullvad as transparent VPN proxy
-* Sat Feb 10 2024 unman <unman@thirdeyesecurity.org> - 2.01
-- Rewrite to use Mullvad GUI for connections
-- Include Mullvad Browser
-* Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 1.02
-- Use pillar for cacher to determine repo changes
-* Mon Nov 28 2022 unman <unman@thirdeyesecurity.org> - 1.1
-- Fix wireshark typo
-* Mon Aug 08 2022 unman <unman@thirdeyesecurity.org> - 1.0
-- First Build
+#####################################
