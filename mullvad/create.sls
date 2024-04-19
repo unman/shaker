@@ -12,7 +12,7 @@ qvm-prefs-id:
   qvm.prefs:
     - name: sys-mullvad
     - memory: 400
-    - maxmem: 800
+    - maxmem: 4000
     - vcpus: 2
     - provides-network: True
 

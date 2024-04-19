@@ -13,7 +13,7 @@ mullvad-prefs_dvm:
   qvm.prefs:
     - name: mullvad-dvm
     - memory: 400
-    - maxmem: 800
+    - maxmem: 4000
     - vcpus: 2
     - template_for_dispvms: True
 
