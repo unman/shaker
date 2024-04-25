@@ -5,18 +5,8 @@
 
 {% if grains['nodename'] == 'dom0' %}
 
-/var/lib/qubes/vm-kernels/mirage-firewall:
-  file.directory:
-    - mode: 755
-    - makedirs: True
-
-mirage_extracted:
-  archive.extracted:
-    - name: /var/lib/qubes/vm-kernels/
-    - source: salt://mirage/mirage-firewall.tar.bz2
-    - source_hash: b2a568dde165384cf041c577ffbfc4522a02115d95cc0830bff125ef1781a10c
-    - archive_format: tar
-    - options: -j
+include:
+  - .extract
 
 mirage-firewall:
   qvm.present:
