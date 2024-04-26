@@ -1,5 +1,5 @@
 Name:           3isec-qubes-mirage-firewall
-Version:       	0.8.6
+Version:       	0.9.0
 Release:        1%{?dist}
 Summary:        Create an Mirage firewall in Qubes
 
@@ -14,12 +14,10 @@ https://github.com/mirage/qubes-mirage-firewall
 
 The package creates a qube called mirage-firewall.
 If you want to use this as a firewall, simply change net qube from sys-firewall to mirage-firewall.
-There's a batch file in /srv/salt/mirage to make this change in bulk.
 
 Removing this package will remove the mirage-firewall.
 Qubes that use it will have their net qube unset.
 You will have to change netqube to get those qubes back online.
-There's a batch file in /srv/salt/mirage to help make this change in bulk.
 
 
 %install
@@ -35,7 +33,7 @@ cp -rv %{SOURCE0}/  %{buildroot}/srv/salt
 if [ $1 -eq 1 ]; then
   qubesctl state.apply mirage.install
 elif [ $1 -eq 2 ]; then
-  qubesctl state.apply mirage.extract
+  qubesctl state.apply mirage.install
 fi
 
 %postun
@@ -45,6 +43,8 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Thu Apr 25 2024 unman <unman@thirdeyesecurity.org> - 0.9.0
+- Packages qubes-mirage-firewall 0.9.0
 * Sat Feb 03 2024 unman <unman@thirdeyesecurity.org> - 0.8.6
 - Packages qubes-mirage-firewall 0.8.6
 * Mon Apr 17 2023 unman <unman@thirdeyesecurity.org> - 0.8.4

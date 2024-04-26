@@ -1,0 +1,22 @@
+# mirage-firewall
+
+These states create a unikernel firewall for use in Qubes, using mirage.
+The Unikernel qube is intended to replace sys-firewall, boots quickly, and uses minimal system resources.
+For full details, look [here](https://github.com/mirage/qubes-mirage-firewall).
+
+The package creates a qube called mirage-firewall.
+
+## Installation
+`qubesctl state.apply mirage.install`
+
+## Upgrading
+`qubesctl state.apply mirage.extract`
+
+## Use
+To use mirage-firewall as a firewall, simply change the netvm of a qube from sys-firewall to mirage-firewall.
+
+To make this change for **all** qubes that use sys-firewall, shutdown all running qubes, and then run in dom0:
+```
+qvm-ls -O NAME,NETVM|awk '$2~/sys-firewall/ {print "qvm-prefs " $1 " netvm mirage-firewall" }' |sh
+```
+
