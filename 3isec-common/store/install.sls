@@ -30,13 +30,13 @@
 {% endif %}
 {% endif %}
 
-allow-testing:
+store_allow-testing:
   file.uncomment:
     - name: /etc/apt/sources.list.d/qubes-r4.list
     - regex: ^deb\s.*qubes-os.org.*-testing
     - backup: false
 
-installed:
+store_installed:
   pkg.installed:
     - refresh: True
     - pkgs:

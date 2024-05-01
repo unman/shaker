@@ -1,0 +1,4 @@
+base:
+  dom0:
+    - match: nodegroup
+    - 3isec-common.store.clone
