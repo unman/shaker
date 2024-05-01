@@ -1,5 +1,5 @@
 include:
-  - store.clone
+  - 3isec-common.store.clone
   - multimedia.clone
 
 qvm-present-id:
