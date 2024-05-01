@@ -1,6 +1,6 @@
 Name:           3isec-qubes-sys-multimedia
 Version:       	2.3
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        creates multimedia template and qubes
 
 License:        GPLv3+
@@ -18,15 +18,18 @@ The multimedia disposable is offline by default.
 You can change this if you wish, but be aware that this may result in
 data leakage.
 
-The idea is that you organise and store media files in the media qube. 
-Opening a file in that qube will open the multimedia disposable and play
+Organise and store media files in the media qube. The media qube has thunar
+installed and is based on a minimal template. This reduces the risk of opening
+a file in the storage qube itself.
+Opening a file in the media qube will open the multimedia disposable and play
 the file there.
+The multimedia disposable will shut down automatically when all active windows
+are closed.
 You can also use the multimedia disposable from any other qube, or use the
 disposable template to create more disposables with different settings -
 perhaps online, or restricted to certain IP addresses.
-Access to the multimedia file is controlled from the policy file in
+Access to the multimedia qube is controlled from the policy file in
 /etc/qubes/policy.d/30-user.policy
-
 
 
 %install
@@ -51,6 +54,8 @@ if [ $1 -eq 2 ]; then
 fi
 
 %changelog
+* Wed May 01 2024 unman <unman@thirdeyesecurity.org> - 2.3.4
+- Fix installation bug
 * Sun Mar 31 2024 unman <unman@thirdeyesecurity.org> - 2.3.3
 - Make call to disposable-open view-only
 * Fri Mar 15 2024 unman <unman@thirdeyesecurity.org> - 2.3.2
