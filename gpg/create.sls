@@ -1,13 +1,13 @@
 include:
   - gpg.clone
 
-qvm-present-id:
+gpg-present-id:
   qvm.present:
     - name: sys-gpg
     - template: template-gpg
     - label: gray
 
-qvm-prefs-id:
+gpg-prefs-id:
   qvm.prefs:
     - name: sys-gpg
     - netvm: none
@@ -15,7 +15,7 @@ qvm-prefs-id:
     - maxmem: 800
     - vcpus: 2
 
-qvm-features-id:
+gpg-features-id:
   qvm.features:
     - name: sys-gpg
     - disable:
@@ -25,7 +25,17 @@ qvm-features-id:
 'qvm-volume extend sys-gpg:private 10G' :
   cmd.run
 
-update_file:
-  file.prepend:
-    - name: '/etc/qubes/policy.d/30-user.policy'
-    - text: 'qubes.Gpg  *  @anyvm  @anyvm ask default_target=sys-gpg'
+check_gpg_policy_file:
+  file.managed:
+    - name: /etc/qubes/policy.d/50-config-splitgpg.policy
+
+update_gpg_policy_file:
+  file.replace:
+    - name: /etc/qubes/policy.d/50-config-splitgpg.policy
+    - pattern: |
+        # Any changes made manually may be overwritten by Qubes Configuration Tools.
+    - repl: | 
+        # Any changes made manually may be overwritten by Qubes Configuration Tools.
+        qubes.Gpg  *  @anyvm  sys-gpg ask 
+    - count: 1
+    - prepend_if_not_found: True
