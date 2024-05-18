@@ -1,6 +1,6 @@
 /etc/skel/Downloads/mullvad_browser-linux-x86_64-13.0.15.tar.xz:
   file.managed:
-    - source: 
+    - source:
       - salt://mullvad/mullvad-browser-linux-x86_64-13.0.15.tar.xz
     - user: root
     - group: root

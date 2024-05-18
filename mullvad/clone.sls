@@ -12,4 +12,4 @@ mullvad_menu:
     - name: template-mullvad
     - set:
       - menu-items: "mullvad-vpn.desktop start-mullvad-browser.desktop debian-xterm.desktop"
-      - default-menu-items: "mullvad-vpn.desktop start-mullvad-browser.desktop debian-xterm.desktop" 
+      - default-menu-items: "mullvad-vpn.desktop start-mullvad-browser.desktop debian-xterm.desktop"
