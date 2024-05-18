@@ -1,10 +1,10 @@
 Name:           3isec-qubes-mullvad-vpn
-Version:       	2023.6
-Release:        2%{?dist}
+Version:       	2024.3
+Release:        1%{?dist}
 Summary:        Set up a Mullvad qube and disposable template
 
 License:        GPLv3+
-SOURCE0:	      mullvad
+SOURCE0:	mullvad
 
 %description
 This package creates a template, loaded with the MullvadVPN GUI and Mullvad Browser. 
@@ -48,6 +48,8 @@ if [ $1 -eq 1 ]; then
   qubesctl --skip-dom0 --targets=template-mullvad state.apply mullvad.browser
   qubesctl state.apply mullvad.create_disposable
   qubesctl --skip-dom0 --targets=sys-mullvad state.apply mullvad.configure
+elif [ $1 -eq 2 ]; then
+  qubesctl --skip-dom0 --targets=template-mullvad state.apply mullvad.browser
 fi
 
 %postun
@@ -55,6 +57,9 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Sat May 18 2024 unman <unman@thirdeyesecurity.org> - 2024.3.1
+- Update to Mullvad VPN 2024.3
+- Update to include new Mullvad Browser 13.0.15
 * Sat Mar 16 2024 unman <unman@thirdeyesecurity.org> - 2023.6.2
 - Update to include new Mullvad Browser
 - Use sys-mullvad as transparent VPN proxy
