@@ -14,7 +14,7 @@ mirage_extracted:
   archive.extracted:
     - name: /var/lib/qubes/vm-kernels/
     - source: salt://mirage/mirage-firewall.tar.bz2
-    - source_hash: b2a568dde165384cf041c577ffbfc4522a02115d95cc0830bff125ef1781a10c
+    - source_hash: ea876bc7525811a16b0dfebe7ee1e91661eeecf67d240298d4ffd31b6ee41843
     - archive_format: tar
     - options: -j
 
