@@ -1,6 +1,6 @@
 Name:           3isec-qubes-mirage-firewall
 Version:       	0.9.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Create an Mirage firewall in Qubes
 
 License:        GPLv3+
