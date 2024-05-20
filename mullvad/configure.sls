@@ -24,3 +24,10 @@
     - group: root
     - mode: '755'
     - makedirs: True
+
+# Make settings persistent using bind-dirs
+bind_mullvad_settings:
+  file.append:
+    - name: /rw/config/qubes-bind-dirs.d/50_user.conf
+    - text: "binds+=( '/etc/mullvad-vpn' )"
+    - makedirs: True

@@ -1,6 +1,6 @@
 Name:           3isec-qubes-mullvad-vpn
 Version:       	2024.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Set up a Mullvad qube and disposable template
 
 License:        GPLv3+
@@ -50,13 +50,15 @@ if [ $1 -eq 1 ]; then
   qubesctl --skip-dom0 --targets=sys-mullvad state.apply mullvad.configure
 elif [ $1 -eq 2 ]; then
   qubesctl --skip-dom0 --targets=template-mullvad state.apply mullvad.browser
+  qubesctl --skip-dom0 --targets=template-mullvad state.apply mullvad.browser_client
+  qubesctl --skip-dom0 --targets=sys-mullvad state.apply mullvad.configure
 fi
 
 %postun
-if [ $1 -eq 0 ]; then
-fi
 
 %changelog
+* Mon May 20 2024 unman <unman@thirdeyesecurity.org> - 2024.3.2
+- Make VPN settings persistent in sys-mullvad
 * Sat May 18 2024 unman <unman@thirdeyesecurity.org> - 2024.3.1
 - Update to Mullvad VPN 2024.3
 - Update to include new Mullvad Browser 13.0.15
