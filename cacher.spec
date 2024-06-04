@@ -1,6 +1,6 @@
 Name:           3isec-qubes-cacher
-Version:       	1.15
-Release:        2%{?dist}
+Version:       	1.16
+Release:        1%{?dist}
 Summary:        A caching proxy in Qubes
 
 License:        GPLv3+
@@ -97,6 +97,10 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Tue June 06 2024 unman <unman@thirdeyesecurity.org> - 1.16.1
+- Update config file for acng 3.7.4
+- Change handling of repository lists installed by package and extra definitions.
+- Improve handling of Fedora repositories.
 * Sun Mar 31 2024 unman <unman@thirdeyesecurity.org> - 1.15.2
 - Make sure that configuration is correctly prepended to policy file. 
 * Thu Feb 22 2024 unman <unman@thirdeyesecurity.org> - 1.15

@@ -36,6 +36,12 @@
       - backup: False
 
 {% elif grains['os_family']|lower == 'redhat' %}
+
+stop_zchunk:
+  file.append:
+    - name: /etc/dnf/dnf.conf
+    - text: zchunk=False
+
 {% for repo in salt['file.find']('/etc/yum.repos.d/', name='*repo*') %}
 {{ repo }}_baseurl:
     file.replace:
@@ -58,7 +64,6 @@
     file.uncomment:
       - name: {{ repo }}
       - regex : '.*baseurl(.*)'
-      - ignore_missing: True
       - backup: False
 {{ repo }}_comment:
     file.comment:

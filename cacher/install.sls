@@ -21,19 +21,27 @@ installed:
       - anacron 
       - apt-cacher-ng 
 
-tinyproxy-disable:
+disable-tinyproxy:
   cmd.run:
     - name: systemctl disable tinyproxy
 
-tinyproxy-mask:
+mask-tinyproxy:
   cmd.run:
     - name: systemctl mask tinyproxy
 
-systemd-disable:
+disable-qubes-proxy:
+  cmd.run:
+    - name: systemctl disable qubes-updates-proxy
+
+mask-qubes-proxy:
+  cmd.run:
+    - name: systemctl mask qubes-updates-proxy
+
+disable-apt-cacher:
   cmd.run:
     - name: systemctl disable apt-cacher-ng
 
-systemd-mask:
+mask-apt-cacher:
   cmd.run:
     - name: systemctl mask apt-cacher-ng
 
