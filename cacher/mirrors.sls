@@ -5,6 +5,14 @@
 
 {% if grains['nodename'] != 'dom0' %}
 
+/etc/apt-cacher-ng/Qubes_mirrors:
+  file.managed:
+    - source:
+      - salt://cacher/Qubes_mirrors
+    - user: root
+    - group: root
+    - makedirs: True
+
 /etc/apt-cacher-ng/fedora_mirrors_extra:
   file.managed:
     - source:

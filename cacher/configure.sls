@@ -2,15 +2,17 @@
 
 {% if grains['nodename'] != 'dom0' %}
 
-/rw/config/rc.local:
+cacher_/rw/config/rc.local:
   file.append:
+    - name: /rw/config/rc.local
     - text: |
         systemctl unmask apt-cacher-ng
         systemctl start apt-cacher-ng
         /usr/sbin/nft insert rule qubes custom-input tcp dport 8082 accept
 
-/rw/config/qubes-firewall-user-script:
+cacher_/rw/config/qubes-firewall-user-script:
   file.append:
+    - name: /rw/config/qubes-firewall-user-script
     - text: /usr/sbin/nft insert rule qubes custom-input tcp dport 8082 accept
 
 /rw/config/qubes-bind-dirs.d/50_user.conf:
