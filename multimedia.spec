@@ -1,6 +1,6 @@
 Name:           3isec-qubes-sys-multimedia
 Version:       	2.3
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        creates multimedia template and qubes
 
 License:        GPLv3+
@@ -50,10 +50,13 @@ if [ $1 -eq 1 ]; then
   qubesctl --skip-dom0 --targets=media state.apply multimedia.configure
 fi
 if [ $1 -eq 2 ]; then
+  qubesctl --skip-dom0 --targets=template-multimedia state.apply multimedia.install
   qubesctl --skip-dom0 --targets=media state.apply multimedia.configure
 fi
 
 %changelog
+* Thu Jun 13 2024 unman <unman@thirdeyesecurity.org> - 2.3.7
+- Install pipewire-qubes
 * Thu May 02 2024 unman <unman@thirdeyesecurity.org> - 2.3.6
 - Fix installation bug
 * Wed May 01 2024 unman <unman@thirdeyesecurity.org> - 2.3.5

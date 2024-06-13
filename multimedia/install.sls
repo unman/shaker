@@ -35,6 +35,7 @@ vlc.packages:
 other.packages:
   pkg.installed:
     - pkgs:
+      - pipewire-qubes
       - qubes-app-shutdown-idle
       - audacious
       - calibre
