@@ -1,6 +1,6 @@
 Name:           3isec-qubes-mullvad-vpn
 Version:       	2024.3
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Set up a Mullvad qube and disposable template
 
 License:        GPLv3+
@@ -57,6 +57,8 @@ fi
 %postun
 
 %changelog
+* Thu Jun 13 2024 unman <unman@thirdeyesecurity.org> - 2024.3.3
+- Update to include new Mullvad Browser 13.0.16
 * Mon May 20 2024 unman <unman@thirdeyesecurity.org> - 2024.3.2
 - Make VPN settings persistent in sys-mullvad
 * Sat May 18 2024 unman <unman@thirdeyesecurity.org> - 2024.3.1
