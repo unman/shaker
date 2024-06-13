@@ -1,11 +1,11 @@
 Name:           3isec-qubes-mutt
-Version:  	    2.0
+Version:  	2
 Release:        1%{?dist}
 Summary:        Prepares qube for using mutt in Qubes
 Requires:       3isec-qubes-common
 
 License:        GPLv3+
-SOURCE0:	      mutt
+SOURCE0:        mutt
 
 %description
 This package creates a minimal template configured for using mutt in Qubes, including notmuch.
@@ -26,12 +26,15 @@ if [ $1 -eq 1 ]; then
   qubesctl state.apply mutt.clone
   qubesctl --skip-dom0 --targets=template-mutt state.apply 3isec-common.mutt.install
   qubesctl state.apply mutt.configure
+  qvm-shutdown template-mutt
 fi
 
 %preun
 
 
 %changelog
+* Thu Jun 13 2024 unman <unman@thirdeyesecurity.org> - 2.1
+- Upgrade base to debian 12
 * Mon Mar 11 2024 unman <unman@thirdeyesecurity.org> - 2.0
 - Move common mutt install files to 3isec-common package
 * Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 1.1
