@@ -7,8 +7,6 @@ Allow remote access to a named qube.
 Syntax: in.sh [-h | [ a|p ]] {add|delete} target {tcp|udp} {port number|service} [external port]
 options:
 h   Print this help
-a   Auto mode
-p   Permanent rules
 
 Specify target qube, action, tcp or udp, and target port, separated by spaces.
 The target port can be given by port number or by name (e.g ssh).
@@ -35,31 +33,28 @@ exit
 
 # Check input port
 check_port(){
-if ! [ "$2" -eq "$2" >& /dev/null ];then
-  status=1
-else
-	if [ $2 -lt 65536 ]; then
-		status=0
+
+status=0
+
+if [[ $2 =~ ^[0-9]+$ ]] ;then
+	if [ "$2" -lt 65536 ]; then
 		portnum=$2
 	else
 		status=1
 	fi
-fi
-if [ $status -ne 0 ]; then
-  if !  grep -q -w ^$2\  /etc/services  ; then
-    echo "Specify usable port number or service name"
-    exit
+else 
+  if !  grep -q -w ^"$2"\  /etc/services  ; then
+    status=1
   else
-    portnum=$( getent services $2 |awk '{split($2,a,"/");print a[1]}')
-    if [ $? -ne 0 ]; then
-      echo "Specify usable port number or service name"
-      exit
-		fi
+    portnum=$( getent services "$2" |awk 'match($0, /[0-9]+/){print substr($0, RSTART, RLENGTH)}') ||  status=1
 	fi
 fi
-echo $portnum
+if [ $status -eq 1 ]; then
+  echo "Specify usable port number or service name" && exit
+else
+  echo "$portnum"
+fi
 }
-
 
 get_handle(){
 local my_handle=$( qvm-run -q -u root -p $1 " nft -a list table $2|awk 'BEGIN{c=0} /$3/{c++; if (c==$4) print \$NF}' " )
@@ -76,7 +71,7 @@ numhops=${#my_ips[@]}
 lasthop=$((numhops-1))
 local i=1
 iface="eth0"
-qvm-run -q -u root ${my_netvms[$lasthop]} " nft list table nat|grep ' $proto dport $portnum dnat to ${my_ips[$numhops-1]}'"
+qvm-run -q -u root ${my_netvms[$lasthop]} " nft list table qubes|grep ' $proto dport $portnum dnat to ${my_ips[$numhops-1]}'"
 if [ $? -eq 0 ]; then
 	echo "Are rules already set?"
 	exit
@@ -94,11 +89,11 @@ do
 	if [ $i -eq $lasthop ]; then
 		iface=$external_iface
 	fi
-	 qvm-run -q -u root ${my_netvms[$i]} -- nft insert rule nat PR-QBS-SERVICES meta iifname $iface $proto dport $portnum_used dnat to ${my_ips[$i-1]}:$portnum_target
-	 qvm-run -q -u root ${my_netvms[$i]} -- nft insert rule filter QBS-FORWARD meta iifname $iface ip daddr ${my_ips[$i-1]} $proto dport $portnum_target ct state new accept
+	 qvm-run -q -u root ${my_netvms[$i]} -- nft insert rule qubes dnat-dns meta iifname $iface $proto dport $portnum_used dnat to ${my_ips[$i-1]}:$portnum_target
+	 qvm-run -q -u root ${my_netvms[$i]} -- nft insert rule qubes custom-forward meta iifname $iface ip daddr ${my_ips[$i-1]} $proto dport $portnum_target ct state new accept
    if  [ $permanent -eq 1 ]; then
-     qvm-run -q -u root ${my_netvms[$i]} -- "echo nft insert rule nat PR-QBS-SERVICES meta iifname $iface $proto dport $portnum_used dnat to ${my_ips[$i-1]}:$portnum_target >> /rw/config/rc.local"
-     qvm-run -q -u root ${my_netvms[$i]} -- "echo nft insert rule filter QBS-FORWARD meta iifname $iface ip daddr ${my_ips[$i-1]} $proto dport $portnum_target ct state new accept >> /rw/config/rc.local"
+     qvm-run -q -u root ${my_netvms[$i]} -- "echo nft insert rule qubes dnat-dns PR-QBS-SERVICES meta iifname $iface $proto dport $portnum_used dnat to ${my_ips[$i-1]}:$portnum_target >> /rw/config/rc.local"
+     qvm-run -q -u root ${my_netvms[$i]} -- "echo nft insert rule qubes dnat-dns meta iifname $iface ip daddr ${my_ips[$i-1]} $proto dport $portnum_target ct state new accept >> /rw/config/rc.local"
    fi
 	((i++))
 done
@@ -117,6 +112,7 @@ iface="eth0"
 echo "Removing firewall rules"
 while [ $i -gt 0 ]
 do
+  echo "${my_netvms[$i]}"
   if [ $i -eq 1 ]; then
     portnum_used=$external_portnum
     portnum_target=$portnum
@@ -124,19 +120,19 @@ do
     portnum_used=$external_portnum
     portnum_target=$external_portnum
   fi
-		local handle=$( get_handle ${my_netvms[$i]} nat "dport $external_portnum " 1 )
-		qvm-run -q  -u root ${my_netvms[$i]} -- "nft delete rule nat PR-QBS-SERVICES handle $handle"
-		local handle=$( get_handle ${my_netvms[$i]} filter "dport $external_portnum " 1 )
-		qvm-run -q -u root ${my_netvms[$i]} -- "nft delete rule filter QBS-FORWARD handle $handle"
+		local handle=$( get_handle ${my_netvms[$i]} qubes "dport $external_portnum " 1 )
+		qvm-run -q  -u root ${my_netvms[$i]} -- "nft delete rule qubes custom-forward handle $handle"
+		local handle=$( get_handle ${my_netvms[$i]} qubes "dport $external_portnum " 1 )
+		qvm-run -q -u root ${my_netvms[$i]} -- "nft delete rule qubes dnat-dns handle $handle"
     if [ $permanent -eq 1 ]; then
-      qvm-run -q -u root ${my_netvms[$i]} -- "sed -i '/nft insert rule nat PR-QBS-SERVICES meta iifname $iface $proto dport $portnum_used dnat to ${my_ips[$i-1]}:$portnum_target/d'  /rw/config/rc.local"
-      qvm-run -q -u root ${my_netvms[$i]} -- "sed -i '/nft insert rule filter QBS-FORWARD meta iifname $iface ip daddr ${my_ips[$i-1]} $proto dport $portnum_target ct state new accept/d'  /rw/config/rc.local"
+      qvm-run -q -u root ${my_netvms[$i]} -- "sed -i '/nft insert rule qubes dnat-dns meta iifname $iface $proto dport $portnum_used dnat to ${my_ips[$i-1]}:$portnum_target/d'  /rw/config/rc.local"
+      qvm-run -q -u root ${my_netvms[$i]} -- "sed -i '/nft insert rule qubes QBS-FORWARD meta iifname $iface ip daddr ${my_ips[$i-1]} $proto dport $portnum_target ct state new accept/d'  /rw/config/rc.local"
     fi
 	((i--))
 done
-local found=$( qvm-run -p -q -u root ${my_netvms[$i]} -- nft list table nat 2>/dev/null )
-	handle=$( get_handle ${my_netvms[$i]} filter "dport $portnum " 1 )
-	qvm-run -q -u root ${my_netvms[$i]} -- nft delete rule filter INPUT handle $handle
+local found=$( qvm-run -p -q -u root ${my_netvms[$i]} -- nft list table qubes 2>/dev/null )
+	handle=$( get_handle ${my_netvms[$i]} qubes "dport $portnum " 1 )
+	qvm-run -q -u root ${my_netvms[$i]} -- nft delete rule qubes custom-input handle $handle
 exit
 }
 
@@ -160,6 +156,7 @@ while getopts ${optstring} option ; do
     a)
       auto=1 ;;
     p)
+      exit
       permanent=1 ;;
     ?)
       get_help ;; 
@@ -249,17 +246,16 @@ elif [ $1 == "add" ]; then
 	ips[$hop]=$ip
 
 	# Create tunnel
-	found=$( qvm-run -p -q -u root $qube_name -- nft list table nat 2>/dev/null )
-		qvm-run -q -u root $qube_name  "nft list table filter|grep '$proto dport $portnum accept' "
+	found=$( qvm-run -p -q -u root $qube_name -- nft list table qubes 2>/dev/null )
+		qvm-run -q -u root $qube_name  "nft list table qubes|grep '$proto dport $portnum accept' "
 		if [ $? -eq 0 ]; then
 			echo "Input rule in $qube_name already exists"
 			echo "Please check configuration - exiting now."
 			exit
 		else
-			handle=$( get_handle $qube_name filter related,established 1)
-			qvm-run -q -u root $qube_name -- nft add rule filter INPUT position $handle iifname eth0 $proto dport $portnum accept
+			#handle=$( get_handle $qube_name qubes related,established 1)
+			qvm-run -q -u root $qube_name -- nft add rule qubes custom-input iifname eth0 $proto dport $portnum accept
 		fi
-	fi
 	tunnel netvms[@] ips[@]
 	if [ $? -ne 0 ]; then
 		teardown netvms[@] ips[@]
