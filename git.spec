@@ -4,7 +4,7 @@ Release:        1%{?dist}
 Summary:        Create sys-git in Qubes
 
 License:        GPLv3+
-SOURCE0:	      git
+SOURCE0:        git
 
 %description
 This package provides a central git qube, named sys-git.
@@ -100,10 +100,6 @@ cp -rv %{SOURCE0}/  %{buildroot}/srv/salt
 if [ $1 -eq 1 ]; then
   qubesctl state.apply git.create
   qubesctl --skip-dom0 --targets=sys-git state.apply git.install
-fi
-
-%postun
-if [ $1 -eq 0 ]; then
 fi
 
 %changelog
