@@ -1,10 +1,10 @@
 Name:           3isec-qubes-sys-ssh-agent
-Version:       	1.2
-Release:        1%{?dist}
+Version:       	1.3
+Release:        2%{?dist}
 Summary:        Create a service qube to hold ssh-agents
 
 License:        GPLv3+
-SOURCE0:	      qubes-ssh-agent
+SOURCE0:        qubes-ssh-agent
 
 %description
 This package sets up a qube called sys-ssh-agent, to hold ssh keys.
@@ -32,7 +32,7 @@ maximum compartmentalisation.
 Simply clone sys-ssh-agent and edit the ssh-agents.
 
 Removing this package will NOT delete the qubes, but will remove the 
-entry in /etc/qubes/policy.d/30-user.policy.
+entry in /etc/qubes/policy.d/50-
 
 
 %install
@@ -53,10 +53,12 @@ fi
 
 %postun
 if [ $1 -eq 0 ]; then
-  sed -i /qubes.SshAgent/d /etc/qubes/policy.d/30-user.policy
+  sed -i /qubes.SshAgent/d /etc/qubes/policy.d/50-config-splitssh.policy
 fi
 
 %changelog
+* Wed Jun 12 2024 unman <unman@thirdeyesecurity.org> - 1.3
+- Upgrade template to debian-12-minimal
 * Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 1.2
 - Use pillar for cacher to determine repo changes
 * Mon Jun 06 2022 unman <unman@thirdeyesecurity.org> - 1.1
