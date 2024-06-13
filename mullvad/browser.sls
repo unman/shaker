@@ -1,3 +1,13 @@
+delete_old_mullvad_browser_version:
+  file.absent:
+    - name: '/etc/skel/mullvad-browser'
+
+{% for archive in salt['file.find']('/etc/skel/Downloads/', name='mullvad_browser*') %}
+{{ archive }}_remove:
+  file.absent:
+    - name: {{ archive }}
+{% endfor %}
+
 /etc/skel/Downloads/mullvad_browser-linux-x86_64-13.0.16.tar.xz:
   file.managed:
     - source:

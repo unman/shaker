@@ -4,7 +4,7 @@ Release:        3%{?dist}
 Summary:        Set up a Mullvad qube and disposable template
 
 License:        GPLv3+
-SOURCE0:	mullvad
+SOURCE0:        mullvad
 
 %description
 This package creates a template, loaded with the MullvadVPN GUI and Mullvad Browser. 
@@ -50,8 +50,9 @@ if [ $1 -eq 1 ]; then
   qubesctl --skip-dom0 --targets=sys-mullvad state.apply mullvad.configure
 elif [ $1 -eq 2 ]; then
   qubesctl --skip-dom0 --targets=template-mullvad state.apply mullvad.browser
-  qubesctl --skip-dom0 --targets=template-mullvad state.apply mullvad.browser_client
+  qubesctl --skip-dom0 --targets=sys-mullvad state.apply mullvad.browser_client
   qubesctl --skip-dom0 --targets=sys-mullvad state.apply mullvad.configure
+  qubesctl --skip-dom0 --targets=mullvad-dvm state.apply mullvad.browser_client
 fi
 
 %postun
