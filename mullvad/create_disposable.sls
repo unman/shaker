@@ -25,7 +25,7 @@ mullvad-features_dvm:
       - service.cups-browsed
       - service.tinyproxy
     - set:
-      - menu-items: "mullvad-vpn.desktop start-mullvad-browser.desktop debian-xterm.desktop"
+      - menu-items: "mullvad-browser.desktop debian-xterm.desktop mullvad-vpn.desktop"
       - appmenus-dispvm: True
 
 'qvm-appmenus --update mullvad-dvm':

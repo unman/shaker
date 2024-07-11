@@ -1,3 +1,0 @@
-base:
- template-mullvad :
-    - mullvad.browser

@@ -70,7 +70,23 @@ mullvad_installed:
     - refresh: True
     - pkgs:
       - mullvad-vpn
+      - mullvad-browser
+      - libnss3
 
+/etc/skel/.local/share/applications/mullvad-browser.desktop:
+  file.managed:
+    - source: salt://mullvad/mullvad-browser.desktop
+    - user: root
+    - group: root
+    - makedirs: True
+
+/etc/skel/.local/share/applications/mullvad-vpn.desktop:
+  file.managed:
+    - source: salt://mullvad/mullvad-vpn.desktop
+    - user: root
+    - group: root
+    - makedirs: True
+    
 {% endif %}
 {% endif %}
 

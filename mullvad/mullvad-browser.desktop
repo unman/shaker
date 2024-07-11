@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Mullvad Browser
+GenericName=Web Browser
+Comment=Mullvad Browser is a privacy-focused web browser designed to minimize tracking and fingerprinting.
+Categories=Network;WebBrowser;Security;
+Exec=/usr/lib/mullvad-browser/start-mullvad-browser
+X-MullvadBrowser-ExecShell=/usr/lib/mullvad-browser/start-mullvad-browser
+Icon=mullvad-browser
+StartupWMClass=Mullvad Browser
