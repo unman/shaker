@@ -1,6 +1,6 @@
 Name:           3isec-qubes-mullvad-vpn
 Version:       	2024.3
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Set up a Mullvad qube and disposable template
 
 License:        GPLv3+
@@ -45,19 +45,18 @@ cp -rv %{SOURCE0}/  %{buildroot}/srv/salt
 if [ $1 -eq 1 ]; then
   qubesctl state.apply mullvad.clone
   qubesctl --skip-dom0 --targets=template-mullvad state.apply mullvad.repo
-  qubesctl --skip-dom0 --targets=template-mullvad state.apply mullvad.browser
   qubesctl state.apply mullvad.create_disposable
   qubesctl --skip-dom0 --targets=sys-mullvad state.apply mullvad.configure
 elif [ $1 -eq 2 ]; then
-  qubesctl --skip-dom0 --targets=template-mullvad state.apply mullvad.browser
-  qubesctl --skip-dom0 --targets=sys-mullvad state.apply mullvad.browser_client
-  qubesctl --skip-dom0 --targets=sys-mullvad state.apply mullvad.configure
-  qubesctl --skip-dom0 --targets=mullvad-dvm state.apply mullvad.browser_client
+  qubesctl --skip-dom0 --targets=template-mullvad,sys-mullvad,mullvad-dvm state.apply mullvad.browser_delete
+  qubesctl --skip-dom0 --targets=template-mullvad state.apply mullvad.repo
 fi
 
 %postun
 
 %changelog
+* Thu Jul 11 2024 unman <unman@thirdeyesecurity.org> - 2024.3.4
+- Update to install browser from Mullvad repository
 * Thu Jun 13 2024 unman <unman@thirdeyesecurity.org> - 2024.3.3
 - Update to include new Mullvad Browser 13.0.16
 * Mon May 20 2024 unman <unman@thirdeyesecurity.org> - 2024.3.2
