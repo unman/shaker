@@ -1,6 +1,6 @@
 Name:           3isec-qubes-monitor
 Version:  	1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Prepares qube for network monitoring in Qubes
 
 License:        GPLv3+
@@ -38,5 +38,7 @@ fi
 
 
 %changelog
+* Sat Jul 27 2024 unman <unman@thirdeyesecurity.org> - 1.2
+- Make suricata logs persistent
 * Thu Jul 25 2024 unman <unman@thirdeyesecurity.org> - 1.1
 - First Build
