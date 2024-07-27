@@ -9,10 +9,13 @@ and installed - this may take some time depending on your net connection.
 
 The template has passwordless root installed, so you can run packet captures using `sudo..`.  
 If you want to run wireshark as an ordinary user, open a terminal in template-monitor and run
-`sudo dpkg-reconfigure wireshark-common`.
-Answer `Yes` to the question, "should non-superusers be able to capture packets?"
-Run `sudo usermod -a -G wireshark user`.
-Shut down the template.
+1. `sudo dpkg-reconfigure wireshark-common`.
+2. Answer `Yes` to the question, "should non-superusers be able to capture packets?"
+3. Run `sudo usermod -a -G wireshark user`.
+4. Shut down the template.
+
+Next time you start a qube using the template-monitor template, you will be able to run Wireshark as an ordinary user.
+
 
 ## Usage
 sys-monitor is created with `provides_network` set, so you can attach qubes to it, setting it as netvm.
@@ -29,6 +32,9 @@ By default sys-monitor has sys-net as netvm, but you can change this if you wish
 You can monitor traffic at eth0 or at any of the vif interfaces to downstream qubes.
 
 You can, of course, use template-monitor to create other qubes for monitoring at different positions in the Qubes networking structure..
+
+**Remember that Qubes uses masquerade in the nft qubes table, so that all traffic coming from (e.g) sys-firewall appears to come from the IP address of that qube.
+If you want to see traffic from individual qubes you must attache those qubes directly to sys-monitor**
 
 ## Installation
 Copy the monitor folder to /srv/salt.
