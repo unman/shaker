@@ -10,14 +10,6 @@
     - mode: 755
     - makedirs: True
 
-mirage_extracted:
-  archive.extracted:
-    - name: /var/lib/qubes/vm-kernels/
-    - source: salt://mirage/mirage-firewall.tar.bz2
-    - source_hash: ea876bc7525811a16b0dfebe7ee1e91661eeecf67d240298d4ffd31b6ee41843
-    - archive_format: tar
-    - options: -j
-
 mirage-firewall:
   qvm.present:
     - name: mirage-firewall
@@ -46,5 +38,9 @@ mirage-firewall-features:
       - qubes-firewall
       - no-default-kernelopts
 
+mirage-firewall-kernel:
+  file.managed:
+    - name: /var/lib/qubes/vm-kernels/mirage-firewall/vmlinuz
+    - source: salt://mirage/qubes-firewall.xen
 
 {% endif %}

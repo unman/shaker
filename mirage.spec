@@ -1,6 +1,6 @@
 Name:           3isec-qubes-mirage-firewall
-Version:       	0.9.1
-Release:        2%{?dist}
+Version:       	0.9.2
+Release:        1%{?dist}
 Summary:        Create an Mirage firewall in Qubes
 
 License:        GPLv3+
@@ -33,7 +33,15 @@ cp -rv %{SOURCE0}/  %{buildroot}/srv/salt
 if [ $1 -eq 1 ]; then
   qubesctl state.apply mirage.install
 elif [ $1 -eq 2 ]; then
-  qubesctl state.apply mirage.extract
+  if [ `qvm-ls --running --raw-list mirage-firewall` == `mirage-firewall` ];then
+  qvm-kill mirage-firewall
+  qubesctl state.apply mirage.absent
+  qubesctl state.apply mirage.install
+  qvm-start mirage-firewall
+  else
+  qubesctl state.apply mirage.absent
+  qubesctl state.apply mirage.install
+  fi
 fi
 
 %postun
@@ -43,6 +51,8 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Fri Feb 07 2025 unman <unman@thirdeyesecurity.org> - 0.9.2
+- Packages qubes-mirage-firewall 0.9.2
 * Mon May 20 2024 unman <unman@thirdeyesecurity.org> - 0.9.1
 - Packages qubes-mirage-firewall 0.9.1
 * Thu May 09 2024 unman <unman@thirdeyesecurity.org> - 0.9.0
