@@ -10,6 +10,11 @@
     - mode: 755
     - makedirs: True
 
+mirage-firewall-kernel:
+  file.managed:
+    - name: /var/lib/qubes/vm-kernels/mirage-firewall/vmlinuz
+    - source: salt://mirage/qubes-firewall.xen
+
 mirage-firewall:
   qvm.present:
     - name: mirage-firewall
@@ -37,10 +42,5 @@ mirage-firewall-features:
     - enable:
       - qubes-firewall
       - no-default-kernelopts
-
-mirage-firewall-kernel:
-  file.managed:
-    - name: /var/lib/qubes/vm-kernels/mirage-firewall/vmlinuz
-    - source: salt://mirage/qubes-firewall.xen
 
 {% endif %}
