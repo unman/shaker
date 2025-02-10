@@ -14,6 +14,7 @@ mirage-firewall-kernel:
   file.managed:
     - name: /var/lib/qubes/vm-kernels/mirage-firewall/vmlinuz
     - source: salt://mirage/qubes-firewall.xen
+    - source_hash: 0c3c2c0e62a834112c69d7cddc5dd6f70ecb93afa988768fb860ed26e423b1f8
 
 mirage-firewall:
   qvm.present:
