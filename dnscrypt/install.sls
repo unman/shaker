@@ -44,6 +44,20 @@ dnscrypt_extract:
     - user: user
     - group: user
 
+/etc/resolv.conf.backup:
+  file.copy:
+    - source: /etc/resolv.conf
+
+remove_resolv.conf:
+  file.absent:
+    - name: /etc/resolv.conf
+
+new_resolv.conf:
+  file.managed:
+    - name: /etc/resolv.conf
+    - source: salt://dnscrypt/resolv.conf
+
+
 {% endif %}
 {% endif %}
 {% endif %}

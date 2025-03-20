@@ -1,0 +1,14 @@
+#!/usr/sbin/nft -f
+flush chain qubes dnat-dns
+
+flush chain qubes custom-forward
+insert rule qubes custom-forward tcp dport 53 drop
+insert rule qubes custom-forward udp dport 53 drop
+
+flush chain qubes custom-input
+insert rule qubes custom-input tcp dport 53 accept
+insert rule qubes custom-input udp dport 53 accept
+
+flush chain qubes dnat-dns
+insert rule qubes dnat-dns iifname "vif*" tcp dport 53 dnat to 127.0.0.1
+insert rule qubes dnat-dns iifname "vif*" udp dport 53 dnat to 127.0.0.1
