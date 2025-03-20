@@ -36,6 +36,7 @@ installed_dnscrypt:
   pkg.installed:
     - pkgs:
       - qubes-core-agent-networking
+      - qubes-core-agent-passwordless-root
 
 dnscrypt_extract:
   archive.extracted:
