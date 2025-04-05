@@ -1,0 +1,2 @@
+# Tailscale packages for debian bookworm
+deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/debian bookworm main
