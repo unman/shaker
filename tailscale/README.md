@@ -34,9 +34,6 @@ The tailscaled service is disabled and amked in the template.
 ## Qube creation
 `create.sls` is a standard way of creating `sys-tailscale` - qvm.present is used to create the qube, and preferences and features are set.
 
-Note the use of an include statement at the head of the file. This allows a single state execution to call other states.
-
-
 ## Qube configuratioon
 ```
 sudo qubesctl --skip-dom0 --targets=sys-tailscale state.apply tailscale.configure
@@ -44,3 +41,12 @@ sudo qubesctl --skip-dom0 --targets=sys-tailscale state.apply tailscale.configur
 Changes to `/rw/config/rc.local` are written using `file.append` to start tailscaled and bring up Tailscale.
 To make sure that configuration changes are kept after a qubes restart, [bind-dirs](https://www.qubes-os.org/doc/bind-dirs/) is used.
 The configuration file is created using `file.managed`
+
+## Installing to existing templates, and existing qubes.
+
+You can add Tailscale to an existing template:
+`sudo qubesctl --skip-dom0 --show-output --targets=TEMPLATE_NAME state.apply tailscale.install`
+
+You can add the service to an existing qube, where Tailscale is installed in the base template:
+`sudo qubesctl --skip-dom0 --show-output --targets=QUBE_NAME state.apply tailscale.configure`
+If the qube is running, restart it after configuration is complete.
