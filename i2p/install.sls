@@ -49,6 +49,16 @@
 {% endif %}
 {% endif %}
 
+{% if salt['pillar.get']('update_proxy:caching') %}
+i2p_list_cacher:
+  file.replace:
+    - name: /etc/apt/sources.list.d/i2p.list
+    - pattern: 'https://'
+    - repl: 'http://HTTPS///'
+    - flags: [ 'IGNORECASE', 'MULTILINE' ]
+    - backup: False
+{% endif %}
+
 upgrade:
   pkg.uptodate:
     - refresh: True
@@ -56,11 +66,11 @@ upgrade:
 
 install:
   pkg.installed:
+    - refresh: True
     - pkgs:
       - qubes-core-agent-networking
       - firefox-esr
       - i2p
       - i2p-keyring
-    - refresh: True
 
 {% endif %}
