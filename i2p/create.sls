@@ -23,5 +23,4 @@ qvm-features-i2p:
     - disable:
       - service.cups
       - service.cups-browsed
-    - enable:
       - service.tinyproxy
