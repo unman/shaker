@@ -59,12 +59,12 @@ i2p_list_cacher:
     - backup: False
 {% endif %}
 
-upgrade:
+i2p_upgrade:
   pkg.uptodate:
     - refresh: True
     - dist_upgrade: True
 
-install:
+i2p_install:
   pkg.installed:
     - refresh: True
     - pkgs:
@@ -73,4 +73,11 @@ install:
       - i2p
       - i2p-keyring
 
+i2p_untar_extension:
+  archive.extracted:
+    - name: /etc/skel/
+    - source: salt://i2p/i2p_browser.tgz
+    - user: root
+    - group: root
+    
 {% endif %}
