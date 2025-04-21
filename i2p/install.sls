@@ -79,5 +79,13 @@ i2p_untar_extension:
     - source: salt://i2p/i2p_browser.tgz
     - user: root
     - group: root
+
+i2p_disable_ipv6:
+  file.append:
+    - name: /etc/sysctl.conf
+    - text: |
+        net.ipv6.conf.all.disable_ipv6 = 1
+        net.ipv6.conf.default.disable_ipv6 = 1
+        net.ipv6.conf.lo.disable_ipv6 = 1
     
 {% endif %}
