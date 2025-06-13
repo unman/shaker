@@ -27,6 +27,6 @@ qvm-features-id:
 
 update_file:
   file.prepend:
-    - name: '/etc/qubes-rpc/policy/qubes.sshfs'
-    - text: '@anyvm @anyvm ask,default_target=share'
+    - name: '/etc/qubes/policy.d/10-sshfs.policy'
+    - text: 'qubes-sshfs  *  @anyvm  @anyvm  ask  default_target=share'
 
