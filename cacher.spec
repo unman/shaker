@@ -1,5 +1,5 @@
 Name:           3isec-qubes-cacher
-Version:       	1.16
+Version:       	1.17
 Release:        1%{?dist}
 Summary:        A caching proxy in Qubes
 
@@ -11,7 +11,7 @@ This package provides a caching proxy qube, named cacher.
 A caching proxy stores downloaded packages, so that you need only download
 a package once for it to be used when updating many templates.
 The proxy is preconfigured to work out of the box for Debian, Ubuntu,
-Arch, and Fedora templates.
+Arch, BlackArch, Qubes, and Fedora templates.
 
 When you install this package your Qubes system will be altered to use
 the proxy by default.
@@ -26,7 +26,8 @@ will be changed in the templates.
 This is so that the request to the proxy is plain text, and the proxy 
 will then make the request via https
 This change will be done automatically for every template that exists
-when you install this package.
+when you install this package. NOTE THAT THIS REQUIRES SALTING OF EVERY
+TEMPLATE - WHONIX TEMPLATES WILL NOT BE CHANGED.
 
 If you install a new template, you must make this configuration change. 
 In dom0 run:
@@ -41,6 +42,7 @@ replacing TEMPLATE with the name of the new template.
 
 When this package is installed it will attempt to rewrite repository
 definitions in ALL templates.
+NOTE THAT THIS REQUIRES STARTING AND SALTING OF EVERY TEMPLATE.
 This includes templates that are not under salt control, like Windows
 templates.
 You must manually shutdown those templates.
@@ -97,6 +99,9 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Thu Sep 11 2025 unman <unman@thirdeyesecurity.org> - 1.17.1
+- Change base template to Debian-13-minimal for new install.
+- Improve handling of Fedora repositories.
 * Tue June 06 2024 unman <unman@thirdeyesecurity.org> - 1.16.1
 - Update config file for acng 3.7.4
 - Change handling of repository lists installed by package and extra definitions.
