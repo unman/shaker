@@ -73,4 +73,26 @@ stop_zchunk:
       - backup: False
 
 {% endfor %}
+{% for repo in salt['file.find']('/etc/yum.repos.d/', name='fedora-cisco-openh264.repo*') %}
+{{ repo }}_comment:
+    file.comment:
+      - name: {{ repo }}
+      - regex: '^metalink=http(.*)'
+      - backup: False
+{{repo}}_new_baseurl:
+    file.line:
+      - name: {{ repo }}
+      - mode: ensure
+      - content: baseurl=http://HTTPS///codecs.fedoraproject.org/openh264/$releasever/$basearch/
+      - after: metalink=.*openh264-\$releasever.*
+      - backup: False
+{{repo}}_new_debug_baseurl:
+    file.line:
+      - name: {{ repo }}
+      - mode: ensure
+      - content: baseurl=http://HTTPS///codecs.fedoraproject.org/openh264/$releasever/$basearch/debug/tree/
+      - after: metalink=.*openh264-debug-\$releasever.*
+      - backup: False
+
+{% endfor %}
 {% endif %}
