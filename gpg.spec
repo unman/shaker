@@ -1,5 +1,5 @@
 Name:           3isec-qubes-split-gpg
-Version:  	    2.05
+Version:  	    2.07
 Release:        1%{?dist}
 Summary:        split-gpg in Qubes
 
@@ -42,6 +42,8 @@ fi
 
 
 %changelog
+* Fri Sep 19 2025 unman <unman@thirdeyesecurity.org> - 2.07
+- Upgrade to debian-13 base
 * Tue Feb 06 2024 unman <unman@thirdeyesecurity.org> - 2.06
 - Upgrade for Qubes 4.2
 * Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 2.05
