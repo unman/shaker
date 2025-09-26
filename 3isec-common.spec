@@ -1,6 +1,6 @@
 Name:           3isec-qubes-common
-Version:        1.1
-Release:        3%{?dist}
+Version:        1.2
+Release:        1%{?dist}
 Summary:        Common files for 3isec packages
 
 License:        GPLv3+
@@ -23,6 +23,8 @@ cp -rv %{SOURCE0}/  %{buildroot}/srv/salt
 %preun
 
 %changelog
+* Thu Sep 25 2025 unman <unman@thirdeyesecurity.org> 1.2.1
+- Update to Debian-13
 * Thu June 13 2024 unman <unman@thirdeyesecurity.org> 1.1.3
 - Add tunnel script
 * Wed May 01 2024 unman <unman@thirdeyesecurity.org> 1.1.2
