@@ -1,11 +1,11 @@
 store_precursor:
   qvm.template_installed:
-    - name: debian-12-minimal
+    - name: debian-13-minimal
 
 store_clone:
   qvm.clone:
     - name: template-store
-    - source: debian-12-minimal
+    - source: debian-13-minimal
 
 store_menu:
   qvm.features:
