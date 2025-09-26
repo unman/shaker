@@ -55,7 +55,7 @@ if [ $1 -eq 2 ]; then
 fi
 
 %changelog
-* Thu Sep 25 2024 unman <unman@thirdeyesecurity.org> - 2.4.1
+* Thu Sep 25 2025 unman <unman@thirdeyesecurity.org> - 2.4.1
 - Update package to use Debian-13 base
 * Thu Jun 13 2024 unman <unman@thirdeyesecurity.org> - 2.3.7
 - Install pipewire-qubes
