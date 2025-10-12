@@ -74,9 +74,9 @@ fi
 %postun
 
 %changelog
-* Sun Sep 12 2025 unman <unman@thirdeyesecurity.org> - 1.4.1
+* Sun Oct 12 2025 unman <unman@thirdeyesecurity.org> - 1.4.1
 - Bump version
-* Thu Jun 12 2024 unman <unman@thirdeyesecurity.org> - 1.2.2
+* Thu Jun 13 2024 unman <unman@thirdeyesecurity.org> - 1.2.2
 - Improve script for inbound connections
 - Drop automatic configuration in favor of manual.
 - Move script to common files for general use
