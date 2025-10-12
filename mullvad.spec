@@ -1,6 +1,6 @@
 Name:           3isec-qubes-mullvad-vpn
-Version:       	2024.3
-Release:        4%{?dist}
+Version:       	2025.9
+Release:        1%{?dist}
 Summary:        Set up a Mullvad qube and disposable template
 
 License:        GPLv3+
@@ -11,8 +11,8 @@ This package creates a template, loaded with the MullvadVPN GUI and Mullvad Brow
 An AppVM named sys-mullvad, and a disposable template, mullvad-dvm, are
 created from that template.
 
-The template, template-mullvad, is based on the debian-12-minimal template.
-If the debian-12-minimal template is not present, it will be downloaded
+The template, template-mullvad, is based on the debian-13-minimal template.
+If the debian-13-minimal template is not present, it will be downloaded
 and installed - this may take some time depending on your net connection.
 
 Both the AppVM and the disposable template have the Mullvad GUI to

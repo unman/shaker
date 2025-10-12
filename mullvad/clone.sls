@@ -1,11 +1,11 @@
 mullvad_precursor:
   qvm.template_installed:
-    - name: debian-12-minimal
+    - name: debian-13-minimal
 
 mullvad_clone:
   qvm.clone:
     - name: template-mullvad
-    - source: debian-12-minimal
+    - source: debian-13-minimal
 
 mullvad_menu:
   qvm.features:
