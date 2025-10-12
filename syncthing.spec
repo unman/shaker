@@ -1,6 +1,6 @@
 Name:       3isec-qubes-syncthing
-Version:    1.2
-Release:    2%{?dist}
+Version:    1.4
+Release:    1%{?dist}
 Summary:    Syncthing in Qubes
 
 License:    GPLv3+
