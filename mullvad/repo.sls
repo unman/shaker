@@ -43,7 +43,7 @@ requirements_installed:
       - lsb-release
       - xz-utils
 
-echo "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable $(lsb_release -cs) main" > /etc/apt/sources.list.d/mullvad.list :
+echo "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable stable  main" > /etc/apt/sources.list.d/mullvad.list :
   cmd.run
 
 /usr/share/keyrings/mullvad-keyring.asc:
