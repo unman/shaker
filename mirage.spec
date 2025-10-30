@@ -1,5 +1,5 @@
 Name:           3isec-qubes-mirage-firewall
-Version:       	0.9.4
+Version:       	0.9.5
 Release:        1%{?dist}
 Summary:        Create an Mirage firewall in Qubes
 
@@ -51,6 +51,8 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Thu Oct 30 2025 unman <unman@thirdeyesecurity.org> - 0.9.5
+- Packages qubes-mirage-firewall 0.9.5
 * Mon Feb 10 2025 unman <unman@thirdeyesecurity.org> - 0.9.4
 - Packages qubes-mirage-firewall 0.9.4
 * Fri Feb 07 2025 unman <unman@thirdeyesecurity.org> - 0.9.3
