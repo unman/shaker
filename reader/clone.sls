@@ -1,11 +1,11 @@
 clone_precursor:
   qvm.template_installed:
-    - name: debian-12-xfce
+    - name: debian-13-xfce
 
 qvm-clone-id:
   qvm.clone:
     - name: template-reader
-    - source: debian-12-xfce
+    - source: debian-13-xfce
 
 'qubes-prefs default_template template-reader':
   cmd.run

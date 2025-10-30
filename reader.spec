@@ -1,5 +1,5 @@
 Name:           3isec-qubes-reader
-Version:        1.1
+Version:        1.2
 Release:        1%{?dist}
 Summary:        Prepares useful software in Qubes
 
@@ -38,6 +38,8 @@ fi
 
 
 %changelog
+* Thu Oct 30 2025 unman <unman@thirdeyesecurity.org> - 1.2
+- Update base template to debian-13-xfce
 * Tue Feb 06 2024 unman <unman@thirdeyesecurity.org> - 1.1
 - Update base template to debian-12-xfce
 - Fix bug so that default dispvm will be correctly identified and have template set.
