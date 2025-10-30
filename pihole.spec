@@ -59,6 +59,9 @@ fi
 
 
 %changelog
+* Thu Oct 30 2025 unman <unman@thirdeyesecurity.org> - 1.5
+- Update package for 4.3
+- Rebase on debian-13. 
 * Sat Feb 03 2024 unman <unman@thirdeyesecurity.org> - 1.4
 - Update package for Qubes 4.2
 * Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 1.3
