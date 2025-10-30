@@ -6,8 +6,8 @@
 {{ repo }}_baseurl:
   file.replace:
     - name: {{ repo }}
-    - pattern: 'https://'
-    - repl: 'http://HTTPS///'
+    - pattern: 'http://HTTPS///'
+    - repl: 'https://'
     - flags: [ 'IGNORECASE', 'MULTILINE' ]
     - backup: False
 
@@ -24,6 +24,12 @@
 
 {% set IP = salt['cmd.shell']('qubesdb-read /qubes-ip') %}
 {% set GW = salt['cmd.shell']('qubesdb-read /qubes-gateway') %}
+
+pihole-allow-testing:
+  file.uncomment:
+    - name: /etc/apt/sources.list.d/qubes-r4.list
+    - regex: ^deb\s.*qubes-os.org.*-testing
+    - backup: false
 
 /etc/network/interfaces.d/enX0:
   file.managed:
@@ -62,7 +68,7 @@ Pihole_installed:
       - qubes-core-agent-passwordless-root
       - qubes-core-agent-dom0-updates
       - curl
-      - dnsutils
+      - bind9-dnsutils
       - firefox-esr
       - git
       - idn2
@@ -135,5 +141,13 @@ Pihole-setup:
     - text:
       - interface=lo
       - bind-interfaces
+
+update_pihole_listening_mode:
+  file.replace:
+    - name: /etc/pihole/pihole.toml 
+    - pattern: 'listeningMode = "LOCAL"'
+    - repl: 'listeningMode = "ALL"'
+    - flags: [ 'IGNORECASE', 'MULTILINE' ]
+    - backup: False
 
 {% endif %}
