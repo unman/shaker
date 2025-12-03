@@ -1,0 +1,6 @@
+#!/usr/bin/sh
+cd /home/user/qubesos.github.io
+git pull
+git submodule update --remote --recursive
+bundle install
+bundle exec jekyll serve --incremental

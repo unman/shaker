@@ -1,0 +1,8 @@
+#!/usr/bin/sh
+cd /home/user/qubes-doc
+git pull
+poetry run sphinx-autobuild -v. _build/html
+#cd /home/user/staging/doc
+
+#cd /var/www/staging
+#grep -l -r /gen/latest/ |xargs sed -i s#/gen/latest##

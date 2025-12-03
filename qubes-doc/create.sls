@@ -25,10 +25,10 @@ qubes-doc-features-id:
 
 qubes-doc_update_policy_file:
   file.blockreplace:
-    - name: /etc/qubes/policy.d/50-config-splitgpg.policy
+    - name: /etc/qubes/policy.d/30-user-splitgpg.policy
     - marker_start: '# Start zone for qubes-doc'
     - marker_end: '# End zone for qubes-doc'
-    - insert_after_match: '# Any changes made manually may be overwritten by Qubes Configuration Tools.'
     - content: |
         qubes.Gpg	*	qubes-doc	@default	allow target=sys-gpg
-        qubes.Gpg	*	qubes-doc	sys-gpg	allow
+        qubes.Gpg	*	qubes-doc	sys-gpg	  allow
+    - append_if_not_found: True
