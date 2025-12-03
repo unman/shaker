@@ -1,6 +1,6 @@
 # Introduction
 These salt files can be used to set-up a template for building the Qubes website and documentation.
-The template is a clone of the fedora-40 template.
+The template is a clone of the fedora-42 template.
 A qubes-doc qube is created and configured to use git and split-gpg.
 
 # Installation
@@ -25,7 +25,7 @@ You may need to edit `Gemfile` to include `gem webrick`
 
 ## Notes
 
-`create.sls` uses *include* to call `clone.sls`. This state ensures that a fedora-40 template is installed, and will install it if not: the template is cloned to create a template for qubes-doc. The remainder of the state creates the qubes-doc qube, and creates the split-gpg policy.
+`create.sls` uses *include* to call `clone.sls`. This state ensures that a fedora-42 template is installed, and will install it if not: the template is cloned to create a template for qubes-doc. The remainder of the state creates the qubes-doc qube, and creates the split-gpg policy.
 
 `install.sls` configures qubes-doc repositories to use the caching proxy if present. (Look at the use of the *if* statement checking for the existence of the relevant pillar.)
 `pkg.installed` is used to install the needed packages.
