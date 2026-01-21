@@ -1,6 +1,6 @@
 Name:           3isec-qubes-mullvad-vpn
 Version:       	2025.9
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Set up a Mullvad qube and disposable template
 
 License:        GPLv3+
@@ -55,6 +55,8 @@ fi
 %postun
 
 %changelog
+* Thu Oct 30 2025 unman <unman@thirdeyesecurity.org> - 2025.9.2
+- Update to release 2025.9.
 * Thu Jul 11 2024 unman <unman@thirdeyesecurity.org> - 2024.3.4
 - Update to install browser from Mullvad repository
 * Thu Jun 13 2024 unman <unman@thirdeyesecurity.org> - 2024.3.3

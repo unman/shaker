@@ -4,8 +4,8 @@ An AppVM named sys-mullvad, and a disposable template, mullvad-dvm, are
 created from that template.
 
 ## Template
-The template, template-mullvad, is cloned from the debian-12-minimal template.
-If the debian-12-minimal template is not present, it will be downloaded
+The template, template-mullvad, is cloned from the debian-13-minimal template.
+If the debian-13-minimal template is not present, it will be downloaded
 and installed - this may take some time depending on your net connection.
 
 ## Usage
@@ -24,7 +24,7 @@ Log out and close the VPN when you have finished with it: if you do  not,
 you will be prompted to log out other clients from the GUI when you reach the maximum.
 
 ## Template creation
-Clone the debian-12-minimal template - note the use of `qvm.template_installed` which will install the template if it is not already present
+Clone the debian-13-minimal template - note the use of `qvm.template_installed` which will install the template if it is not already present
 ```
 sudo qubesctl state.apply mullvad.clone
 ```
