@@ -3,8 +3,8 @@ These files create a template, with tools installed for network monitoring.
 An AppVM named sys-monitor, is created from that template.
 
 ## Template
-The template, template-monitor, is cloned from the debian-12-minimal template.
-If the debian-12-minimal template is not present, it will be downloaded
+The template, template-monitor, is cloned from the debian-13-minimal template.
+If the debian-13-minimal template is not present, it will be downloaded
 and installed - this may take some time depending on your net connection.
 
 The template has passwordless root installed, so you can run packet captures using `sudo..`.  
@@ -44,7 +44,7 @@ qubesctl --skip-dom0 --targets=template-monitor state.apply monitor.install
 qubesctl --skip-dom0 --targets=sys-monitor state.apply monitor.configure
 ```
 ### Template creation
-Clone the debian-12-minimal template - note the use of `qvm.template_installed` which will install the template if it is not already present
+Clone the debian-13-minimal template - note the use of `qvm.template_installed` which will install the template if it is not already present
 ```
 sudo qubesctl state.apply monitor.clone
 ```

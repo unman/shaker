@@ -1,11 +1,11 @@
 monitor_precursor:
   qvm.template_installed:
-    - name: debian-12-minimal
+    - name: debian-13-minimal
 
 qvm-clone-monitor:
   qvm.clone:
     - name: template-monitor
-    - source: debian-12-minimal
+    - source: debian-13-minimal
 
 qvm-features-template-monitor:
   qvm.features:
