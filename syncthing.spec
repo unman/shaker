@@ -1,6 +1,6 @@
 Name:       3isec-qubes-syncthing
 Version:    1.4
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    Syncthing in Qubes
 
 License:    GPLv3+
@@ -74,6 +74,8 @@ fi
 %postun
 
 %changelog
+* Sun Feb 01 2026 unman <unman@thirdeyesecurity.org> - 1.4.2
+- Update syncthing signing key
 * Sun Oct 12 2025 unman <unman@thirdeyesecurity.org> - 1.4.1
 - Bump version
 * Thu Jun 13 2024 unman <unman@thirdeyesecurity.org> - 1.2.2
