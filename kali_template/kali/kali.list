@@ -1,0 +1,2 @@
+#deb [signed-by=/usr/share/keyrings/kali-archive-key.gpg] https://http.kali.org/kali kali-rolling main non-free contrib
+deb [signed-by=/usr/share/keyrings/kali-archive-key.gpg] http://mirror.aktkn.sg/kali kali-rolling main non-free contrib

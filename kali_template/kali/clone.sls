@@ -1,13 +1,11 @@
-include:
-  - template-debian-10-minimal
+kali_requisite:
+  qvm.template_installed:
+    - name: debian-14-minimal
 
-qvm-clone-id:
+qvm-clone-kali-id:
   qvm.clone:
-    - require:
-      - sls: template-debian-10-minimal 
     - name: template-kali
-    - source: template-debian-10-minimal
+    - source: debian-14-minimal
 
 'qvm-volume extend template-kali:root 60G' :
   cmd.run
-

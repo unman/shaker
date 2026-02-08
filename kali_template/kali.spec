@@ -1,10 +1,10 @@
 Name:           kali
-Version:  	1.0
+Version:        2.0
 Release:        1%{?dist}
 Summary:        Salt Kali template
 
 License:        GPLv3+
-SOURCE0:	kali
+SOURCE0:        kali
 
 %description
 Salt state for Kali template
@@ -20,5 +20,7 @@ cp -rv %{SOURCE0}/  %{buildroot}/srv/salt
 /srv/salt/kali/*
 
 %changelog
+* Sun Feb 08 2026 unman <unman@thirdeyesecurity.org>
+- Rebase to Forky
 * Sun Jan 31 2021 unman <unman@thirdeyesecurity.org>
 - First Build

@@ -3,76 +3,92 @@
 resize2fs /dev/xvda3:
   cmd.run:
     - runas: root
-  
-/etc/apt/sources.list.replace:
+
+{% if salt['pillar.get']('update_proxy:caching') %}
+{% if grains['os_family']|lower == 'debian' %}
+{% if grains['nodename']|lower != 'host' %}
+{% for repo in salt['file.find']('/etc/apt/sources.list.d/', name='*list') %}
+{{ repo }}_baseurl:
   file.replace:
-    - name: '/etc/apt/sources.list'
+    - name: {{ repo }}
+    - pattern: 'https://'
+    - repl: 'http://HTTPS///'
+    - flags: [ 'IGNORECASE', 'MULTILINE' ]
+    - backup: False
+
+{% endfor %}
+
+/etc/apt/sources.list:
+  file.replace:
+    - name: /etc/apt/sources.list
     - pattern: 'https:'
     - repl: 'http://HTTPS/'
     - flags: [ 'IGNORECASE', 'MULTILINE' ]
+    - backup: False
 
-/etc/apt/sources.list.d/qubes-r4.list:
+{% endif %}
+{% endif %}
+{% endif %}
+
+comment_qubes_repo:
   file.replace:
+    - name: /etc/apt/sources.list.d/qubes-r4.list
+    - pattern: '^deb'
+    - repl: '#deb'
+    - flags: [ 'IGNORECASE', 'MULTILINE' ]
+    - backup: False
+
+kali_upgrade:
+  pkg.uptodate:
+    - refresh: True
+    - dist_upgrade: True
+
+kali_repo:
+  file.managed:
+    - name: /etc/apt/sources.list
+    - source: salt://kali/kali.list
+
+kali_key:
+  file.managed:
+    - name: /usr/share/keyrings/kali-archive-key.gpg
+    - source: salt://kali/kali-archive-key.gpg
+
+3isec_qubes_repo:
+  file.managed:
+    - name: /etc/apt/sources.list.d/3isec.list
+    - source: salt://kali/3isec.list
+
+3isec_qubes_key:
+  file.managed:
+    - name: /usr/share/keyrings/unman-keyring.gpg
+    - source: salt://kali/unman-keyring.gpg
+
+{% if salt['pillar.get']('update_proxy:caching') %}
+change_/etc/apt/sources.list:
+  file.replace:
+    - name: /etc/apt/sources.list
     - pattern: 'https:'
     - repl: 'http://HTTPS/'
     - flags: [ 'IGNORECASE', 'MULTILINE' ]
+    - backup: False
 
-allow-testing:
-  file.uncomment:
-    - name: /etc/apt/sources.list.d/qubes-r4.list
-    - regex: ^deb\s.*qubes-os.org.*-testing
-    - backup: false
+change_3isec_qubes_repo:
+  file.replace:
+    - name: /etc/apt/sources.list.d/3isec.list
+    - pattern: 'https:'
+    - repl: 'http://HTTPS/'
+    - flags: [ 'IGNORECASE', 'MULTILINE' ]
+    - backup: False
+{% endif %}
 
-uptodate:
+kali_upgrade_again:
   pkg.uptodate:
     - refresh: True
     - dist_upgrade: True
 
-/etc/apt/sources.list.update:
-  file.replace:
-    - name: '/etc/apt/sources.list'
-    - pattern: 'buster'
-    - repl: 'bullseye'
-    - flags: [ 'IGNORECASE', 'MULTILINE' ]
-
-/etc/apt/sources.list.security:
-  file.replace:
-    - name: '/etc/apt/sources.list'
-    - pattern: 'bullseye/updates'
-    - repl: 'bullseye-security'
-    - flags: [ 'IGNORECASE', 'MULTILINE' ]
-
-/etc/apt/sources.list.d/qubes-r4.list.update:
-  file.replace:
-    - name: /etc/apt/sources.list.d/qubes-r4.list
-    - pattern: 'buster'
-    - repl: 'bullseye'
-    - flags: [ 'IGNORECASE', 'MULTILINE' ]
-
-upgrade:
-  pkg.uptodate:
-    - refresh: True
-    - dist_upgrade: True
-
-python3-apt:
-  pkg.installed:
-    - refresh: True
-
-kali:
-  pkgrepo.managed:
-    - humanname: Kali repository
-    - name: deb http://HTTPS///http.kali.org/kali kali-rolling main contrib non-free
-    - file: /etc/apt/sources.list.d/kali.list
-    - key_url: salt://kali/kali.key
-
-upgrade_again:
-  pkg.uptodate:
-    - refresh: True
-    - dist_upgrade: True
-
-installed:
+kali_installed:
   pkg.installed:
     - pkgs:
       - qubes-core-agent-networking
-      - kali-linux-default
-      - kali-desktop-kde
+      - qubes-core-agent-passwordless-root
+      - kali-linux-core
