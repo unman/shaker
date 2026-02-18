@@ -1,6 +1,6 @@
 # vim: set syntax=yaml ts=2 sw=2 sts=2 et :
 
-{% set MASTER_IP = salt['pillar.get']('salt-master:ip' %}
+{% set MASTER_IP = salt['pillar.get']('salt-master:ip') %}
 
 {% if grains['nodename'] == 'minion' %}
 salt_minion_set_hosts:
