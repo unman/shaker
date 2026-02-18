@@ -1,0 +1,14 @@
+X-Repolib-Name: Salt Project
+Description: Salt has many possible uses, including configuration management.
+  Built on Python, Salt is an event-driven automation tool and framework to deploy,
+  configure, and manage complex IT systems. Use Salt to automate common
+  infrastructure administration tasks and ensure that all the components of your
+  infrastructure are operating in a consistent desired state.
+  - Website: https://saltproject.io
+  - Public key: https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public
+Enabled: yes
+Types: deb
+URIs: https://packages.broadcom.com/artifactory/saltproject-deb
+Signed-By: /etc/apt/keyrings/salt-archive-keyring.pgp
+Suites: stable
+Components: main

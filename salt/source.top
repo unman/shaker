@@ -1,0 +1,12 @@
+base:
+  dom0:
+    - match: nodegroup
+    - salt.create
+    - salt.pillar
+  template-salt:
+    - salt.repo
+    - salt.install
+#  salt-master:
+#    - salt.configure
+  minion:
+    - salt.configure
