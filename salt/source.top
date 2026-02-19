@@ -6,7 +6,7 @@ base:
   template-salt:
     - salt.repo
     - salt.install
-#  salt-master:
-#    - salt.configure
+  salt-master:
+    - salt.configure
   minion:
     - salt.configure

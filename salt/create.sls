@@ -6,8 +6,10 @@ include:
 
 {%- if target == 'minion' -%}
 {% set netvm = 'salt-master' %}
+{% set service = 'salt-minion' %}
 {%- elif target == 'salt-master' -%}
 {% set netvm = 'none' %}
+{% set service = 'salt-master' %}
 {% endif %}
 
 
@@ -35,9 +37,11 @@ qvm-features-{{ target }}-salt:
       - service.cups
       - service.cups-browsed
       - service.tinyproxy
+    - enable:
+      - service.{{ service }}
 
-qvm-volume extend {{ target }}:private 10G :
-  cmd.run
+#qvm-volume extend {{ target }}:private 10G :
+#  cmd.run
 
 {% endfor %}
 
