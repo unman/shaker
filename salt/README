@@ -1,0 +1,30 @@
+Formula to create a working salt environment in Qubes for development
+and testing. Qubes will be created for salt-master and minion,
+preconfigured to allow for salting.  It will be necessary to copy the
+key fingerprint from salt-master to the minion, as described here:
+https://docs.saltproject.io/en/latest/ref/configuration/index.html#master-key-fingerprint
+
+It should be enough to copy the salt directory to /srv/salt in dom0,
+and then, as root:
+qubesctl top enable salt.source
+qubesctl --show-output --targets=template-salt,salt-master,minion state.apply
+
+qubesctl will process in this order - dom0,templates,qubes - so everything
+should be automagically processed in the correct order.
+
+If multiple minions are required, clone the minion. Start the new qube,
+and stop the salt-minion service. Edit the file `/etc/salt/minion_id`
+to show the new id. Remove the old keys, and generate new keys. Restart
+the service and the new keys should be available to be accepted in the
+salt-master.
+If the new minion is called minion2, then run on minion2:
+```
+systemctl stop salt-minion
+vi /etc/salt/minion_id
+rm -rf /etc/salt/pki/minion/minion*
+salt-key -u root --gen-keys=minion2
+systemctl start salt-minion
+```
+
+The new domain is offline. If network access is required, then set a
+netvm in salt-master.
