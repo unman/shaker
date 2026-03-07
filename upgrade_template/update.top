@@ -1,0 +1,3 @@
+base:
+  '*':
+    - upgrade_template.update

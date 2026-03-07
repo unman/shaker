@@ -1,0 +1,16 @@
+This is a simple formula to upgrade Qubes templates.
+
+Copy directory to /srv/salt, then run:  
+qubesctl --skip-dom0 --show-output --targets=LIST_OF_TARGETS state.apply
+upgrade-template.upgrade
+
+Normal target specification can be used: `targets=` followed by a comma separated list, `--templates` for all templates, etc.
+
+If you run the state against a template based qube, changes will be lost on reboot. None the less this could be useful for testing purposes.
+
+N.B For Fedora templates, rpmfusion repositories will be disabled and
+packages from them will be removed. This is because of known bugs in the
+upgrade process. If this is not what you want you should use one of the
+canonical upgrade methods provided by Fedora.
+Unless your templates are heavily personalised, Qubes advises that you
+install a fresh template from the Qubes repository using qvm-template.
