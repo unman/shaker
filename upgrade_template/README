@@ -1,16 +1,33 @@
-This is a simple formula to upgrade Qubes templates.
+This is a simple formula to upgrade Qubes templates in place.
+
+Unless your templates are heavily personalised, Qubes advises that you
+install a fresh template from the Qubes repository using qvm-template.
+
+First you should take a backup of the template(s) you are upgrading. You
+may want to clone the template and run the upgrade against the clone.
+This will allow you to test the upgrade and simply revert if things are
+not working properly.
 
 Copy directory to /srv/salt, then run:  
-qubesctl --skip-dom0 --show-output --targets=LIST_OF_TARGETS state.apply
-upgrade-template.upgrade
+`qubesctl --skip-dom0 --show-output --targets=LIST_OF_TARGETS state.apply upgrade-template.upgrade`
 
-Normal target specification can be used: `targets=` followed by a comma separated list, `--templates` for all templates, etc.
-
-If you run the state against a template based qube, changes will be lost on reboot. None the less this could be useful for testing purposes.
+Normal target specification can be used: `targets=` followed by a comma
+separated list, `--templates` for all templates, etc.
+If you run the state against a template based qube, changes will be lost
+on reboot. None the less this could be useful for testing purposes.
 
 N.B For Fedora templates, rpmfusion repositories will be disabled and
 packages from them will be removed. This is because of known bugs in the
 upgrade process. If this is not what you want you should use one of the
 canonical upgrade methods provided by Fedora.
-Unless your templates are heavily personalised, Qubes advises that you
-install a fresh template from the Qubes repository using qvm-template.
+
+If the salt call fails, check to see which state failed. **Do not rerun
+the update** as this *may* update the system repositories again. If one
+of the upgrade_X_full_upgrade states fails, look at the output - you may
+be able to start the template, log in, and manually fix the problem. If
+the template is broken, do not worry: by default in Qubes you can revert
+any changes.
+1. Close down the template.
+2. In dom0 run `qvm-volume info QUBE:root`. You will see a list of available revisions: the latest revision carries the highest number.
+3. `qvm-volume revert QUBE:root REVISION` will roll back the changes made in the attempted upgrade.
+

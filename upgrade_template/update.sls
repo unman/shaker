@@ -29,13 +29,13 @@ update_uptodate:
 {% for extension in ext %}
 {% set repo_definitions = salt['file.find']('/etc/apt/sources.list.d/', type='f', name='*.'+extension ) %}
 {% for repo in repo_definitions  %}
-{{extension}}_{{ repo }}_update_list:
+{{ extension }}_{{ repo }}_update_list:
   file.replace:
     - name: {{ repo }}
     - pattern: '{{ codename[current_release] }}'
     - repl: '{{ codename[new_release[current_release]] }}'
     - flags: [ 'IGNORECASE', 'MULTILINE' ]
-    - backup: False
+    - backup: .bak
 
 {% endfor %}
 
@@ -47,18 +47,10 @@ update_uptodate:
     - pattern: '{{ codename[current_release] }}'
     - repl: '{{ codename[new_release[current_release]] }}'
     - flags: [ 'IGNORECASE', 'MULTILINE' ]
-    - backup: False
+    - backup: .bak
 {% endfor %}
 
 {% endfor %}
-
-update_deb_new_uptodate:
-  pkg.uptodate:
-    - refresh: True
-
-update_deb_full_upgrade:
-  cmd.run:
-    - name: 'apt-get dist-upgrade -y'
 
 {% elif grains['os_family']|lower == 'redhat' %}
 
@@ -69,7 +61,7 @@ update_fed:
 update_qubes_gpg:
   file.managed:
     - name: /etc/pki/rpm-gpg/RPM-GPG-KEY-qubes-4.3-primary
-    - source: salt://upgrade/RPM-GPG-KEY-qubes-4.3-primary
+    - source: salt://upgrade_template/RPM-GPG-KEY-qubes-4.3-primary
 
 update_import_gpg:
   cmd.run:

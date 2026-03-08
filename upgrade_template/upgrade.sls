@@ -9,15 +9,22 @@ include:
 
 {% if grains['os_family']|lower == 'debian' %}
 
-upgrade_deb_new_uptodate:
+upgrade_deb_full_upgrade:
   pkg.uptodate:
     - refresh: True
-    - require: 
-        sls: update
+    - params:
+      - force_yes
+      - dist_upgrade
+      - force_conf_new
+    - require:
+      - sls: upgrade_template.update
 
-upgrade_deb_full_upgrade:
-  cmd.run:
-    - name: 'apt-get dist-upgrade -y'
+upgrade_deb_autoremove:
+  module.run:
+    - pkg.autoremove:
+        - purge: True
+    - require:
+      - pkg: upgrade_deb_full_upgrade
 
 {% elif grains['os_family']|lower == 'redhat' %}
 {% set current_release = grains['osrelease'] %}
@@ -38,23 +45,13 @@ upgrade_deb_full_upgrade:
 upgrade_purge_rpmfusion:
   cmd.run:
     - names:
-      - 'dnf list | grep rpmfusion |xargs dnf remove'
-    - require: 
-        - sls: update
+      - 'dnf list | grep rpmfusion |cut -f1 -d\ |xargs dnf -y remove'
+    - require:
+        - sls: upgrade_template.update
     - require_in:
         - cmd: upgrade_fed_full
-#  pkg.purged:
-#    - pkgs:
-#      - rpmfusion-free-release
-#      - rpmfusion-nonfree-release
 
-#upgrade_fed_uptodate:
-#  pkg.uptodate:
-#    - refresh: True
-#    - require:
-#        - sls: upgrade.update
-
-upgrade_fed_full:
+upgrade_fed_full_upgrade:
   cmd.run:
     - names:
       - 'dnf upgrade -y'
