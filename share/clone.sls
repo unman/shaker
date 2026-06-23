@@ -1,9 +1,9 @@
 include:
-  - template-debian-12-minimal
+  - template-debian-13-minimal
 
 qvm-clone-id:
   qvm.clone:
     - require:
-      - sls: template-debian-12-minimal 
+      - sls: template-debian-13-minimal 
     - name: template-share
-    - source: debian-12-minimal
+    - source: debian-13-minimal

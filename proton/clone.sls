@@ -1,11 +1,11 @@
 proton_precursor:
   qvm.template_installed:
-    - name: debian-12-minimal
+    - name: debian-13-minimal
 
 proton_clone:
   qvm.clone:
     - name: template-proton
-    - source: debian-12-minimal
+    - source: debian-13-minimal
 
 proton_menu:
   qvm.features:

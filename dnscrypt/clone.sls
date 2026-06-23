@@ -1,8 +1,8 @@
 dnscrypt_precursor:
   qvm.template_installed:
-    - name: debian-12-minimal
+    - name: debian-13-minimal
 
 qvm-clone-dnscrypt:
   qvm.clone:
     - name: template-dnscrypt
-    - source: debian-12-minimal
+    - source: debian-13-minimal

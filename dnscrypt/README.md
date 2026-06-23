@@ -3,8 +3,8 @@ These files create a template, with dnscrypt-proxy installed.
 An AppVM named sys-dnscrypt, is created from that template.
 
 ## Template
-The template, template-dnscrypt, is cloned from the debian-12-minimal template.
-If the debian-12-minimal template is not present, it will be downloaded
+The template, template-dnscrypt, is cloned from the debian-13-minimal template.
+If the debian-13-minimal template is not present, it will be downloaded
 and installed - this may take some time depending on your net connection.
 
 ## Usage
@@ -24,7 +24,7 @@ qubesctl state.apply dnscrypt.create
 qubesctl --skip-dom0 --targets=sys-dnscrypt state.apply dnscrypt.configure
 ```
 ### Template creation
-Clone the debian-12-minimal template - note the use of `qvm.template_installed` which will install the template if it is not already present
+Clone the debian-13-minimal template - note the use of `qvm.template_installed` which will install the template if it is not already present
 ```
 sudo qubesctl state.apply dnscrypt.clone
 ```
