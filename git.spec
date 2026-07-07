@@ -1,5 +1,5 @@
 Name:           3isec-qubes-git
-Version:       	1.03
+Version:       	1.04
 Release:        1%{?dist}
 Summary:        Create sys-git in Qubes
 
@@ -103,6 +103,8 @@ if [ $1 -eq 1 ]; then
 fi
 
 %changelog
+* Mon Jul 06 2026 unman <unman@thirdeyesecurity.org> - 1.04
+- Upgrade to use Debian 13 base
 * Tue Feb 06 2024 unman <unman@thirdeyesecurity.org> - 1.03
 - Update for Qubes 4.2
 * Mon Feb 20 2023 unman <unman@thirdeyesecurity.org> - 1.02

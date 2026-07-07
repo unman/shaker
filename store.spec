@@ -1,5 +1,5 @@
 Name:           3isec-qubes-store
-Version:        1.01
+Version:        1.02
 Release:        1%{?dist}
 Summary:        A storage template using thunar
 
@@ -8,7 +8,7 @@ SOURCE0:        store
 
 %description
 This package creates a template with thunar installed, for use by offline storage qubes.
-The template is based on the debian-12-minimal template.
+The template is based on the debian-13-minimal template.
 
 Removing this package only removes the salt files, not the template.
 
@@ -33,5 +33,7 @@ fi
 
 
 %changelog
+* Mon Jul 06 2026 unman <unman@thirdeyesecurity.org> - 1.02
+- Upgrade to use Debian 13 base
 * Mon Feb 12 2024 unman <unman@thirdeyesecurity.org> - 1.01
 - First Build

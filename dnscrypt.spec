@@ -1,5 +1,5 @@
 Name:           3isec-qubes-dnscrypt
-Version:        1.1
+Version:        1.2
 Release:        1%{?dist}
 Summary:        Provides a template and qube providing DNSCrypt in Qubes
 
@@ -8,7 +8,7 @@ SOURCE0:        dnscrypt
 
 %description
 This package creates a template with dnscrypt-proxy installed.
-The template is based on the debian-12-minimal template.
+The template is based on the debian-13-minimal template.
 A template based qube, sys-dnscrypt, is created with a vanilla version of dnscrypt-proxy installed.
 The new qube is configured to drop in to the Qubes networking model.
 It supports qubes-firewall.
@@ -38,5 +38,7 @@ fi
 
 
 %changelog
+* Mon Jul 06 2026 unman <unman@thirdeyesecurity.org>
+- Upgrade to use Debian 13 base
 * Thu Mar 20 2025 unman <unman@thirdeyesecurity.org>
 - First Build
