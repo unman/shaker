@@ -1,0 +1,64 @@
+admin.label.List                    *   sys-admin    dom0     allow target=dom0
+admin.property.List                 *   sys-admin    dom0     deny
+admin.vm.Create.AppVM               *   sys-admin    dom0     allow
+admin.vm.Create.StandaloneVM        *   sys-admin    dom0     allow
+admin.vm.Create.TemplateVM          *   sys-admin    dom0     allow
+admin.vm.List                       *   sys-admin    dom0     allow 
+admin.vm.List                       *   sys-admin    @tag:created-by-sys-admin   allow target=dom0
+admin.vm.Remove                     *   sys-admin    @tag:created-by-sys-admin   allow target=dom0
+admin.vm.CurrentState               *   sys-admin    @tag:created-by-sys-admin   allow target=dom0
+admin.vm.feature.Get                *   sys-admin    @tag:created-by-sys-admin   allow target=dom0
+admin.vm.feature.List               *   sys-admin    @tag:created-by-sys-admin   allow target=dom0
+admin.vm.feature.Set                *   sys-admin    @tag:created-by-sys-admin   allow target=dom0
+admin.vm.feature.CheckWithTemplate  *   sys-admin    @tag:created-by-sys-admin   allow target=dom0
+admin.vm.property.Get               *   sys-admin    dom0     allow
+admin.vm.property.Get               *   sys-admin    @tag:created-by-sys-admin   allow target=dom0
+admin.vm.property.GetAll            *   sys-admin    dom0     allow
+admin.vm.property.GetAll            *   sys-admin    @tag:created-by-sys-admin   allow target=dom0
+admin.vm.property.List              *   sys-admin    @tag:created-by-sys-admin   allow target=dom0
+admin.vm.property.Set               *   sys-admin    @tag:created-by-sys-admin   allow target=dom0
+admin.vm.tag.Get                    *   sys-admin    @tag:created-by-sys-admin   allow target=dom0
+admin.vm.tag.List                   *   sys-admin    @tag:created-by-sys-admin   allow target=dom0
+admin.vm.tag.Set                    *   sys-admin    @tag:created-by-sys-admin   allow target=dom0
+qubes.Filecopy                      *   sys-admin    @tag:created-by-sys-admin   allow 
+qubes.Filecopy                      *   sys-admin    @anyvm                       deny 
+qubes.WaitForSession                *   sys-admin    @tag:created-by-sys-admin   allow
+qubes.WaitForSession                *   sys-admin    @anyvm                       deny
+qubes.VMShell                       *   sys-admin    @tag:created-by-sys-admin   allow
+qubes.VMShell                       *   sys-admin    @anyvm                       deny
+
+## The rules below will allow the admin qube to operate on ALL qubes.
+## If you want this admin qube to be able to administer the whole system
+## comment out the first stanza and enable these rules.
+## Make sure that this is what you want before enabling these rules. There
+## is a considerable security risk in doing so, particularly if teh
+## admin qube is online.
+
+#admin.label.List                    *   sys-admin    dom0     allow target=dom0
+#admin.property.List                 *   sys-admin    dom0     allow
+#admin.property.Get                  *   sys-admin    dom0     allow
+#admin.property.GetAll               *   sys-admin    dom0     allow
+#admin.property.Set                  *   sys-admin    dom0     allow
+#admin.vm.Create.AppVM               *   sys-admin    dom0     allow
+#admin.vm.Create.StandaloneVM        *   sys-admin    dom0     allow
+#admin.vm.Create.TemplateVM          *   sys-admin    dom0     allow
+#admin.vm.List                       *   sys-admin    dom0     allow 
+#admin.vm.List                       *   sys-admin    @anyvm   allow target=dom0
+#admin.vm.Remove                     *   sys-admin    @anyvm   allow target=dom0
+#admin.vm.CurrentState               *   sys-admin    @anyvm   allow target=dom0
+#admin.vm.feature.Get                *   sys-admin    @anyvm   allow target=dom0
+#admin.vm.feature.List               *   sys-admin    @anyvm   allow target=dom0
+#admin.vm.feature.Set                *   sys-admin    @anyvm   allow target=dom0
+#admin.vm.feature.CheckWithTemplate  *   sys-admin    @anyvm   allow target=dom0
+#admin.vm.property.Get               *   sys-admin    dom0     allow
+#admin.vm.property.Get               *   sys-admin    @anyvm   allow target=dom0
+#admin.vm.property.GetAll            *   sys-admin    dom0     allow
+#admin.vm.property.GetAll            *   sys-admin    @anyvm   allow target=dom0
+#admin.vm.property.List              *   sys-admin    @anyvm   allow target=dom0
+#admin.vm.property.Set               *   sys-admin    @anyvm   allow target=dom0
+#admin.vm.tag.Get                    *   sys-admin    @anyvm   allow target=dom0
+#admin.vm.tag.List                   *   sys-admin    @anyvm   allow target=dom0
+#admin.vm.tag.Set                    *   sys-admin    @anyvm   allow target=dom0
+#qubes.Filecopy                      *   sys-admin    @anyvm   allow 
+#qubes.WaitForSession                *   sys-admin    @anyvm   allow
+#qubes.VMShell                       *   sys-admin    @anyvm   allow
