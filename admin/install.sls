@@ -1,5 +1,7 @@
 # vim: set syntax=yaml ts=2 sw=2 sts=2 et :
 
+{% if grains['nodename'] != 'dom0' %}
+
 {% if salt['pillar.get']('update_proxy:caching') %}
 {% set proxy = 'cacher' %}
 {% endif %}
@@ -27,6 +29,9 @@
     - backup: False
 
 {% endif %}
+{% endif %}
+{% endif %}
+{% endif %}
 
 admin_install:
   pkg.installed:
@@ -36,3 +41,4 @@ admin_install:
       - qubes-core-agent-passwordless-root
       - bsdextrautils
 
+{% endif %}
