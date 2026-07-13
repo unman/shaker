@@ -1,25 +1,30 @@
 # vim: set syntax=yaml ts=2 sw=2 sts=2 et :
 
 {% if salt['pillar.get']('update_proxy:caching') %}
+{% set proxy = 'cacher' %}
+{% endif %}
 
-{% for repo in salt['file.find']('/etc/yum.repos.d/', name='*repo*') %}
+{% if grains['nodename'] != 'dom0' %}
+{% if grains['os_family']|lower == 'debian' %}
+{% if grains['nodename']|lower != 'host' %}
+{% if proxy  == 'cacher' %}
+{% for repo in salt['file.find']('/etc/apt/sources.list.d/', name='*list') %}
 {{ repo }}_baseurl:
-    file.replace:
-      - name: {{ repo }}
-      - pattern: 'baseurl.*=.*https://'
-      - repl: 'baseurl=http://HTTPS///'
-      - flags: [ 'IGNORECASE', 'MULTILINE' ]
-      - backup: False
-{{ repo }}_metalink:
-    file.replace:
-      - name: {{ repo }}
-      - pattern: 'metalink.*=.*https://(.*)basearch'
-      - repl: 'metalink=http://HTTPS///\1basearch&protocol=http'
-      - flags: [ 'IGNORECASE', 'MULTILINE' ]
-      - backup: False
-
+  file.replace:
+    - name: {{ repo }}
+    - pattern: 'https://'
+    - repl: 'http://HTTPS///'
+    - flags: [ 'IGNORECASE', 'MULTILINE' ]
+    - backup: False
 {% endfor %}
 
+/etc/apt/sources.list:
+  file.replace:
+    - name: /etc/apt/sources.list
+    - pattern: 'https:'
+    - repl: 'http://HTTPS/'
+    - flags: [ 'IGNORECASE', 'MULTILINE' ]
+    - backup: False
 
 {% endif %}
 
