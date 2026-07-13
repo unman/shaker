@@ -12,6 +12,7 @@ sys-admin-prefs-id:
     - name: sys-admin
     - memory: 400
     - maxmem: 4000
+    - netvm: none
     - vcpus: 2
 
 sys-admin-features-id:

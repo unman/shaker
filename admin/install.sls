@@ -29,4 +29,5 @@ admin_install:
       - qubes-core-admin-client
       - qubes-core-agent-networking
       - qubes-core-agent-passwordless-root
+      - bsdextrautils
 
