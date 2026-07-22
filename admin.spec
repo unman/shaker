@@ -1,6 +1,6 @@
 Name:           3isec-qubes-admin
 Version:        1
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Prepares an admin qube for use in Qubes
 
 License:        GPLv3+
@@ -32,6 +32,8 @@ fi
 
 
 %changelog
+* Wed Jul 22 2026 unman <unman@thirdeyesecurity.org>
+- Update admin policy
 * Mon Jul 13 2026 unman <unman@thirdeyesecurity.org>
 - Fix syntax errors in install.sls
 - Add restriction for dom0 in install.sls
