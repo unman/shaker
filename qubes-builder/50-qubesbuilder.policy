@@ -1,0 +1,11 @@
+admin.vm.CreateDisposable * builderv2 qubes-builder-dvm allow target=dom0
+
+admin.vm.Start * builderv2 @tag:disp-created-by-builderv2 allow target=dom0
+admin.vm.Kill * builderv2 @tag:disp-created-by-builderv2 allow target=dom0
+
+qubesbuilder.FileCopyIn * builderv2 @tag:disp-created-by-builderv2 allow
+qubesbuilder.FileCopyOut * builderv2 @tag:disp-created-by-builderv2 allow
+
+qubes.Filecopy * builderv2 @tag:disp-created-by-builderv2 allow
+qubes.WaitForSession * builderv2 @tag:disp-created-by-builderv2 allow
+qubes.VMShell * builderv2 @tag:disp-created-by-builderv2 allow

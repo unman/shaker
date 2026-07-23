@@ -1,0 +1,7 @@
+qubesctl state.apply qubes-builder.create
+qubesctl --skip-dom0 --show-output --targets=template-qubes-builder state.apply qubes-builder.install
+qubesctl --skip-dom0 --show-output --targets=qubes-builder state.apply qubes-builder.config
+
+qubesctl state.apply qubes-builder.clone_executor
+qubesctl --skip-dom0 --show-output --targets=template-executor state.apply qubes-builder.install_executor
+
