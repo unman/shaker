@@ -1,5 +1,5 @@
 Name:           3isec-qubes-mirage-firewall
-Version:       	0.9.5
+Version:       	0.9.6
 Release:        1%{?dist}
 Summary:        Create an Mirage firewall in Qubes
 
@@ -8,7 +8,7 @@ SOURCE0:        mirage
 
 %description
 This package creates a mirage firewall for use in Qubes.
-It's a Unikernel qube to replace sys-firewall, which uses minimal system resources.
+This is a Unikernel qube to replace sys-firewall, which uses minimal system resources.
 For full details:
 https://github.com/mirage/qubes-mirage-firewall
 
@@ -17,8 +17,7 @@ If you want to use this as a firewall, simply change net qube from sys-firewall 
 
 Removing this package will remove the mirage-firewall.
 Qubes that use it will have their net qube unset.
-You will have to change netqube to get those qubes back online.
-
+You will have to change the netvm to get those qubes back online.
 
 %install
 rm -rf %{buildroot}
@@ -51,6 +50,9 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Sun Nov 01 2026 unman <unman@thirdeyesecurity.org> - 0.9.6
+- Packages qubes-mirage-firewall 0.9.6
+- Changelog at https://github.com/mirage/qubes-mirage-firewall/releases/tag/v0.9.6
 * Thu Oct 30 2025 unman <unman@thirdeyesecurity.org> - 0.9.5
 - Packages qubes-mirage-firewall 0.9.5
 * Mon Feb 10 2025 unman <unman@thirdeyesecurity.org> - 0.9.4
